@@ -7,24 +7,34 @@ const platform = Platform.OS;
 export const themeColors = {
   light: {
     //#region Backgrounds colors
-    backgroundPrimary: '#318AC3',
+    backgroundPrimary: '#a11c18',
     cardBg: '#fff',
     //#endregion
 
     bottomTabColor: '#fff',
     tabItem: '#212121',
-    tabItemFocused: '#fac422',
+    cardBackgroundCOlor: "rgba(153, 92, 88, 0.1)",
+    tabItemFocused: '#a11c18',
     defaultTextColor: 'black',
     inputBg: '#fff',
     inputText: '#000',
+    buttonBackground: 'rgba(198,60,56,0.5)',
+    workoutBackground1: 'rgba(126,79,129,0.2)',
+    workoutBackground2: 'rgba(83,79,129,0.2)',
+    workoutBackground3: 'rgba(114,129,79,0.2)',
+    workoutBackground4: 'rgba(90,124,95,0.2)',
+    workoutBackground5: 'rgba(124,118,90,0.2)',
+    workoutBackground6: 'rgba(124,107,90,0.2)',
+    workoutBackground7: 'rgba(129,98,79,0.2)',
+    workoutBackground8: 'rgba(129,79,126,0.2)',
     // default font color
     font: '#000000',
     screenBgColor: '#ebebeb',
-    headerBackgroundColor: '#318AC3',
+    headerBackgroundColor: '#a11c18',
     headerColor: '#fff',
 
     // base colors
-    primary: '#318AC3',
+    primary: '#a11c18',
     secondary: '#044571',
     tertiary: '#FFE358',
 
@@ -33,8 +43,8 @@ export const themeColors = {
     white: '#FFFFFF',
 
     // radio button
-    radioButtonBorder: '#318AC3',
-    radioButtonChecked: '#318AC3',
+    radioButtonBorder: '#a11c18',
+    radioButtonChecked: '#a11c18',
 
     // segment control
     segmentBar: '#F2F5F6',

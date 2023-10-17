@@ -9,19 +9,19 @@ const Screens = [
     title: 'home',
     name: routes.HOME_SCREEN,
     component: HomePage,
-    headerShown: true,
+    headerShown: false,
   },
   {
     title: 'fetch_data',
     name: routes.FETCH_DATA_SCREEN,
     component: FetchDataPage,
-    headerShown: true,
+    headerShown: false,
   },
   {
     title: 'form',
     name: routes.FORM_SCREEN,
     component: FormPage,
-    headerShown: true,
+    headerShown: false,
   },
 ] as Array<IScreen<HomeStackNavigationProps>>;
 

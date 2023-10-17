@@ -1,14 +1,14 @@
-import React, {useLayoutEffect} from 'react';
-import {StatusBar} from 'react-native';
+import React, { useLayoutEffect } from 'react';
+import { StatusBar } from 'react-native';
 
-import {NavigationProp} from '@react-navigation/native';
-import {StackNavigationOptions} from '@react-navigation/stack';
+import { NavigationProp } from '@react-navigation/native';
+import { StackNavigationOptions } from '@react-navigation/stack';
 
-import {AppButton} from '@/components';
-import {useTheme} from '@/hooks';
-import {i18n} from '@/lang/i18';
-import {COLORS, FONTS} from '@/theme';
-import {ScreenType} from '@/utils';
+import { AppButton } from '@/components';
+import { useTheme } from '@/hooks';
+import { i18n } from '@/lang/i18';
+import { COLORS, FONTS } from '@/theme';
+import { ScreenType } from '@/utils';
 
 type Props = {
   title?: string;
@@ -17,18 +17,18 @@ type Props = {
   canGoBack?: boolean;
 };
 
-const BackButton = ({navigation, canGoBack}: Props) => {
+const BackButton = ({ navigation, canGoBack }: Props) => {
   return navigation.canGoBack() && canGoBack !== false ? <AppButton w-40 h-40 type="icon" icon={'chevronLeft'} iconSize={26} iconColor={COLORS.white} onPress={() => navigation.goBack()} /> : null;
 };
 export const Header = (props: Props) => {
-  const {colors} = useTheme();
-  const {title, navigationOptions, navigation} = props;
+  const { colors } = useTheme();
+  const { title, navigationOptions, navigation } = props;
   useLayoutEffect(() => {
     navigation.setOptions({
       headerStyle: {
         backgroundColor: colors.headerBackgroundColor,
       },
-      ...(title && {...{headerTitle: i18n.t(title)}}),
+      ...(title && { ...{ headerTitle: i18n.t(title) } }),
       headerTitleStyle: {
         ...FONTS.title,
         color: colors.headerColor,
@@ -44,7 +44,7 @@ export const Header = (props: Props) => {
 
 export const createNavigationOptions = (props: ScreenType, extraOptions?: StackNavigationOptions) => {
   const exParam = extraOptions ?? {};
-  const {title, headerShown} = props;
+  const { title, headerShown } = props;
   const options = {
     headerStyle: {},
     headerTitle: i18n?.isInitialized ? i18n?.t(title as string) : '',
@@ -61,5 +61,5 @@ export const createNavigationOptions = (props: ScreenType, extraOptions?: StackN
     ...exParam,
   };
 
-  return headerShown ? options : {headerShown: false};
+  return headerShown ? options : { headerShown: false };
 };

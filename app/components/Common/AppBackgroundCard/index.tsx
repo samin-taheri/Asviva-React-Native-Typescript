@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, ImageBackground, StyleSheet, Pressable } from 'react-native';
 import { ImageSourcePropType } from "react-native";
 import { COLORS } from '@/theme';
+import AppLable from '../AppLable';
 
 interface BackgroundCardProps {
     title: string;
@@ -11,6 +12,7 @@ interface BackgroundCardProps {
 const AppBackgroundCard: React.FC<BackgroundCardProps> = ({ title, backgroundImage, onPress }) => {
     return (
         <View>
+            <AppLable title="Physical Fitness Test" />
             <View style={{ padding: 8 }}>
                 <View style={styles.cardContainer}>
                     <ImageBackground source={backgroundImage} style={styles.cardBackground}>
@@ -64,8 +66,8 @@ const styles = StyleSheet.create({
         paddingRight: '32%',
     },
     buttonContainer: {
-        backgroundColor: COLORS.gray,
-        width: 80,
+        backgroundColor: COLORS.primary,
+        width: 70,
         height: 30,
         borderRadius: 8,
         alignItems: 'center',
@@ -77,7 +79,6 @@ const styles = StyleSheet.create({
         color: 'white',
         fontWeight: 'bold',
         paddingTop: 1,
-        paddingLeft: 20
     }
 });
 

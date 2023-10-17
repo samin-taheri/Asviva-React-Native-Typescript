@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
+import { HomeStackNavigationPropsType, Routes } from '@/navigation';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useRoute } from '@react-navigation/native';
@@ -7,6 +9,7 @@ import * as Yup from 'yup';
 
 import { AppButton, AppInput, AppScreen, fields, Form, Text } from '@/components';
 import { HomeStackNavigationRouteType } from '@/navigation';
+import AppCustomHeader from '@/components/Common/AppCustomHeader';
 
 const SelectOptions = [
   {
@@ -50,6 +53,7 @@ const FormPage = () => {
       { label: 'radio 2', value: 2 },
     ]),
   });
+  const navigation = useNavigation<HomeStackNavigationPropsType>();
 
   useEffect(() => {
     getUsers();
@@ -71,11 +75,14 @@ const FormPage = () => {
   };
 
   return (
-    <AppScreen keyboardScroll>
-      <Text>Detail Id: {detailId}</Text>
-      <Form schema={schema} form={form} />
-      <AppButton mt-10 type="secondary" title="Submit" />
-    </AppScreen>
+    <React.Fragment>
+      <AppCustomHeader title="Profile" onBack={() => navigation.goBack()} navigation={navigation} onLogo={false} />
+      <AppScreen keyboardScroll>
+        <Text>Detail Id: {detailId}</Text>
+        <Form schema={schema} form={form} />
+        <AppButton mt-10 type="secondary" title="Submit" />
+      </AppScreen>
+    </React.Fragment>
   );
 };
 

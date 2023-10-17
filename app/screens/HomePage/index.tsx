@@ -1,16 +1,15 @@
 import React, { useCallback, useLayoutEffect, useState } from 'react';
-import { Pressable } from 'react-native';
 
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 
-import { Images } from '@/assets';
-import { AppBottomSheet, AppButton, AppIcon, AppImage, AppScreen, AppSwitch, Block, Col, DateTimePicker, FloatingButton, Row, SegmentedControl, Text } from '@/components';
+import { AppButton, AppScreen, AppSwitch, Block, Col, DateTimePicker, FloatingButton, Row, SegmentedControl, Text } from '@/components';
 import { useAppDispatch, useAppSelector, useDialog, useStyledTag } from '@/hooks';
 import { HomeStackNavigationPropsType, Routes } from '@/navigation';
 import { settingsRedux } from '@/store';
-import { COLORS } from '@/theme';
-import { createLocalNotification, Permission, PERMISSION_TYPE } from '@/utils';
+import { Permission, PERMISSION_TYPE } from '@/utils';
 import AppBackgroundCard from '@/components/Common/AppBackgroundCard';
+import AppCustomHeader from '@/components/Common/AppCustomHeader';
+import AppTotalWorkout from '@/components/Common/AppTotalWorkout';
 
 const HeaderRight = ({ language }: { language: string }) => (
   <Block row s="pr-20">
@@ -68,216 +67,22 @@ const HomePage = () => {
 
   return (
     <React.Fragment>
+      <AppCustomHeader navigation={navigation} onLogo={true} />
       <AppScreen scroll>
-        {/* <AppButton
-          type="primary"
-          title="form"
-          onPress={() => {
-            navigation.navigate(Routes.FORM_SCREEN, {
-              detailId: '1230',
-            });
-          }}
-        /> */}
-
-        {/* <Block center middle mt-10 mb-10>
-          <AppImage resizeMode="contain" url={Images.TulparLogo.light} width={200} height={60} />
-        </Block> */}
         <AppBackgroundCard title="Find your coach" backgroundImage={require('../../assets/images/bg-3.jpg')} onPress={() => {
           navigation.navigate(Routes.FORM_SCREEN, {
             detailId: '1230',
           });
-        }} />
-
-        <SegmentedControl currentIndex={activeTab} onChange={(index: number) => setActiveTab(index)} segments={[{ label: '1st' }, { label: '2nd' }, { label: '3nd' }]} mt-10 mb-10 />
-
-        <AppButton
-          mb-5
-          type="primary"
-          title="Bottom Sheet / Switch / Dark Mode"
-          onPress={() => {
-            setBottomSheetVisibility(true);
-          }}
-        />
-
-        <AppButton
-          mb-5
-          type="primary"
-          title="Local Notifications"
-          onPress={() => {
-            createLocalNotification({
-              title: 'Time to Live',
-              message: `Hi 👋, time: ${new Date()}`,
-            });
-          }}
-        />
-
-        <AppButton
-          mb-5
-          type="primary"
-          title={'Floating Button'}
-          onPress={() => {
-            setFloatMenu(!floatMenu);
-          }}
-        />
-
-        <AppButton
-          mb-5
-          type="primary"
-          title="Date Picker"
-          onPress={() => {
-            setDateVisible(true);
-          }}
-        />
-
-        <AppButton
-          mb-5
-          type="primary"
-          title="DateTime Picker"
-          onPress={() => {
-            setDateTimeVisible(true);
-          }}
-        />
-
-        <DateTimePicker visible={dateVisible} onClose={() => setDateVisible(false)} />
-        <DateTimePicker mode="datetime" visible={dateTimeVisible} onClose={() => setDateTimeVisible(false)} />
-
-        <AppButton
-          type="primary"
-          title={'Top Alert'}
-          onPress={() => {
-            dialog.show({
-              type: 'warning',
-              position: 'top',
-              title: 'Camera Permission Warning',
-              message: 'You must give permission to take photos',
-              action: [
-                {
-                  text: 'Cancel',
-                  onPress: () => console.log('Done'),
-                  style: 'cancel',
-                },
-              ],
-            });
-          }}
-        />
-        <AppButton
-          mt-5
-          type="primary"
-          title={'Bottom Alert'}
-          onPress={() => {
-            dialog.show({
-              type: 'warning',
-              position: 'bottom',
-              title: 'Camera Permission Warning',
-              message: 'You must give permission to take photos',
-              action: [
-                {
-                  text: 'Cancel',
-                  onPress: () => console.log('Done'),
-                  style: 'cancel',
-                },
-              ],
-            });
-          }}
-        />
-
-        <AppButton
-          mt-5
-          type="primary"
-          title={'Left Alert'}
-          onPress={() => {
-            dialog.show({
-              type: 'warning',
-              position: 'left',
-              title: 'Camera Permission Warning',
-              message: 'You must give permission to take photos',
-              action: [
-                {
-                  text: 'Cancel',
-                  onPress: () => console.log('Done'),
-                  style: 'cancel',
-                },
-              ],
-            });
-          }}
-        />
-
-        <AppButton
-          mt-5
-          type="primary"
-          title={'Right Alert'}
-          onPress={() => {
-            dialog.show({
-              type: 'warning',
-              position: 'right',
-              title: 'Camera Permission Warning',
-              message: 'You must give permission to take photos',
-              action: [
-                {
-                  text: 'Cancel',
-                  onPress: () => console.log('Done'),
-                  style: 'cancel',
-                },
-              ],
-            });
-          }}
-        />
-
-        <LanguageArea>
-
-          <AppButton type="primary" title={'Türkçe'} onPress={() => onChangeLang('tr')} mb-5 />
-
-          <AppButton type="primary" title={'İngilizce'} onPress={() => onChangeLang('en')} />
-
-        </LanguageArea>
-
-        <Block mt-10 center middle>
-          <AppIcon name={'camera'} size={30} color={COLORS.primary} />
-        </Block>
-        <Block center>
-          {isPermission ? (
-            <Text black center mt-5>
-              camera_permissions
-            </Text>
-          ) : (
-            <Pressable onPress={cameraPermissions}>
-              <Text black center>
-                permissions
-              </Text>
-            </Pressable>
-          )}
-        </Block>
-
-        <AppBottomSheet isVisible={bottomSheetVisibility} onClose={() => setBottomSheetVisibility(false)}>
-          <Block row center p-20>
-            <Text black>Dark Theme</Text>
-            <Block pl-20>
-              <AppSwitch value={theme === 'dark'} onChange={() => dispatch(settingsRedux.setTheme(theme === 'light' ? 'dark' : 'light'))} />
-            </Block>
-          </Block>
-        </AppBottomSheet>
-      </AppScreen>
-
-      <FloatingButton
-        isVisible={floatMenu}
-        onPress={() => {
-          setFloatMenu(!floatMenu);
-          dialog.show({
-            type: 'success',
-            position: 'bottom',
-            title: 'Approve',
-            message: 'Floating Button show ended successfully',
-            action: [
-              {
-                text: 'Cancel',
-                onPress: () => console.log('Done'),
-                style: 'cancel',
-              },
-            ],
-          });
         }}
-        onClose={() => setFloatMenu(!floatMenu)}
-      />
+        />
+        <AppTotalWorkout />
+        {/* <SegmentedControl currentIndex={activeTab} onChange={(index: number) => setActiveTab(index)} segments={[{ label: '1st' }, { label: '2nd' }, { label: '3nd' }]} mt-10 mb-10 /> */}
+
+        {/* <LanguageArea>
+          <AppButton type="primary" title={'Türkçe'} onPress={() => onChangeLang('tr')} mb-5 />
+          <AppButton type="primary" title={'İngilizce'} onPress={() => onChangeLang('en')} />
+        </LanguageArea> */}
+      </AppScreen>
     </React.Fragment>
   );
 };

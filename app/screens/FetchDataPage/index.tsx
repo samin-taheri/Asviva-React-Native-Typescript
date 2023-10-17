@@ -1,11 +1,14 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
-import {useTheme} from '@react-navigation/native';
+import { useTheme } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
+import { HomeStackNavigationPropsType, Routes } from '@/navigation';
 
-import {useGetCharactersQuery} from '@/api';
-import {AppFlatList, AppImage, AppScreen, Block, Swipeable, Text} from '@/components';
+import { useGetCharactersQuery } from '@/api';
+import { AppFlatList, AppImage, AppScreen, Block, Swipeable, Text } from '@/components';
 import EmptyList from '@/components/Common/EmptyList';
-import {COLORS, SIZES} from '@/theme';
+import { COLORS, SIZES } from '@/theme';
+import AppCustomHeader from '@/components/Common/AppCustomHeader';
 
 type ItemType = {
   image: string;
@@ -14,14 +17,15 @@ type ItemType = {
 
 const FetchDataPage = () => {
   const [page, setPage] = useState(1);
-  const {data: characters, isLoading} = useGetCharactersQuery(1);
+  const { data: characters, isLoading } = useGetCharactersQuery(1);
   const theme = useTheme();
+  const navigation = useNavigation<HomeStackNavigationPropsType>();
 
   const retrieveMore = () => {
     setPage(page + 1);
   };
 
-  const renderItem = ({item}: {item: ItemType}) => {
+  const renderItem = ({ item }: { item: ItemType }) => {
     return (
       <Swipeable
         leftItems={[
@@ -48,7 +52,7 @@ const FetchDataPage = () => {
             background: 'red',
           },
         ]}>
-        <Block style={{borderWidth: 0.2, backgroundColor: theme.colors.background}} px-10 py-10 br-10 border>
+        <Block style={{ borderWidth: 0.2, backgroundColor: theme.colors.background }} px-10 py-10 br-10 border>
           <Block center row>
             <AppImage url={item.image} width={40} height={40} borderRadius={SIZES.radius} />
             <Text ml-10 black>
@@ -61,17 +65,20 @@ const FetchDataPage = () => {
   };
 
   return (
-    <AppScreen title="fetch_data" flatList customStyle={{padding: 0}}>
-      <AppFlatList
-        onRefreshData={() => console.log('Refreshed')}
-        usePagination
-        data={characters?.results}
-        ListEmptyComponent={<EmptyList text="No records found." />}
-        renderItem={renderItem}
-        onEndReached={retrieveMore}
-        refreshing={isLoading}
-      />
-    </AppScreen>
+    <React.Fragment>
+      <AppCustomHeader navigation={navigation} onLogo={true} />
+      <AppScreen title="fetch_data" flatList customStyle={{ padding: 0 }}>
+        <AppFlatList
+          onRefreshData={() => console.log('Refreshed')}
+          usePagination
+          data={characters?.results}
+          ListEmptyComponent={<EmptyList text="No records found." />}
+          renderItem={renderItem}
+          onEndReached={retrieveMore}
+          refreshing={isLoading}
+        />
+      </AppScreen>
+    </React.Fragment>
   );
 };
 

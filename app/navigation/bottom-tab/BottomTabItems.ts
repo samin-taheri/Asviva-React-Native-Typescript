@@ -19,13 +19,13 @@ export const Screens = [
     name: Routes.LOGIN_SCREEN,
     component: LoginPage,
     icon: ICONS.list,
-    headerShown: true,
+    headerShown: false,
   },
   {
     title: 'fetch_data',
     name: Routes.FETCH_DATA_SCREEN,
     component: FetchDataPage,
     icon: ICONS.info,
-    headerShown: true,
+    headerShown: false,
   },
 ] as IScreen<BottomTabStackNavigationProps>[];
