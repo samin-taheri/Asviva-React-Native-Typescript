@@ -36,13 +36,13 @@ const LoginPage = () => {
     <React.Fragment>
       <AppCustomHeader navigation={navigation} onLogo={true} />
       <AppScreen keyboardScroll>
-        <Pressable style={{ borderRadius: 8, backgroundColor: '#ccc', padding: 8, flexDirection: 'row', height: 33, alignItems: 'center', width: '25%' }} onPress={() => {
+        {/* <Pressable style={{ borderRadius: 8, backgroundColor: '#ccc', padding: 8, flexDirection: 'row', height: 33, alignItems: 'center', width: '25%' }} onPress={() => {
           navigation.navigate(Routes.FORM_SCREEN, {
             detailId: '1530',
           });
         }}>
           <Text style={{ fontSize: 13 }}>Guest Mode</Text>
-        </Pressable>
+        </Pressable> */}
         <Form schema={schema} form={form} />
         <AppButton mt-10 type="secondary" onPress={form.handleSubmit(onSubmit)} title="Submit" />
       </AppScreen>

@@ -18,6 +18,8 @@ export const themeColors = {
     defaultTextColor: 'black',
     inputBg: '#fff',
     inputText: '#000',
+    cardBackground: '#f3f3f5',
+    backgroundColor: '#f5f5f5',
     buttonBackground: 'rgba(198,60,56,0.5)',
     workoutBackground1: 'rgba(126,79,129,0.2)',
     workoutBackground2: 'rgba(83,79,129,0.2)',

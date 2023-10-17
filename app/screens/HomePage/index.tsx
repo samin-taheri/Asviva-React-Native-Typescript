@@ -2,7 +2,7 @@ import React, { useCallback, useLayoutEffect, useState } from 'react';
 
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 
-import { AppButton, AppScreen, AppSwitch, Block, Col, DateTimePicker, FloatingButton, Row, SegmentedControl, Text } from '@/components';
+import { AppScreen, Block, Text } from '@/components';
 import { useAppDispatch, useAppSelector, useDialog, useStyledTag } from '@/hooks';
 import { HomeStackNavigationPropsType, Routes } from '@/navigation';
 import { settingsRedux } from '@/store';
@@ -10,6 +10,10 @@ import { Permission, PERMISSION_TYPE } from '@/utils';
 import AppBackgroundCard from '@/components/Common/AppBackgroundCard';
 import AppCustomHeader from '@/components/Common/AppCustomHeader';
 import AppTotalWorkout from '@/components/Common/AppTotalWorkout';
+import AppWeaklyGoals from '@/components/Common/AppWeaklyGoals';
+import AppWorkoutDetails from '@/components/Common/AppWorkoutDetails';
+import { COLORS } from '@/theme';
+import AppChart from '@/components/Common/AppCharts';
 
 const HeaderRight = ({ language }: { language: string }) => (
   <Block row s="pr-20">
@@ -68,7 +72,7 @@ const HomePage = () => {
   return (
     <React.Fragment>
       <AppCustomHeader navigation={navigation} onLogo={true} />
-      <AppScreen scroll>
+      <AppScreen scroll customStyle={{ backgroundColor: COLORS.backgroundColor }}>
         <AppBackgroundCard title="Find your coach" backgroundImage={require('../../assets/images/bg-3.jpg')} onPress={() => {
           navigation.navigate(Routes.FORM_SCREEN, {
             detailId: '1230',
@@ -76,12 +80,16 @@ const HomePage = () => {
         }}
         />
         <AppTotalWorkout />
+        <AppWeaklyGoals />
+        <AppWorkoutDetails onPress={() => navigation.navigate(Routes.FORM_SCREEN, { detailId: '1230' })} title="Record of Workouts" />
+        <AppChart />
         {/* <SegmentedControl currentIndex={activeTab} onChange={(index: number) => setActiveTab(index)} segments={[{ label: '1st' }, { label: '2nd' }, { label: '3nd' }]} mt-10 mb-10 /> */}
 
         {/* <LanguageArea>
           <AppButton type="primary" title={'Türkçe'} onPress={() => onChangeLang('tr')} mb-5 />
           <AppButton type="primary" title={'İngilizce'} onPress={() => onChangeLang('en')} />
         </LanguageArea> */}
+
       </AppScreen>
     </React.Fragment>
   );
