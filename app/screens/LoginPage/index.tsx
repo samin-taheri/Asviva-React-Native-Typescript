@@ -4,11 +4,11 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import { useNavigation } from '@react-navigation/native';
-import { HomeStackNavigationPropsType, Routes } from '@/navigation';
+import { HomeStackNavigationPropsType } from '@/navigation';
 
-import { AppButton, AppScreen, fields, Form } from '@/components';
-import { Pressable, Text } from 'react-native';
+import { AppScreen, fields } from '@/components';
 import AppCustomHeader from '@/components/Common/AppCustomHeader';
+import AppLogin from '@/components/Common/AppLogin';
 
 const initial = {
   username: '',
@@ -36,15 +36,7 @@ const LoginPage = () => {
     <React.Fragment>
       <AppCustomHeader navigation={navigation} onLogo={true} />
       <AppScreen keyboardScroll>
-        {/* <Pressable style={{ borderRadius: 8, backgroundColor: '#ccc', padding: 8, flexDirection: 'row', height: 33, alignItems: 'center', width: '25%' }} onPress={() => {
-          navigation.navigate(Routes.FORM_SCREEN, {
-            detailId: '1530',
-          });
-        }}>
-          <Text style={{ fontSize: 13 }}>Guest Mode</Text>
-        </Pressable> */}
-        <Form schema={schema} form={form} />
-        <AppButton mt-10 type="secondary" onPress={form.handleSubmit(onSubmit)} title="Submit" />
+        <AppLogin />
       </AppScreen>
     </React.Fragment>
   );

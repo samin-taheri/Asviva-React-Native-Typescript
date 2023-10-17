@@ -6,26 +6,20 @@ import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import { AppButton, Form, fields } from '@/components';
 import AppMyHeader from '../AppMyHeader';
+import { useNavigation } from '@react-navigation/native';
+import { HomeStackNavigationPropsType, Routes } from '@/navigation';
 
 const initial = {
     username: '',
     password: '',
 };
 
-
-interface LoginProps {
-    onLogin: (username: string, password: string) => void;
-    onRegister: () => void;
-    navigate: () => void;
-    forgotPassword: () => void;
-    signUp: () => void;
-}
-
-const AppLogin: React.FC<LoginProps> = ({ onLogin, onRegister, navigate, forgotPassword, signUp }) => {
+const AppLogin = ({ }) => {
     const schema = Yup.object({
         username: fields.text.label('Username').required('Bu alan zorunludur'),
         password: fields.password.label('Password').min(6, 'En az 6 karakter olmalı').required('Lütfen parola giriniz'),
     });
+    const navigation = useNavigation<HomeStackNavigationPropsType>();
 
     const form = useForm({
         defaultValues: initial,
@@ -43,12 +37,12 @@ const AppLogin: React.FC<LoginProps> = ({ onLogin, onRegister, navigate, forgotP
                     <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
                         <Text style={styles.title}>Login</Text>
                     </View>
-                    <Pressable style={{ borderRadius: 8, backgroundColor: COLORS.backgroundColor, padding: 8, flexDirection: 'row', height: 33, alignItems: 'center' }} onPress={navigate}>
+                    <Pressable style={{ borderRadius: 8, backgroundColor: COLORS.backgroundColor, padding: 8, flexDirection: 'row', height: 33, alignItems: 'center' }}>
                         <Text style={{ fontSize: 13 }}>Guest Mode</Text>
                     </Pressable>
                 </View>
                 <Form schema={schema} form={form} />
-                <AppButton mt-10 type="secondary" onPress={form.handleSubmit(onSubmit)} title="Submit" />
+                <AppButton mt-10 type="primary" onPress={form.handleSubmit(onSubmit)} title="Submit" />
                 <View style={styles.container3}>
                     <View style={styles.divider} />
                     <Text style={styles.text}>Sign in with</Text>

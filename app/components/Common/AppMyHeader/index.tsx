@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, TouchableOpacity, Dimensions, Platform, Image } from 'react-native'
 import * as Animatable from 'react-native-animatable';
-import { Feather } from '@expo/vector-icons';
 import { COLORS } from '@/theme';
 
 interface MyHeaderProps {
@@ -24,7 +23,7 @@ const AppMyHeader: React.FC<MyHeaderProps> = (props) => {
                             iterationCount={1} >
                             <Image
                                 style={styles.logoImage2}
-                                source={require('../assets/logo.png')}
+                                source={require('../../../assets/images/logo.png')}
                             />
                         </Animatable.View>
                     )
@@ -37,7 +36,6 @@ const AppMyHeader: React.FC<MyHeaderProps> = (props) => {
                             : (
                                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                                     <TouchableOpacity onPress={props.onPress} style={{ paddingTop: '12%', paddingLeft: '5%', zIndex: 1 }}>
-                                        <Feather name="arrow-left" size={30} color={'black'} />
                                     </TouchableOpacity>
                                     <Animatable.Text style={styles.HeaderText} animation="fadeInDown">{props.Title}</Animatable.Text>
                                 </View>
@@ -48,7 +46,7 @@ const AppMyHeader: React.FC<MyHeaderProps> = (props) => {
                     iterationCount={1} >
                     <Image
                         style={styles.logoImage}
-                        source={require('../assets/logo.png')}
+                        source={require('../../../assets/images/logo.png')}
                     />
                 </Animatable.View>
             </View>
