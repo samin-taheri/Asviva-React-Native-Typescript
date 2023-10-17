@@ -1,10 +1,10 @@
-import React, {memo} from 'react';
+import React, { memo } from 'react';
 
-import type {IconMoonProps} from 'react-native-icomoon';
+import type { IconMoonProps } from 'react-native-icomoon';
 import Icomoon from 'react-native-icomoon';
-
-import {useTheme} from '@/hooks';
-import {heightPixel, ICONS} from '@/utils';
+import * as Icon from "react-native-feather";
+import { useTheme } from '@/hooks';
+import { heightPixel, ICONS } from '@/utils';
 
 import selectionJson from '../../../assets/selection.json';
 
@@ -13,7 +13,7 @@ type AppIconProps = {
   name: keyof typeof ICONS;
 } & IconProps;
 
-function AppIcon({name, color, ...restProps}: AppIconProps) {
+function AppIcon({ name, color, ...restProps }: AppIconProps) {
   const theme = useTheme();
   const colors = {
     primary: theme.colors.primary,

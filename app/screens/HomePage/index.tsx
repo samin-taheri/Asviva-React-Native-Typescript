@@ -1,18 +1,17 @@
-import React, {useCallback, useLayoutEffect, useState} from 'react';
-import {Pressable} from 'react-native';
+import React, { useCallback, useLayoutEffect, useState } from 'react';
+import { Pressable } from 'react-native';
 
-import {useFocusEffect, useNavigation} from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 
-import {Images} from '@/assets';
-import images from '@/assets/images';
-import {AppBottomSheet, AppButton, AppIcon, AppImage, AppScreen, AppSwitch, Block, Col, DateTimePicker, FloatingButton, Row, SegmentedControl, Text} from '@/components';
-import {useAppDispatch, useAppSelector, useDialog, useStyledTag} from '@/hooks';
-import {HomeStackNavigationPropsType, Routes} from '@/navigation';
-import {settingsRedux} from '@/store';
-import {COLORS} from '@/theme';
-import {createLocalNotification, Permission, PERMISSION_TYPE} from '@/utils';
+import { Images } from '@/assets';
+import { AppBottomSheet, AppButton, AppIcon, AppImage, AppScreen, AppSwitch, Block, Col, DateTimePicker, FloatingButton, Row, SegmentedControl, Text } from '@/components';
+import { useAppDispatch, useAppSelector, useDialog, useStyledTag } from '@/hooks';
+import { HomeStackNavigationPropsType, Routes } from '@/navigation';
+import { settingsRedux } from '@/store';
+import { COLORS } from '@/theme';
+import { createLocalNotification, Permission, PERMISSION_TYPE } from '@/utils';
 
-const HeaderRight = ({language}: {language: string}) => (
+const HeaderRight = ({ language }: { language: string }) => (
   <Block row s="pr-20">
     <Text white>language</Text>
     <Text white>:</Text>
@@ -27,7 +26,6 @@ const HomePage = () => {
   const dialog = useDialog();
   const navigation = useNavigation<HomeStackNavigationPropsType>();
 
-  const DatePickerArea = useStyledTag(Block, 'py-5');
   const LanguageArea = useStyledTag(Block, 'py-5');
 
   const theme = useAppSelector(state => state.settings.theme);
@@ -84,7 +82,7 @@ const HomePage = () => {
           <AppImage resizeMode="contain" url={Images.TulparLogo.light} width={200} height={60} />
         </Block>
 
-        <SegmentedControl currentIndex={activeTab} onChange={(index: number) => setActiveTab(index)} segments={[{label: '1st'}, {label: '2nd'}, {label: '3nd'}]} mt-10 mb-10 />
+        <SegmentedControl currentIndex={activeTab} onChange={(index: number) => setActiveTab(index)} segments={[{ label: '1st' }, { label: '2nd' }, { label: '3nd' }]} mt-10 mb-10 />
 
         <AppButton
           mb-5
@@ -116,134 +114,115 @@ const HomePage = () => {
           }}
         />
 
-        <DatePickerArea>
-          <Row row>
-            <Col col-6 pr-2>
-              <AppButton
-                type="primary"
-                title="Date Picker"
-                onPress={() => {
-                  setDateVisible(true);
-                }}
-              />
-            </Col>
-            <Col col-6 pr-2>
-              <AppButton
-                type="primary"
-                title="DateTime Picker"
-                onPress={() => {
-                  setDateTimeVisible(true);
-                }}
-              />
-            </Col>
-          </Row>
-        </DatePickerArea>
+        <AppButton
+          mb-5
+          type="primary"
+          title="Date Picker"
+          onPress={() => {
+            setDateVisible(true);
+          }}
+        />
+
+        <AppButton
+          mb-5
+          type="primary"
+          title="DateTime Picker"
+          onPress={() => {
+            setDateTimeVisible(true);
+          }}
+        />
 
         <DateTimePicker visible={dateVisible} onClose={() => setDateVisible(false)} />
         <DateTimePicker mode="datetime" visible={dateTimeVisible} onClose={() => setDateTimeVisible(false)} />
 
-        <Row row>
-          <Col col-6 pr-2>
-            <AppButton
-              mt-5
-              type="primary"
-              title={'Top Alert'}
-              onPress={() => {
-                dialog.show({
-                  type: 'warning',
-                  position: 'top',
-                  title: 'Camera Permission Warning',
-                  message: 'You must give permission to take photos',
-                  action: [
-                    {
-                      text: 'Cancel',
-                      onPress: () => console.log('Done'),
-                      style: 'cancel',
-                    },
-                  ],
-                });
-              }}
-            />
-          </Col>
-          <Col col-6 pr-2>
-            <AppButton
-              mt-5
-              type="primary"
-              title={'Bottom Alert'}
-              onPress={() => {
-                dialog.show({
-                  type: 'warning',
-                  position: 'bottom',
-                  title: 'Camera Permission Warning',
-                  message: 'You must give permission to take photos',
-                  action: [
-                    {
-                      text: 'Cancel',
-                      onPress: () => console.log('Done'),
-                      style: 'cancel',
-                    },
-                  ],
-                });
-              }}
-            />
-          </Col>
-        </Row>
-        <Row row>
-          <Col col-6 pr-2>
-            <AppButton
-              mt-5
-              type="primary"
-              title={'Left Alert'}
-              onPress={() => {
-                dialog.show({
-                  type: 'warning',
-                  position: 'left',
-                  title: 'Camera Permission Warning',
-                  message: 'You must give permission to take photos',
-                  action: [
-                    {
-                      text: 'Cancel',
-                      onPress: () => console.log('Done'),
-                      style: 'cancel',
-                    },
-                  ],
-                });
-              }}
-            />
-          </Col>
-          <Col col-6 pr-2>
-            <AppButton
-              mt-5
-              type="primary"
-              title={'Right Alert'}
-              onPress={() => {
-                dialog.show({
-                  type: 'warning',
-                  position: 'right',
-                  title: 'Camera Permission Warning',
-                  message: 'You must give permission to take photos',
-                  action: [
-                    {
-                      text: 'Cancel',
-                      onPress: () => console.log('Done'),
-                      style: 'cancel',
-                    },
-                  ],
-                });
-              }}
-            />
-          </Col>
-        </Row>
+        <AppButton
+          type="primary"
+          title={'Top Alert'}
+          onPress={() => {
+            dialog.show({
+              type: 'warning',
+              position: 'top',
+              title: 'Camera Permission Warning',
+              message: 'You must give permission to take photos',
+              action: [
+                {
+                  text: 'Cancel',
+                  onPress: () => console.log('Done'),
+                  style: 'cancel',
+                },
+              ],
+            });
+          }}
+        />
+        <AppButton
+          mt-5
+          type="primary"
+          title={'Bottom Alert'}
+          onPress={() => {
+            dialog.show({
+              type: 'warning',
+              position: 'bottom',
+              title: 'Camera Permission Warning',
+              message: 'You must give permission to take photos',
+              action: [
+                {
+                  text: 'Cancel',
+                  onPress: () => console.log('Done'),
+                  style: 'cancel',
+                },
+              ],
+            });
+          }}
+        />
 
-        <LanguageArea mt-5>
-          <Row row>
-            <Col col-6 pr-2>
-              <AppButton type="primary" title={'Türkçe'} onPress={() => onChangeLang('tr')} mb-10 />
-            </Col>
-            <Col col-6 pl-2>
-              <AppButton type="primary" title={'İngilizce'} onPress={() => onChangeLang('en')} />
-            </Col>
-          </Row>
+        <AppButton
+          mt-5
+          type="primary"
+          title={'Left Alert'}
+          onPress={() => {
+            dialog.show({
+              type: 'warning',
+              position: 'left',
+              title: 'Camera Permission Warning',
+              message: 'You must give permission to take photos',
+              action: [
+                {
+                  text: 'Cancel',
+                  onPress: () => console.log('Done'),
+                  style: 'cancel',
+                },
+              ],
+            });
+          }}
+        />
+
+        <AppButton
+          mt-5
+          type="primary"
+          title={'Right Alert'}
+          onPress={() => {
+            dialog.show({
+              type: 'warning',
+              position: 'right',
+              title: 'Camera Permission Warning',
+              message: 'You must give permission to take photos',
+              action: [
+                {
+                  text: 'Cancel',
+                  onPress: () => console.log('Done'),
+                  style: 'cancel',
+                },
+              ],
+            });
+          }}
+        />
+
+        <LanguageArea>
+
+          <AppButton type="primary" title={'Türkçe'} onPress={() => onChangeLang('tr')} mb-5 />
+
+          <AppButton type="primary" title={'İngilizce'} onPress={() => onChangeLang('en')} />
+
         </LanguageArea>
 
         <Block mt-10 center middle>

@@ -1,4 +1,4 @@
-module.exports = {
+{module.exports = {
   arrowParens: 'avoid',
   printWidth: 200,
   tabWidth: 2,
@@ -7,3 +7,4 @@ module.exports = {
   singleQuote: true,
   trailingComma: 'all',
 };
+}

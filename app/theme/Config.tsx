@@ -1,6 +1,6 @@
-import {Dimensions, Platform} from 'react-native';
+import { Dimensions, Platform } from 'react-native';
 
-const {width, height} = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 const platform = Platform.OS;
 
 //#region theme colors
@@ -173,7 +173,7 @@ export const SIZES = {
 
   shadow: {
     shadowColor: 'rgba(0,0,0,0.075)',
-    shadowOffset: {width: 0, height: 2},
+    shadowOffset: { width: 0, height: 2 },
     shadowRadius: 4,
   },
 
