@@ -10,6 +10,7 @@ import { HomeStackNavigationPropsType, Routes } from '@/navigation';
 import { settingsRedux } from '@/store';
 import { COLORS } from '@/theme';
 import { createLocalNotification, Permission, PERMISSION_TYPE } from '@/utils';
+import AppBackgroundCard from '@/components/Common/AppBackgroundCard';
 
 const HeaderRight = ({ language }: { language: string }) => (
   <Block row s="pr-20">
@@ -68,7 +69,7 @@ const HomePage = () => {
   return (
     <React.Fragment>
       <AppScreen scroll>
-        <AppButton
+        {/* <AppButton
           type="primary"
           title="form"
           onPress={() => {
@@ -76,11 +77,16 @@ const HomePage = () => {
               detailId: '1230',
             });
           }}
-        />
+        /> */}
 
-        <Block center middle mt-10 mb-10>
+        {/* <Block center middle mt-10 mb-10>
           <AppImage resizeMode="contain" url={Images.TulparLogo.light} width={200} height={60} />
-        </Block>
+        </Block> */}
+        <AppBackgroundCard title="Find your coach" backgroundImage={require('../../assets/images/bg-3.jpg')} onPress={() => {
+          navigation.navigate(Routes.FORM_SCREEN, {
+            detailId: '1230',
+          });
+        }} />
 
         <SegmentedControl currentIndex={activeTab} onChange={(index: number) => setActiveTab(index)} segments={[{ label: '1st' }, { label: '2nd' }, { label: '3nd' }]} mt-10 mb-10 />
 

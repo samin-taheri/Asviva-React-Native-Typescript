@@ -1,12 +1,12 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 
-import {yupResolver} from '@hookform/resolvers/yup';
-import {useRoute} from '@react-navigation/native';
-import {useForm} from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useRoute } from '@react-navigation/native';
+import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 
-import {AppButton, AppInput, AppScreen, fields, Form, Text} from '@/components';
-import {HomeStackNavigationRouteType} from '@/navigation';
+import { AppButton, AppInput, AppScreen, fields, Form, Text } from '@/components';
+import { HomeStackNavigationRouteType } from '@/navigation';
 
 const SelectOptions = [
   {
@@ -36,7 +36,7 @@ const initial = {
 const FormPage = () => {
   const [users, setUsers] = useState([]);
   const route = useRoute<HomeStackNavigationRouteType<'FORM_SCREEN'>>();
-  const {detailId} = route.params;
+  const { detailId } = route.params;
 
   const schema = Yup.object({
     name: fields.text.label('Text Example').required('Bu alan zorunludur'),
@@ -46,8 +46,8 @@ const FormPage = () => {
     autoComplete: fields.autoComplete(users, 'string', 'name.first', 'name.first').required('test message').label('Auto Complete'),
     multipleSelect: fields.multipleSelect(users ?? [], 'string', 'name.first', 'name.first').label('Multiple Select'),
     radio: fields.radio([
-      {label: 'radio-1', value: 1},
-      {label: 'radio 2', value: 2},
+      { label: 'radio-1', value: 1 },
+      { label: 'radio 2', value: 2 },
     ]),
   });
 
@@ -74,7 +74,7 @@ const FormPage = () => {
     <AppScreen keyboardScroll>
       <Text>Detail Id: {detailId}</Text>
       <Form schema={schema} form={form} />
-      <AppButton mt-10 type="secondary" onPress={form.handleSubmit(onSubmit)} title="Submit" />
+      <AppButton mt-10 type="secondary" title="Submit" />
     </AppScreen>
   );
 };

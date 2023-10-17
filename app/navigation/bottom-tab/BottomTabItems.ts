@@ -1,4 +1,4 @@
-import {FetchDataPage, HomePage} from '@/screens';
+import {FetchDataPage, HomePage, LoginPage} from '@/screens';
 import {IScreen} from '@/utils';
 
 import {BottomTabStackNavigationProps} from './types';
@@ -16,8 +16,8 @@ export const Screens = [
   },
   {
     title: 'sports_center',
-    name: Routes.HOME_SCREEN,
-    component: HomePage,
+    name: Routes.LOGIN_SCREEN,
+    component: LoginPage,
     icon: ICONS.list,
     headerShown: true,
   },

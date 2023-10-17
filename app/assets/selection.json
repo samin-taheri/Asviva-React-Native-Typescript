@@ -29,6 +29,34 @@
       "setId": 5,
       "iconIdx": 0
     },
+     {
+      "icon": {
+        "paths": [
+          "M16 0c-8.837 0-16 7.163-16 16s7.163 16 16 16 16-7.163 16-16-7.163-16-16-16zM16 28c-6.627 0-12-5.373-12-12s5.373-12 12-12c6.627 0 12 5.373 12 12s-5.373 12-12 12z"
+        ],
+        "attrs": [
+          {}
+        ],
+        "isMulticolor": false,
+        "isMulticolor2": false,
+        "tags": [
+          "radio-unchecked"
+        ],
+        "grid": 20
+      },
+      "attrs": [
+        {}
+      ],
+      "properties": {
+        "order": 9,
+        "id": 0,
+        "name": "radio-unchecked",
+        "prevSize": 20
+      },
+      "setIdx": 4,
+      "setId": 2,
+      "iconIdx": 0
+    },
     {
       "icon": {
         "paths": [

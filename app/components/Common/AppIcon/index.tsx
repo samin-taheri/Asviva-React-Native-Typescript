@@ -2,7 +2,6 @@ import React, { memo } from 'react';
 
 import type { IconMoonProps } from 'react-native-icomoon';
 import Icomoon from 'react-native-icomoon';
-import * as Icon from "react-native-feather";
 import { useTheme } from '@/hooks';
 import { heightPixel, ICONS } from '@/utils';
 
