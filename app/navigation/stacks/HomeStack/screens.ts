@@ -5,6 +5,11 @@ import {HomeStackNavigationProps} from './types';
 import routes from '../../Routes';
 import Goals from '@/screens/Goals';
 import Questionnaire from '@/screens/Questionnaire';
+import WorkoutDetails from '@/screens/WorkoutDetails';
+import Brands from '@/screens/Brands';
+import Loading from '@/screens/Loading';
+import ConnectDevices from '@/screens/ConnectDevices';
+import Profile from '@/screens/Profile';
 
 const Screens = [
   {
@@ -26,9 +31,33 @@ const Screens = [
     headerShown: false,
   },
   {
-    title: 'Questionnare Page',
-    name: routes.QUESTIONNAIRE_SCREEN,
-    component: Questionnaire,
+    title: 'Brands Page',
+    name: routes.BRANDS_SCREEN,
+    component: Brands,
+    headerShown: false,
+  },
+   {
+    title: 'Loading Page',
+    name: routes.LOADING_SCREEN,
+    component: Loading,
+    headerShown: false,
+  },
+   {
+    title: 'Connect Devices Page',
+    name: routes.CONNECTDEVICES_SCREEN,
+    component: ConnectDevices,
+    headerShown: false,
+  },
+   {
+    title: 'Workout Details Page',
+    name: routes.WORKOUTDETAILS_SCREEN,
+    component: WorkoutDetails,
+    headerShown: false,
+  },
+   {
+    title: 'Profile Page',
+    name: routes.PROFILE_SCREEN,
+    component: Profile,
     headerShown: false,
   },
   {

@@ -29,19 +29,10 @@ const HomePage = () => {
   const dispatch = useAppDispatch();
   const dialog = useDialog();
   const navigation = useNavigation<HomeStackNavigationPropsType>();
-  const route = useRoute<HomeStackNavigationRouteType<'HOME_SCREEN'>>();
 
   const LanguageArea = useStyledTag(Block, 'py-5');
 
-  const theme = useAppSelector(state => state.settings.theme);
-
   const [isPermission, setIsPermission] = useState(false);
-  const [dateVisible, setDateVisible] = useState(false);
-  const [dateTimeVisible, setDateTimeVisible] = useState(false);
-  const [bottomSheetVisibility, setBottomSheetVisibility] = useState(false);
-
-  const [activeTab, setActiveTab] = useState<number>(0);
-  const [floatMenu, setFloatMenu] = useState<boolean>(false);
   const language = useAppSelector(state => state.settings.language);
 
   const onChangeLang = (_language: string) => {
@@ -82,7 +73,7 @@ const HomePage = () => {
         />
         <AppTotalWorkout />
         <AppWeaklyGoals onPress={() => { navigation.navigate(Routes.QUESTIONNAIRE_SCREEN) }} />
-        <AppWorkoutDetails onPress={() => navigation.navigate(Routes.FORM_SCREEN, { detailId: '1230' })} title="Record of Workouts" />
+        <AppWorkoutDetails onPress={() => navigation.navigate(Routes.WORKOUTDETAILS_SCREEN)} title="Record of Workouts" />
         <AppChart />
         {/* <SegmentedControl currentIndex={activeTab} onChange={(index: number) => setActiveTab(index)} segments={[{ label: '1st' }, { label: '2nd' }, { label: '3nd' }]} mt-10 mb-10 /> */}
 

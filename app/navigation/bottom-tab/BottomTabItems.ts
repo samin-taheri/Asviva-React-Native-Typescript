@@ -4,13 +4,12 @@ import {IScreen} from '@/utils';
 import {BottomTabStackNavigationProps} from './types';
 import {ICONS} from '../../utils/icon-enums';
 import Routes from '../Routes';
-import HomeStack from '../stacks/HomeStack';
 
 export const Screens = [
   {
     title: 'home',
-    name: Routes.HOME_ROOT,
-    component: HomeStack,
+    name: Routes.HOME_SCREEN,
+    component: HomePage,
     icon: ICONS.home,
     headerShown: false,
   },

@@ -7,6 +7,12 @@ import {DrawerMenuNavigaiton} from '../../drawer/DrawerMenuNavigation';
 import Routes from '../../Routes';
 import Goals from '@/screens/Goals';
 import Questionnaire from '@/screens/Questionnaire';
+import WorkoutDetails from '@/screens/WorkoutDetails';
+import Loading from '@/screens/Loading';
+import Brands from '@/screens/Brands';
+import ConnectDevices from '@/screens/ConnectDevices';
+import HomeStack from '../HomeStack';
+import Profile from '@/screens/Profile';
 
 const Screens = [
   {
@@ -21,10 +27,10 @@ const Screens = [
     component: LoginPage,
     headerShown: false,
   },
-  {
+   {
     title: 'Home Page',
-    name: Routes.HOME_SCREEN,
-    component: HomePage,
+    name: Routes.HOME_ROOT,
+    component: HomeStack,
     headerShown: false,
   },
   {
@@ -34,9 +40,39 @@ const Screens = [
     headerShown: false,
   },
   {
+    title: 'Profile Page',
+    name: Routes.PROFILE_SCREEN,
+    component: Profile,
+    headerShown: false,
+  },
+  {
     title: 'Questionnare Page',
     name: Routes.QUESTIONNAIRE_SCREEN,
     component: Questionnaire,
+    headerShown: false,
+  },
+  {
+    title: 'Loading Page',
+    name: Routes.LOADING_SCREEN,
+    component: Loading,
+    headerShown: false,
+  },
+  {
+    title: 'Brands Page',
+    name: Routes.BRANDS_SCREEN,
+    component: Brands,
+    headerShown: false,
+  },
+  {
+    title: 'Connect Devices Page',
+    name: Routes.CONNECTDEVICES_SCREEN,
+    component: ConnectDevices,
+    headerShown: false,
+  },
+   {
+    title: 'Workout Details Page',
+    name: Routes.WORKOUTDETAILS_SCREEN,
+    component: WorkoutDetails,
     headerShown: false,
   },
   {

@@ -39,7 +39,7 @@ const chartConfig = {
 
 const AppChart: React.FC<ChartProps> = ({ }) => {
     return (
-        <View>
+        <View style={{ marginBottom: '6%' }}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                 <AppLable title="Today's Workout" />
             </View>
