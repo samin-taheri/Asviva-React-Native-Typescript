@@ -24,7 +24,11 @@ export type HomeStackNavigationProps = {
   [Routes.WORKOUT_SUBDETAILS]: {
     id: string;
   };
+  [Routes.MULTIPLAYER_DETAILS]: {
+    id: string;
+  };
   [Routes.HOME_ROOT]: undefined;
+  [Routes.CYCLE_SCREEN]: undefined;
   [Routes.GOALS_SCREEN]: undefined;
   [Routes.QUESTIONNAIRE_SCREEN]: undefined;
   [Routes.WORKOUTDETAILS_SCREEN]: undefined;  

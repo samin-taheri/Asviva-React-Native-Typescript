@@ -15,6 +15,8 @@ import CoachingDetails from '@/screens/CoachingDetails';
 import ChallengeDetails from '@/screens/ChallengeDetails';
 import WorkoutDetail from '@/screens/WorkoutDetail';
 import WorkoutSubDetails from '@/screens/WorkoutSubDetails';
+import MultiplayerDetails from '@/screens/MultiplayerDetails';
+import Cycle from '@/screens/Cycle';
 
 const Screens = [
   {
@@ -53,10 +55,22 @@ const Screens = [
     component: ConnectDevices,
     headerShown: false,
   },
+  {
+    title: 'Cycle Page',
+    name: routes.CYCLE_SCREEN,
+    component: Cycle,
+    headerShown: false,
+  },
     {
     title: 'Workout Details Page',
     name: routes.WORKOUT_DETAILS,
     component: WorkoutDetail,
+    headerShown: false,
+  },
+   {
+    title: 'Multiplayer Details Page',
+    name: routes.MULTIPLAYER_DETAILS,
+    component: MultiplayerDetails,
     headerShown: false,
   },
     {

@@ -5,6 +5,7 @@ import AppGraph from "../AppGraph";
 import { HomeStackNavigationPropsType, Routes } from "@/navigation";
 import LinearGradient from 'react-native-linear-gradient';
 import { COLORS } from "@/theme";
+import AppButton from "../AppButton";
 
 interface DataItem {
     id: string;
@@ -74,7 +75,7 @@ const AppWorkoutDetailComponent: React.FC = ({ }) => {
                     style={styles.linearGradient}
                 >
                     <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
-
+                        <AppButton pb-10 pr-30 w-40 h-40 type="icon" icon={'chevronLeft'} iconSize={26} iconColor={COLORS.white} onPress={() => navigation.goBack()} />
                     </TouchableOpacity>
                     <View style={styles.cardContent2}>
                         <View style={{ flexDirection: 'column', paddingTop: '20%' }}>

@@ -5,6 +5,7 @@ import {BottomTabStackNavigationProps} from './types';
 import {ICONS} from '../../utils/icon-enums';
 import Routes from '../Routes';
 import SportsCenter from '@/screens/SportsCenter';
+import Cycle from '@/screens/Cycle';
 
 export const Screens = [
   {
@@ -22,9 +23,9 @@ export const Screens = [
     headerShown: false,
   },
   {
-    title: 'new',
-    name: Routes.LOGIN_SCREEN,
-    component: LoginPage,
+    title: 'Cycle',
+    name: Routes.CYCLE_SCREEN,
+    component: Cycle,
     icon: ICONS.camera,
     headerShown: false,
   },

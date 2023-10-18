@@ -11,7 +11,9 @@ export type RootStackNavigationProps = {
   [Routes.CHALLENGE_DETAILS]: {id: string;};  
   [Routes.WORKOUT_DETAILS]: {id: string;};  
   [Routes.WORKOUT_SUBDETAILS]: {id: string;};  
+  [Routes.MULTIPLAYER_DETAILS]: {id: string;};  
   [Routes.LOGIN_SCREEN]: undefined;
+  [Routes.CYCLE_SCREEN]: undefined;
   [Routes.MAIN_DRAWER_ROOT]: undefined;
   [Routes.MAIN_TABS_ROOT]: undefined;
   [Routes.GOALS_SCREEN]: undefined;

@@ -8,6 +8,7 @@ import AppCustomTopTabBar from "../AppCustomTopTabBar";
 import AppCouchingCourseComponent from "../AppCoachingCourseComponent";
 import AppChallengeComponent from "../AppChallengeComponent";
 import AppWorkoutComponent from "../AppWorkoutComponent";
+import AppMultiplayerComponent from "../AppMultiplayerComponent";
 
 const AppSportsCenter = () => {
 
@@ -31,7 +32,7 @@ const AppSportsCenter = () => {
                 {activeTab === 0 && <AppCouchingCourseComponent onPress={(id) => navigation.navigate(Routes.COACHINGCOURSE_DETAILS, { id })} />}
                 {activeTab === 1 && <AppChallengeComponent onPress={(id) => navigation.navigate(Routes.CHALLENGE_DETAILS, { id })} />}
                 {activeTab === 2 && <AppWorkoutComponent onPress={(id) => navigation.navigate(Routes.WORKOUT_DETAILS, { id })} />}
-                {/* {activeTab === 3 && <MultiplayerComponent onPress={(id) => navigation.navigate('MultiplayerDetails', { id })} />} */}
+                {activeTab === 3 && <AppMultiplayerComponent onPress={(id) => navigation.navigate(Routes.MULTIPLAYER_DETAILS, { id })} />}
             </View>
         </View>
     );

@@ -8,6 +8,7 @@ import AppGraphDetails from "../AppGraphDetails";
 import AppBoxWithItems from "../AppBoxWithItems";
 import { useNavigation } from '@react-navigation/native';
 import { HomeStackNavigationPropsType, Routes } from '@/navigation';
+import AppButton from "../AppButton";
 
 interface DataItem {
     id: string;
@@ -42,7 +43,7 @@ const AppCoachingDetailsComponent: React.FC = ({ }) => {
                 <View style={styles.imageContainer}>
                     <ImageBackground source={selectedItem.imageSource} style={styles.image}>
                         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
-
+                            <AppButton pb-10 pr-30 w-40 h-40 type="icon" icon={'chevronLeft'} iconSize={26} iconColor={COLORS.white} onPress={() => navigation.goBack()} />
                         </TouchableOpacity>
                         <View style={[styles.cardContent, { backgroundColor: 'rgba(255, 255, 255, 0.77)' }]}>
                             <Text style={styles.title}>{selectedItem.title}</Text>

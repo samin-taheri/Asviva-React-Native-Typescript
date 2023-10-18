@@ -32,7 +32,7 @@ const AppCustomHeader: React.FC<CustomHeaderProps> = ({ title, onBack, onLogo, n
                         <Pressable style={{ borderRadius: 8, backgroundColor: '#e8e8e8', padding: 7 }} onPress={() => navigation.navigate(Routes.CONNECTDEVICES_SCREEN)}>
                             <Text style={{ fontSize: 12, paddingRight: 3 }}>Tap to Connect</Text>
                         </Pressable>
-                        <Pressable onPress={() => navigation.navigate(Routes.PROFILE_SCREEN)} style={{ width: 110, marginLeft: -30 }}>
+                        <Pressable onPress={() => navigation.navigate(Routes.PROFILE_SCREEN)} style={{ width: 100, marginLeft: -30 }}>
                             <Image
                                 source={require('../../../assets/images/p.png')}
                                 style={styles.logoImage}
