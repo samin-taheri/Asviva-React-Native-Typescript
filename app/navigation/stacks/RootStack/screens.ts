@@ -20,6 +20,12 @@ import WorkoutDetail from '@/screens/WorkoutDetail';
 import WorkoutSubDetails from '@/screens/WorkoutSubDetails';
 import MultiplayerDetails from '@/screens/MultiplayerDetails';
 import Cycle from '@/screens/Cycle';
+import SettingsScreen from '@/screens/SettingsScreen';
+import HelpAndFeedbackScreen from '@/screens/HelpAndFeedbackScreen';
+import MyWorkouts from '@/screens/MyWorkouts';
+import MorePage from '@/screens/MorePage';
+import ForgotPassword from '@/screens/ForgotPassword';
+import SignUp from '@/screens/SignUp';
 
 const Screens = [
   {
@@ -47,6 +53,18 @@ const Screens = [
     headerShown: false,
   },
    {
+    title: 'Forgot Password Page',
+    name: Routes.FORGOTPASSWORD_SCREEN,
+    component: ForgotPassword,
+    headerShown: false,
+  },
+   {
+    title: 'Signup Page',
+    name: Routes.SIGNUP_SCREEN,
+    component: SignUp,
+    headerShown: false,
+  },
+   {
     title: 'Coaching Course Details Page',
     name: Routes.COACHINGCOURSE_DETAILS,
     component: CoachingDetails,
@@ -62,6 +80,30 @@ const Screens = [
     title: 'Cycle Page',
     name: Routes.CYCLE_SCREEN,
     component: Cycle,
+    headerShown: false,
+  },
+   {
+    title: 'More Page',
+    name: Routes.MORE_SCREEN,
+    component: MorePage,
+    headerShown: false,
+  },
+   {
+    title: 'My Workouts Page',
+    name: Routes.MYWORKOUTS_SCREEN,
+    component: MyWorkouts,
+    headerShown: false,
+  },
+   {
+    title: 'Settings Page',
+    name: Routes.SETTINGS_SCREEN,
+    component: SettingsScreen,
+    headerShown: false,
+  },
+   {
+    title: 'Help and Feedback Page',
+    name: Routes.HELPANDFEEDBACK_SCREEN,
+    component: HelpAndFeedbackScreen,
     headerShown: false,
   },
   {

@@ -1,13 +1,10 @@
 import React from 'react';
-
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import { useNavigation } from '@react-navigation/native';
-import { HomeStackNavigationPropsType } from '@/navigation';
-
-import { AppScreen, fields } from '@/components';
-import AppCustomHeader from '@/components/Common/AppCustomHeader';
+import { HomeStackNavigationPropsType, Routes } from '@/navigation';
+import { fields } from '@/components';
 import AppLogin from '@/components/Common/AppLogin';
 
 const initial = {
@@ -17,6 +14,14 @@ const initial = {
 
 const LoginPage = () => {
   const navigation = useNavigation<HomeStackNavigationPropsType>();
+
+  const handleLogin = (username: string, password: string) => {
+    console.log(`Logging in with username: ${username} and password: ${password}`);
+  };
+
+  const handleRegister = () => {
+    console.log('Navigating to registration page');
+  };
 
   const schema = Yup.object({
     username: fields.text.label('Username').required('Bu alan zorunludur'),
@@ -34,10 +39,7 @@ const LoginPage = () => {
 
   return (
     <React.Fragment>
-      <AppCustomHeader navigation={navigation} onLogo={true} />
-      <AppScreen keyboardScroll>
-        <AppLogin />
-      </AppScreen>
+      <AppLogin onLogin={handleLogin} onRegister={handleRegister} navigate={() => navigation.navigate(Routes.HOME_ROOT)} forgotPassword={() => navigation.navigate(Routes.FORGOTPASSWORD_SCREEN)} signUp={() => navigation.navigate(Routes.SIGNUP_SCREEN)} NavigateHome={() => navigation.navigate(Routes.MAIN_TABS_ROOT)} />
     </React.Fragment>
   );
 };

@@ -37,7 +37,7 @@ export const themeColors = {
 
     // base colors
     primary: '#a11c18',
-    secondary: '#044571',
+    secondary: 'rgba(153, 92, 88, 0.3)',
     tertiary: '#FFE358',
 
     // non-colors

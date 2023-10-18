@@ -14,16 +14,12 @@ const initial = {
     password: '',
 };
 
-interface LoginProps {
-    onLogin: (username: string, password: string) => void;
-    onRegister: () => void;
-    navigate: () => void;
-    forgotPassword: () => void;
-    signUp: () => void;
-    NavigateHome: () => void;
+interface ForgotPasswordProps {
+    onForgotPassword: () => void;
+    back: () => void;
 }
 
-const AppLogin: React.FC<LoginProps> = ({ onLogin, onRegister, navigate, forgotPassword, signUp, NavigateHome }) => {
+const AppForgotPassword: React.FC<ForgotPasswordProps> = ({ onForgotPassword, back }) => {
 
     const [rememberMe, setRememberMe] = useState(false);
 
@@ -44,34 +40,14 @@ const AppLogin: React.FC<LoginProps> = ({ onLogin, onRegister, navigate, forgotP
 
     return (
         <View>
-            <AppMyHeader showLogoWithoutBack>
+            <AppMyHeader onPress={back}>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-                        <Text style={styles.title}>Login</Text>
+                        <Text style={styles.title}>Forgot Password</Text>
                     </View>
-                    <Pressable style={{ borderRadius: 8, backgroundColor: COLORS.backgroundColor, padding: 8, flexDirection: 'row', height: 33, alignItems: 'center' }} onPress={NavigateHome}>
-                        <Text style={{ fontSize: 13 }}>Guest Mode</Text>
-                    </Pressable>
                 </View>
                 <Form schema={schema} form={form} />
-                <View style={styles.rememberMeContainer}>
-                    <Pressable onPress={forgotPassword}>
-                        <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
-                    </Pressable>
-                </View>
-                <AppButton mt-10 type="primary" onPress={form.handleSubmit(onSubmit)} title="Sign In" />
-                <AppButton mt-10 type="secondary" onPress={() => navigation.navigate(Routes.SIGNUP_SCREEN)} title="Sign Up" />
-                <View style={styles.container3}>
-                    <View style={styles.divider} />
-                    <Text style={styles.text}>Sign in with</Text>
-                    <View style={styles.divider} />
-                </View>
-                <View style={styles.container2}>
-                    <TouchableOpacity style={styles.googleButton}>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.appleButton}>
-                    </TouchableOpacity>
-                </View>
+                <AppButton mt-10 type="primary" onPress={form.handleSubmit(onSubmit)} title="Submit" />
             </AppMyHeader>
         </View>
     );
@@ -193,7 +169,7 @@ const styles = StyleSheet.create({
     container3: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingTop: 20,
+        paddingTop: 10,
         paddingBottom: 20
     },
     checkBoxContainer: {
@@ -235,4 +211,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default AppLogin;
+export default AppForgotPassword;

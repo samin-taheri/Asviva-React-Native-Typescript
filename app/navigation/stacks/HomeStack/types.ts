@@ -28,7 +28,14 @@ export type HomeStackNavigationProps = {
     id: string;
   };
   [Routes.HOME_ROOT]: undefined;
+  [Routes.MYWORKOUTS_SCREEN]: undefined;
+  [Routes.FORGOTPASSWORD_SCREEN]: undefined;
+  [Routes.SIGNUP_SCREEN]: undefined;
+  [Routes.MORE_SCREEN]: undefined;
   [Routes.CYCLE_SCREEN]: undefined;
+  [Routes.LOGIN_SCREEN]: undefined;
+  [Routes.SETTINGS_SCREEN]: undefined;
+  [Routes.HELPANDFEEDBACK_SCREEN]: undefined;
   [Routes.GOALS_SCREEN]: undefined;
   [Routes.QUESTIONNAIRE_SCREEN]: undefined;
   [Routes.WORKOUTDETAILS_SCREEN]: undefined;  
@@ -37,6 +44,7 @@ export type HomeStackNavigationProps = {
   [Routes.SPORTS_CENTER_SCREEN]: undefined;  
   [Routes.CONNECTDEVICES_SCREEN]: undefined;  
   [Routes.PROFILE_SCREEN]: undefined;  
+  [Routes.MAIN_TABS_ROOT]: undefined;  
   [Routes.FORM_SCREEN]: {
     detailId: string;
   };

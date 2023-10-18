@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.info,
   },
   container: {
-    borderRadius: 4,
+    borderRadius: 12,
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
@@ -39,7 +39,7 @@ export const buttonTypesStyles: IButtonTypes = {
       backgroundColor: COLORS.secondary,
     },
     text: {
-      color: COLORS.white,
+      color: COLORS.black,
     },
   },
   icon: {

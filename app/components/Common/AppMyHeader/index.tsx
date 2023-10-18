@@ -2,6 +2,9 @@ import React from 'react';
 import { View, StyleSheet, TouchableOpacity, Dimensions, Platform, Image } from 'react-native'
 import * as Animatable from 'react-native-animatable';
 import { COLORS } from '@/theme';
+import AppButton from '../AppButton';
+import { useNavigation } from '@react-navigation/native';
+import { HomeStackNavigationPropsType } from '@/navigation';
 
 interface MyHeaderProps {
     showLogo?: boolean;
@@ -13,6 +16,8 @@ interface MyHeaderProps {
 const { height } = Dimensions.get("screen");
 
 const AppMyHeader: React.FC<MyHeaderProps> = (props) => {
+    const navigation = useNavigation<HomeStackNavigationPropsType>();
+
     return (
         <>
             <View style={styles.topShadow}>
@@ -35,7 +40,8 @@ const AppMyHeader: React.FC<MyHeaderProps> = (props) => {
                             )
                             : (
                                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                    <TouchableOpacity onPress={props.onPress} style={{ paddingTop: '12%', paddingLeft: '5%', zIndex: 1 }}>
+                                    <TouchableOpacity onPress={props.onPress} style={{}}>
+                                        <AppButton pt-60 pl-30 w-40 h-40 type="icon" icon={'chevronLeft'} iconSize={26} iconColor={COLORS.black} onPress={() => navigation.goBack()} />
                                     </TouchableOpacity>
                                     <Animatable.Text style={styles.HeaderText} animation="fadeInDown">{props.Title}</Animatable.Text>
                                 </View>

@@ -6,6 +6,7 @@ import {ICONS} from '../../utils/icon-enums';
 import Routes from '../Routes';
 import SportsCenter from '@/screens/SportsCenter';
 import Cycle from '@/screens/Cycle';
+import MorePage from '@/screens/MorePage';
 
 export const Screens = [
   {
@@ -30,9 +31,9 @@ export const Screens = [
     headerShown: false,
   },
   {
-    title: 'fetch_data',
-    name: Routes.FETCH_DATA_SCREEN,
-    component: FetchDataPage,
+    title: 'More',
+    name: Routes.MORE_SCREEN,
+    component: MorePage,
     icon: ICONS.info,
     headerShown: false,
   },
