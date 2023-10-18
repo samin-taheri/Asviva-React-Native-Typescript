@@ -33,7 +33,7 @@ const AppTotalWorkout: React.FC = () => {
                     imageSource={require('../../../assets/images/calories.png')}
                 />
             </View>
-            <View style={styles.container}>
+            <View style={[styles.container, { marginTop: -5 }]}>
                 <AppColoredCards2
                     title="Distance"
                     color={COLORS.primary}

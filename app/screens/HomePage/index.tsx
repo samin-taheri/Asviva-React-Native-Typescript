@@ -1,10 +1,10 @@
 import React, { useCallback, useLayoutEffect, useState } from 'react';
 
-import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import { useFocusEffect, useNavigation, useRoute } from '@react-navigation/native';
 
 import { AppScreen, Block, Text } from '@/components';
 import { useAppDispatch, useAppSelector, useDialog, useStyledTag } from '@/hooks';
-import { HomeStackNavigationPropsType, Routes } from '@/navigation';
+import { HomeStackNavigationPropsType, HomeStackNavigationRouteType, Routes } from '@/navigation';
 import { settingsRedux } from '@/store';
 import { Permission, PERMISSION_TYPE } from '@/utils';
 import AppBackgroundCard from '@/components/Common/AppBackgroundCard';
@@ -29,6 +29,7 @@ const HomePage = () => {
   const dispatch = useAppDispatch();
   const dialog = useDialog();
   const navigation = useNavigation<HomeStackNavigationPropsType>();
+  const route = useRoute<HomeStackNavigationRouteType<'HOME_SCREEN'>>();
 
   const LanguageArea = useStyledTag(Block, 'py-5');
 
@@ -80,7 +81,7 @@ const HomePage = () => {
         }}
         />
         <AppTotalWorkout />
-        <AppWeaklyGoals />
+        <AppWeaklyGoals onPress={() => { navigation.navigate(Routes.QUESTIONNAIRE_SCREEN) }} />
         <AppWorkoutDetails onPress={() => navigation.navigate(Routes.FORM_SCREEN, { detailId: '1230' })} title="Record of Workouts" />
         <AppChart />
         {/* <SegmentedControl currentIndex={activeTab} onChange={(index: number) => setActiveTab(index)} segments={[{ label: '1st' }, { label: '2nd' }, { label: '3nd' }]} mt-10 mb-10 /> */}

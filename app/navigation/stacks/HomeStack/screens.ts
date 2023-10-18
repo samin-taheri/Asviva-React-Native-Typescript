@@ -3,6 +3,8 @@ import {IScreen} from '@/utils';
 
 import {HomeStackNavigationProps} from './types';
 import routes from '../../Routes';
+import Goals from '@/screens/Goals';
+import Questionnaire from '@/screens/Questionnaire';
 
 const Screens = [
   {
@@ -15,6 +17,18 @@ const Screens = [
     title: 'fetch_data',
     name: routes.FETCH_DATA_SCREEN,
     component: FetchDataPage,
+    headerShown: false,
+  },
+    {
+    title: 'Goals Page',
+    name: routes.GOALS_SCREEN,
+    component: Goals,
+    headerShown: false,
+  },
+  {
+    title: 'Questionnare Page',
+    name: routes.QUESTIONNAIRE_SCREEN,
+    component: Questionnaire,
     headerShown: false,
   },
   {

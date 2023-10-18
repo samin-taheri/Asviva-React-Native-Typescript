@@ -1,10 +1,12 @@
-import {LoginPage, SplashScreen} from '@/screens';
+import {HomePage, LoginPage, SplashScreen} from '@/screens';
 import {IScreen} from '@/utils';
 
 import {RootStackNavigationProps} from './types';
 import {BottomTabNavigation} from '../../bottom-tab/BottomTabNavigation';
 import {DrawerMenuNavigaiton} from '../../drawer/DrawerMenuNavigation';
 import Routes from '../../Routes';
+import Goals from '@/screens/Goals';
+import Questionnaire from '@/screens/Questionnaire';
 
 const Screens = [
   {
@@ -17,6 +19,24 @@ const Screens = [
     title: 'Login Page',
     name: Routes.LOGIN_SCREEN,
     component: LoginPage,
+    headerShown: false,
+  },
+  {
+    title: 'Home Page',
+    name: Routes.HOME_SCREEN,
+    component: HomePage,
+    headerShown: false,
+  },
+  {
+    title: 'Goals Page',
+    name: Routes.GOALS_SCREEN,
+    component: Goals,
+    headerShown: false,
+  },
+  {
+    title: 'Questionnare Page',
+    name: Routes.QUESTIONNAIRE_SCREEN,
+    component: Questionnaire,
     headerShown: false,
   },
   {

@@ -12,6 +12,8 @@ export type HomeStackNavigationProps = {
   [Routes.HOME_SCREEN]: {
     name: string;
   };
+  [Routes.GOALS_SCREEN]: undefined;
+  [Routes.QUESTIONNAIRE_SCREEN]: undefined;
   [Routes.FORM_SCREEN]: {
     detailId: string;
   };

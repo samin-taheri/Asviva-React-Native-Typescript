@@ -7,7 +7,7 @@ import { useRoute } from '@react-navigation/native';
 import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 
-import { AppButton, AppInput, AppScreen, fields, Form, Text } from '@/components';
+import { AppButton, AppScreen, fields, Form, Text } from '@/components';
 import { HomeStackNavigationRouteType } from '@/navigation';
 import AppCustomHeader from '@/components/Common/AppCustomHeader';
 

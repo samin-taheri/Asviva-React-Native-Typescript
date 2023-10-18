@@ -1,27 +1,20 @@
-import React, {memo, useEffect} from 'react';
+import React, { memo } from 'react';
 
-import {useNavigation} from '@react-navigation/native';
-import {StackNavigationProp} from '@react-navigation/stack';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 
-import {Images} from '@/assets';
-import {AppImage, Block} from '@/components';
-import {RootStackNavigationProps, Routes} from '@/navigation';
+import { Block } from '@/components';
+import { RootStackNavigationProps, Routes } from '@/navigation';
 
-import layout from '../../config/layout.json';
+import AppSplash from '@/components/Common/AppSplash';
 
 const SplashScreen = () => {
   const navigation: StackNavigationProp<RootStackNavigationProps> = useNavigation();
 
-  useEffect(() => {
-    setTimeout(() => {
-      const navigationName = layout.menu === 'drawer' ? Routes.MAIN_DRAWER_ROOT : Routes.MAIN_TABS_ROOT;
-      navigation.replace(navigationName);
-    }, 2000);
-  }, []);
-
   return (
     <Block flex bg-white center middle>
-      <AppImage resizeMode="contain" url={Images.TulparLogo} width={150} height={100} />
+      <AppSplash onPress={() => navigation.navigate(Routes.MAIN_TABS_ROOT)}
+      />
     </Block>
   );
 };
