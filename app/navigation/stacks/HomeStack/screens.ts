@@ -10,6 +10,11 @@ import Brands from '@/screens/Brands';
 import Loading from '@/screens/Loading';
 import ConnectDevices from '@/screens/ConnectDevices';
 import Profile from '@/screens/Profile';
+import SportsCenter from '@/screens/SportsCenter';
+import CoachingDetails from '@/screens/CoachingDetails';
+import ChallengeDetails from '@/screens/ChallengeDetails';
+import WorkoutDetail from '@/screens/WorkoutDetail';
+import WorkoutSubDetails from '@/screens/WorkoutSubDetails';
 
 const Screens = [
   {
@@ -46,6 +51,36 @@ const Screens = [
     title: 'Connect Devices Page',
     name: routes.CONNECTDEVICES_SCREEN,
     component: ConnectDevices,
+    headerShown: false,
+  },
+    {
+    title: 'Workout Details Page',
+    name: routes.WORKOUT_DETAILS,
+    component: WorkoutDetail,
+    headerShown: false,
+  },
+    {
+    title: 'Workout Subdetails Page',
+    name: routes.WORKOUT_SUBDETAILS,
+    component: WorkoutSubDetails,
+    headerShown: false,
+  },
+  {
+    title: 'Coaching Course Page',
+    name: routes.COACHINGCOURSE_DETAILS,
+    component: CoachingDetails,
+    headerShown: false,
+  },
+  {
+    title: 'Challenge Page',
+    name: routes.CHALLENGE_DETAILS,
+    component: ChallengeDetails,
+    headerShown: false,
+  },
+  {
+    title: 'Sports Center Page',
+    name: routes.SPORTS_CENTER_SCREEN,
+    component: SportsCenter,
     headerShown: false,
   },
    {

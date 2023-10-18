@@ -53,7 +53,7 @@ export const themeColors = {
     activeSegment: '#fff',
 
     // color variations
-    gray: '#535453',
+    gray: '#6c6c6c',
     lightGray: '#EFF1F3',
     error: '#DC3545',
     errorBg: '#f9d7da',

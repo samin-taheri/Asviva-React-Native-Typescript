@@ -4,6 +4,7 @@ import {IScreen} from '@/utils';
 import {BottomTabStackNavigationProps} from './types';
 import {ICONS} from '../../utils/icon-enums';
 import Routes from '../Routes';
+import SportsCenter from '@/screens/SportsCenter';
 
 export const Screens = [
   {
@@ -15,14 +16,14 @@ export const Screens = [
   },
   {
     title: 'sports_center',
-    name: Routes.LOGIN_SCREEN,
-    component: LoginPage,
+    name: Routes.SPORTS_CENTER_SCREEN,
+    component: SportsCenter,
     icon: ICONS.list,
     headerShown: false,
   },
   {
     title: 'new',
-    name: Routes.SPORTS_CENTER,
+    name: Routes.LOGIN_SCREEN,
     component: LoginPage,
     icon: ICONS.camera,
     headerShown: false,

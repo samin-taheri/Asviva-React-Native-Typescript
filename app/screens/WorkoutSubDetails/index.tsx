@@ -1,16 +1,16 @@
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { HomeStackNavigationPropsType } from '@/navigation';
-import AppTotalBrands from '@/components/Common/AppTotalBrands';
+import AppWorkoutSubDetailComponent from '@/components/Common/AppWorkoutSubDetailsComponent';
 
-const Brands = () => {
+const WorkoutSubDetails = () => {
     const navigation = useNavigation<HomeStackNavigationPropsType>();
 
     return (
         <React.Fragment>
-            <AppTotalBrands />
+            <AppWorkoutSubDetailComponent />
         </React.Fragment>
     );
 };
 
-export default Brands;
+export default WorkoutSubDetails;

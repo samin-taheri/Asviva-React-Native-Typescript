@@ -29,13 +29,13 @@ const AppCustomHeader: React.FC<CustomHeaderProps> = ({ title, onBack, onLogo, n
                         />
                     </View>
                     <View style={{ flexDirection: 'row', alignItems: 'center', paddingLeft: Platform.OS === 'ios' ? '35%' : '40%' }}>
-                        <Pressable style={{ borderRadius: 8, backgroundColor: '#e8e8e8', padding: 6, flexDirection: 'row', height: 29 }} onPress={() => navigation.navigate(Routes.CONNECTDEVICES_SCREEN)}>
+                        <Pressable style={{ borderRadius: 8, backgroundColor: '#e8e8e8', padding: 7 }} onPress={() => navigation.navigate(Routes.CONNECTDEVICES_SCREEN)}>
                             <Text style={{ fontSize: 12, paddingRight: 3 }}>Tap to Connect</Text>
                         </Pressable>
-                        <Pressable onPress={() => navigation.navigate(Routes.PROFILE_SCREEN)} style={{ marginLeft: 8, marginRight: 10 }}>
+                        <Pressable onPress={() => navigation.navigate(Routes.PROFILE_SCREEN)} style={{ width: 110, marginLeft: -30 }}>
                             <Image
                                 source={require('../../../assets/images/p.png')}
-                                style={{ width: 120, height: 120 }}
+                                style={styles.logoImage}
                             />
                         </Pressable>
                     </View>
@@ -55,6 +55,10 @@ const styles = StyleSheet.create({
     },
     withPadding: {
         paddingRight: '10%',
+    },
+    logoImage: {
+        width: 125,
+        height: 125,
     },
     titleContainer: {
         flex: 1,

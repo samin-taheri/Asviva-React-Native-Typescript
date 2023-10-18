@@ -13,6 +13,11 @@ import Brands from '@/screens/Brands';
 import ConnectDevices from '@/screens/ConnectDevices';
 import HomeStack from '../HomeStack';
 import Profile from '@/screens/Profile';
+import SportsCenter from '@/screens/SportsCenter';
+import CoachingDetails from '@/screens/CoachingDetails';
+import ChallengeDetails from '@/screens/ChallengeDetails';
+import WorkoutDetail from '@/screens/WorkoutDetail';
+import WorkoutSubDetails from '@/screens/WorkoutSubDetails';
 
 const Screens = [
   {
@@ -37,6 +42,36 @@ const Screens = [
     title: 'Goals Page',
     name: Routes.GOALS_SCREEN,
     component: Goals,
+    headerShown: false,
+  },
+   {
+    title: 'Coaching Course Details Page',
+    name: Routes.COACHINGCOURSE_DETAILS,
+    component: CoachingDetails,
+    headerShown: false,
+  },
+   {
+    title: 'Challenge Details Page',
+    name: Routes.CHALLENGE_DETAILS,
+    component: ChallengeDetails,
+    headerShown: false,
+  },
+  {
+    title: 'Workout Details Page',
+    name: Routes.WORKOUT_DETAILS,
+    component: WorkoutDetail,
+    headerShown: false,
+  },
+  {
+    title: 'Workout Subdetails Page',
+    name: Routes.WORKOUT_SUBDETAILS,
+    component: WorkoutSubDetails,
+    headerShown: false,
+  },
+   {
+    title: 'Sports Center Page',
+    name: Routes.SPORTS_CENTER_SCREEN,
+    component: SportsCenter,
     headerShown: false,
   },
   {
