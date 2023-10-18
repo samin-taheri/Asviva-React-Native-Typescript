@@ -2,8 +2,8 @@
 import React from 'react';
 
 import DataFormInput from './DataFormInput';
-import {formitMeta} from './formit';
-import {SchemaMeta} from './types/dataForm/types';
+import { formitMeta } from './formit';
+import { SchemaMeta } from './types/dataForm/types';
 import Block from '../Block';
 
 interface DataFormProps {
@@ -11,7 +11,7 @@ interface DataFormProps {
   schema: any;
 }
 
-export default function DataForm({form, schema}: DataFormProps) {
+export default function DataForm({ form, schema }: DataFormProps) {
   const schemaMetas = Object.keys(schema?.fields).map(name => formitMeta(schema, name));
   return (
     <Block>

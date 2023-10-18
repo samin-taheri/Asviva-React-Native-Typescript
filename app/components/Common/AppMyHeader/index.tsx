@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
         left: '5%',
         padding: 16,
         position: 'absolute',
-        backgroundColor: '#fff',
+        backgroundColor: COLORS.cardBackground,
         margin: 'auto',
         algnSelf: 'center',
         borderRadius: 12,

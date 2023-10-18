@@ -1,15 +1,15 @@
 import * as React from 'react';
 
-import {UseFormReturn} from 'react-hook-form';
+import { UseFormReturn } from 'react-hook-form';
 
 import AppAutoComplete from './partials/AppAutoComplete';
-import {AppDateTimePicker} from './partials/AppDateTimePicker/index';
+import { AppDateTimePicker } from './partials/AppDateTimePicker/index';
 import AppInput from './partials/AppInput/index';
 import AppMultipleSelect from './partials/AppMultipleSelect';
 import AppRadioButton from './partials/AppRadioButton';
 import AppSelector from './partials/AppSelector';
-import {SchemaField} from './types/dataForm/enums';
-import {SchemaMeta, SelectOptions} from './types/dataForm/types';
+import { SchemaField } from './types/dataForm/enums';
+import { SchemaMeta, SelectOptions } from './types/dataForm/types';
 
 interface IDataFormInput<T> {
   name?: string;
@@ -23,7 +23,7 @@ interface IDataFormInput<T> {
   valueProp?: string;
 }
 
-export default function DataFormInput({name, meta, form, mb}: IDataFormInput<unknown>) {
+export default function DataFormInput({ name, meta, form, mb }: IDataFormInput<unknown>) {
   const inputName = name ?? meta.name;
   switch (meta.field) {
     case SchemaField.InputText:
