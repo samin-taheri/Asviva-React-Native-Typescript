@@ -1,8 +1,9 @@
 import { COLORS } from '@/theme';
 import React from 'react'
 
-import { Text, SafeAreaView, Image, StyleSheet } from 'react-native';
+import { SafeAreaView, Image, StyleSheet } from 'react-native';
 import { ImageSourcePropType } from "react-native";
+import Text from '../Text';
 
 interface MyLoaderProps {
     title?: string;

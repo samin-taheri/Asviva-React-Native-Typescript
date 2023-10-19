@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, ScrollView, Pressable, Text, Platform } from "react-native";
+import { View, StyleSheet, ScrollView, Pressable, Platform } from "react-native";
 import AppCustomHeader from "../AppCustomHeader";
 import AppLable from "../AppLable";
 import AppDeviceCard from "../AppDeviceCard";
@@ -8,6 +8,7 @@ import AppBrandCard from "../AppBrandCard";
 import { useNavigation } from '@react-navigation/native';
 import { HomeStackNavigationPropsType, Routes } from '@/navigation';
 import Feather from "react-native-vector-icons/Feather";
+import Text from "../Text";
 
 
 interface ConnectDevicesProps {
@@ -28,31 +29,31 @@ const AppConnectDevices: React.FC<ConnectDevicesProps> = ({ onPress, brandsNavig
 
     return (
         <View style={styles.container}>
-            <AppCustomHeader title="Connect the Devices" onBack={() => { navigation.goBack() }} navigation={navigation} onLogo={false} />
+            <AppCustomHeader title="connect_the_devices" onBack={() => { navigation.goBack() }} navigation={navigation} onLogo={false} />
             <ScrollView showsVerticalScrollIndicator={false} style={styles.contentContainer}>
                 <AppLable title="Devices" />
                 <AppDeviceCard
-                    title="Cycling"
+                    title="cycling"
                     cardColor={COLORS.cardBackground}
                     imageSource={require('../../../assets/images/exercise.png')}
                     onPress={onPress}
                 />
                 <AppDeviceCard
-                    title="Apple Watch"
+                    title="apple_watch"
                     cardColor={COLORS.cardBackground}
                     imageSource={require('../../../assets/images/connect-4.png')}
                     onPress={onPress}
                 />
                 <AppDeviceCard
-                    title="Standard Heart Rate Device"
+                    title="standard_heart_rate_device"
                     cardColor={COLORS.cardBackground}
                     imageSource={require('../../../assets/images/connect-5.png')}
                     onPress={onPress}
                 />
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 10 }}>
-                    <AppLable title="Brands" />
+                    <AppLable title="brands" />
                     <Pressable style={{ flexDirection: 'row', paddingTop: 10, paddingRight: 15 }} onPress={brandsNavigate}>
-                        <Text style={{ paddingTop: 3, color: '#636363', fontSize: 14 }}>View more</Text>
+                        <Text style={{ paddingTop: 3, color: '#636363', fontSize: 14 }}>view_more</Text>
                         <Feather name="chevron-right" size={16} color="#636363" style={Platform.OS === 'ios' ? { paddingTop: 4 } : { paddingTop: 5 }} />
                     </Pressable>
                 </View>

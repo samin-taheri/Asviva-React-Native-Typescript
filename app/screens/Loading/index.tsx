@@ -1,7 +1,6 @@
 import React from 'react';
-import AppQuestionnare from '@/components/Common/AppQuestionnare';
-import { useNavigation, useRoute } from '@react-navigation/native';
-import { HomeStackNavigationPropsType, HomeStackNavigationRouteType, Routes } from '@/navigation';
+import { useNavigation } from '@react-navigation/native';
+import { HomeStackNavigationPropsType } from '@/navigation';
 import AppLoading from '@/components/Common/AppLoading';
 
 const Loading = () => {

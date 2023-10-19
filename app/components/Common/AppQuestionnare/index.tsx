@@ -60,7 +60,7 @@ const AppQuestionnare: React.FC<AppQuestionnaireProps> = ({ onPress }) => {
 
     return (
         <View style={styles.container}>
-            <AppCustomHeader title="Questionnaire" onBack={() => navigation.goBack()} navigation={navigation} onLogo={false} />
+            <AppCustomHeader title="questionnaire" onBack={() => navigation.goBack()} navigation={navigation} onLogo={false} />
             <View style={styles.container2}>
                 <Text style={styles.questionText}>{questions[currentQuestion].text}</Text>
                 {questions[currentQuestion].options.map((option, index) => (

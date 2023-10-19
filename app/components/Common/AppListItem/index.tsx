@@ -1,6 +1,7 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import Feather from "react-native-vector-icons/Feather";
+import Text from "../Text";
 
 interface ListItemProps {
     iconName: string;

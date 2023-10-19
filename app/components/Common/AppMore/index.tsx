@@ -6,13 +6,18 @@ import { HomeStackNavigationPropsType, Routes } from '@/navigation';
 import AppDetailsSection from '../AppDetailsSection';
 import AppMyModal from '../AppMyModal';
 import { COLORS } from '@/theme';
+import AppMyModalLanguage from '../AppMyModalLanguage';
 
 const AppMore: React.FC = ({ }) => {
     const navigation = useNavigation<HomeStackNavigationPropsType>();
 
     const [isModalVisible, setModalVisible] = useState(false);
+    const [isModalVisible2, setModalVisible2] = useState(false);
     const toggleModal = () => {
         setModalVisible(!isModalVisible);
+    };
+    const toggleModal2 = () => {
+        setModalVisible2(!isModalVisible2);
     };
     return (
 
@@ -21,51 +26,59 @@ const AppMore: React.FC = ({ }) => {
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.contentContainer}>
                     <AppDetailsSection
-                        title="Nickname: kdck_KHjLdm"
+                        title="nickname_kdck_KHjLdm"
                         iconName="account-tie"
                         imageSource={require('../../../assets/images/profile-15.png')}
                         onPress={() => navigation.navigate(Routes.PROFILE_SCREEN)}
                     />
                     <View style={styles.line} />
                     <AppDetailsSection
-                        title="My Workouts"
+                        title="language"
+                        iconName="account-tie"
+                        imageSource={require('../../../assets/images/language.png')}
+                        onPress={toggleModal2}
+                    />
+                    <AppMyModalLanguage isVisible={isModalVisible2} onClose={toggleModal2} />
+                    <View style={styles.line} />
+                    <AppDetailsSection
+                        title="my_workouts"
                         iconName="account-tie"
                         imageSource={require('../../../assets/images/9.png')}
                         onPress={() => navigation.navigate(Routes.MYWORKOUTS_SCREEN)}
                     />
                     <AppDetailsSection
-                        title="Records of Workouts"
+                        title="records_of_workouts"
                         iconName="account-tie"
                         imageSource={require('../../../assets/images/10.png')}
                         onPress={() => navigation.navigate(Routes.WORKOUTDETAILS_SCREEN)}
                     />
                     <AppDetailsSection
-                        title="Sports Weekly"
+                        title="sports_weekly"
                         iconName="account-tie"
                         imageSource={require('../../../assets/images/11.png')}
                         onPress={() => navigation.navigate(Routes.QUESTIONNAIRE_SCREEN)}
                     />
                     <AppDetailsSection
-                        title="Physical Fitness Test"
+                        title="physical_fitness_test"
                         iconName="account-tie"
                         imageSource={require('../../../assets/images/12.png')}
                         onPress={toggleModal}
                     />
                     <AppMyModal isVisible={isModalVisible} onClose={toggleModal} />
                     <AppDetailsSection
-                        title="Manage Devices"
+                        title="manage_devices"
                         iconName="account-tie"
                         imageSource={require('../../../assets/images/13.png')}
                         onPress={() => navigation.navigate(Routes.CONNECTDEVICES_SCREEN)}
                     />
                     <AppDetailsSection
-                        title="Help and Feedback"
+                        title="help_and_feedback"
                         iconName="account-tie"
                         imageSource={require('../../../assets/images/14.png')}
                         onPress={() => navigation.navigate(Routes.HELPANDFEEDBACK_SCREEN)}
                     />
                     <AppDetailsSection
-                        title="Settings"
+                        title="settings"
                         iconName="account-tie"
                         imageSource={require('../../../assets/images/15.png')}
                         onPress={() => navigation.navigate(Routes.SETTINGS_SCREEN)}

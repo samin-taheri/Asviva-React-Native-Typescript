@@ -2,12 +2,12 @@ import i18n, {changeLanguage, use} from 'i18next';
 import {initReactI18next} from 'react-i18next';
 
 import en from './languages/en';
-import tr from './languages/tr';
+import de from './languages/de';
 
-const initLocale = async (langauge = 'tr') => {
+const initLocale = async (langauge = 'en') => {
   const resources = {
-    tr: {
-      translation: tr,
+    de: {
+      translation: de,
     },
     en: {
       translation: en,
@@ -18,7 +18,7 @@ const initLocale = async (langauge = 'tr') => {
     .init({
       compatibilityJSON: 'v3',
       resources,
-      fallbackLng: 'tr',
+      fallbackLng: 'de',
       react: {useSuspense: false},
       initImmediate: false,
       interpolation: {

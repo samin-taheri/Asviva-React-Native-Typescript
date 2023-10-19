@@ -19,7 +19,7 @@ interface CochingCardProps {
 const AppHorizontalMultiplayerCard: React.FC<CochingCardProps> = ({ onPress }) => {
     return (
         <View style={styles.container}>
-            <AppLable title="Multiplayer" />
+            <AppLable title="multiplayer" />
             <FlatList
                 data={cardData}
                 keyExtractor={(item) => item.id}

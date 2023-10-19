@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { View, StyleSheet, Text, TouchableOpacity, } from "react-native";
+import { View, StyleSheet, TouchableOpacity, } from "react-native";
 import AppCustomHeader from "../AppCustomHeader";
 import { useNavigation } from '@react-navigation/native';
 import { HomeStackNavigationPropsType, Routes } from '@/navigation';
 import { COLORS } from "@/theme";
 import AppMyloader from "../AppMyLoader";
 import AppLearningPath from "../AppLearningPath";
+import Text from "../Text";
 
 const AppGoals: React.FC = () => {
     const navigation = useNavigation<HomeStackNavigationPropsType>();
@@ -25,20 +26,20 @@ const AppGoals: React.FC = () => {
 
     return (
         <View style={styles.container}>
-            <AppCustomHeader title="Goals" onBack={() => navigation.goBack()} navigation={navigation} onLogo={false} />
+            <AppCustomHeader title="goals" onBack={() => navigation.goBack()} navigation={navigation} onLogo={false} />
             <View style={styles.contentContainer}>
                 {isLoading ?
-                    <AppMyloader title='Generating...' />
+                    <AppMyloader title='generating' />
                     :
                     <>
                         <View style={{ padding: 30 }}>
-                            <Text style={styles.title}>This week's goals have been generated for you</Text>
-                            <Text style={styles.subtitle}>This week's goals have been generated for you</Text>
+                            <Text style={styles.title}>this_weeks_goals_have_been_generated_for_you</Text>
+                            <Text style={styles.subtitle}>this_weeks_goals_have_been_generated_for_you</Text>
                             <AppLearningPath />
                         </View>
                         <View style={styles.buttonContainer}>
                             <TouchableOpacity style={styles.button} onPress={() => { navigation.navigate(Routes.HOME_SCREEN, { name: 'samin' }) }}>
-                                <Text style={styles.buttonText}>Complete</Text>
+                                <Text style={styles.buttonText}>complete</Text>
                             </TouchableOpacity>
                         </View>
                     </>

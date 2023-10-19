@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { View, StyleSheet, ScrollView, TextInput, TouchableOpacity, Text } from "react-native";
+import { View, StyleSheet, ScrollView, TextInput, TouchableOpacity } from "react-native";
 import AppCustomHeader from "../AppCustomHeader";
 import AppLable from "../AppLable";
 import AppBrandCard from "../AppBrandCard";
 import { COLORS } from "@/theme";
 import { useNavigation } from '@react-navigation/native';
 import { HomeStackNavigationPropsType, Routes } from '@/navigation';
+import Text from "../Text";
 
 const brands = [
     { name: 'asviva', uri: 'https://static.kinomap.com/manufacturer/asviva.png' },
@@ -198,9 +199,9 @@ const AppTotalBrands = () => {
 
     return (
         <View style={styles.container}>
-            <AppCustomHeader title="Brands" onBack={() => navigation.goBack()} navigation={navigation} onLogo={false} />
+            <AppCustomHeader title="brands" onBack={() => navigation.goBack()} navigation={navigation} onLogo={false} />
             <View style={styles.contentContainer}>
-                <AppLable title="Choose the brand of your equipment" />
+                <AppLable title="choose_the_brand_of_your_equipment" />
                 <View style={styles.searchContainer}>
                     <TextInput
                         style={styles.input}
@@ -208,7 +209,7 @@ const AppTotalBrands = () => {
                         onChangeText={(text) => filterBrands(text)}
                     />
                     <TouchableOpacity style={styles.buttonContainer} onPress={() => filterBrands}>
-                        <Text style={styles.buttonText}>Search</Text>
+                        <Text style={styles.buttonText}>search</Text>
                     </TouchableOpacity>
                 </View>
                 <ScrollView showsVerticalScrollIndicator={false}>

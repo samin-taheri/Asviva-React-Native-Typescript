@@ -1,10 +1,11 @@
 import { HomeStackNavigationPropsType, Routes } from '@/navigation';
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { View, StyleSheet, ScrollView, TouchableOpacity, Text } from 'react-native';
+import { View, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import AppCustomHeader from '../AppCustomHeader';
 import AppDetailsSection from '../AppDetailsSection';
 import { COLORS } from '@/theme';
+import Text from '../Text';
 
 const AppSettings: React.FC = ({ }) => {
     const navigation = useNavigation<HomeStackNavigationPropsType>();
@@ -16,33 +17,33 @@ const AppSettings: React.FC = ({ }) => {
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.contentContainer}>
                     <AppDetailsSection
-                        title="Unit Type"
+                        title="unit_type"
                         iconName="account-tie"
                         imageSource={require('../../../assets/images/settings-1.png')}
                         onPress={() => { }}
                     />
                     <AppDetailsSection
-                        title="Permission Settings"
+                        title="permission_settings"
                         iconName="account-tie"
                         imageSource={require('../../../assets/images/settings-2.png')}
                         onPress={() => { }}
                     />
                     <AppDetailsSection
-                        title="Storage Management"
+                        title="storage_management"
                         iconName="account-tie"
                         imageSource={require('../../../assets/images/settings-3.png')}
                         onPress={() => {
                         }}
                     />
                     <AppDetailsSection
-                        title="About"
+                        title="about"
                         iconName="account-tie"
                         imageSource={require('../../../assets/images/settings-4.png')}
                         onPress={() => {
                         }}
                     />
                     <TouchableOpacity style={styles.loginButton} onPress={() => { navigation.navigate(Routes.LOGIN_SCREEN) }}>
-                        <Text style={styles.buttonText2}>Sign Out</Text>
+                        <Text style={styles.buttonText2}>sign_out</Text>
                     </TouchableOpacity>
                 </View>
             </ScrollView>

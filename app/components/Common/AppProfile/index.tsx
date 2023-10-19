@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, StyleSheet, ScrollView, Image, Button } from "react-native";
+import { View, StyleSheet, ScrollView } from "react-native";
 import AppCustomHeader from "../AppCustomHeader";
 import AppProfileCard from "../AppProfileCard";
 import AppBottomSelectorModal from "../AppBottomSelectorModal";
@@ -69,62 +69,62 @@ const AppProfile: React.FC = ({ }) => {
 
     return (
         <View style={styles.container}>
-            <AppCustomHeader title="Profile" onBack={() => navigation.goBack()} navigation={navigation} onLogo={false} />
+            <AppCustomHeader title="profile" onBack={() => navigation.goBack()} navigation={navigation} onLogo={false} />
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.contentContainer}>
                     <AppProfileCard
-                        title="Change Avatar"
+                        title="change_avatar"
                         iconName="account-convert"
-                        selectedOption="Please Select"
+                        selectedOption="please_select"
                         imageSource={require('../../../assets/images/profile-19.png')}
                         onPress={() => { }}
                     />
                     <AppProfileCard
-                        title="Nickname"
+                        title="nickname"
                         iconName="account-tie"
-                        selectedOption={selectedNickname !== null ? `Selected: ${selectedNickname}` : "Please Select"}
+                        selectedOption={selectedNickname !== null ? `selected: ${selectedNickname}` : "please_select"}
                         imageSource={require('../../../assets/images/profile-13.png')}
                         onPress={toggleModal2}
                     />
                     <View style={styles.line} />
                     <AppProfileCard
-                        title="Country / Region"
+                        title="country_region"
                         iconName="earth"
-                        selectedOption="Please Select"
+                        selectedOption="please_select"
                         imageSource={require('../../../assets/images/profile-3.png')}
                         onPress={() => {
                         }}
                     />
                     <View style={styles.line} />
                     <AppProfileCard
-                        title="Gender"
+                        title="gender"
                         iconName="gender-male-female"
                         imageSource={require('../../../assets/images/profile-11.png')}
-                        selectedOption={selectedOption || "Please Select"}
+                        selectedOption={selectedOption || "please_select"}
                         onPress={toggleModal}
                     />
                     <AppProfileCard
-                        title="Height"
+                        title="height"
                         iconName="human-male-height"
                         imageSource={require('../../../assets/images/profile-5.png')}
                         onPress={toggleModal5}
-                        selectedOption={selectedHeight !== null ? `Selected: ${selectedHeight}` : "Please Select"}
+                        selectedOption={selectedHeight !== null ? `selected: ${selectedHeight}` : "please_select"}
                     />
                     <AppProfileCard
-                        title="Weight"
+                        title="weight"
                         iconName="weight"
                         imageSource={require('../../../assets/images/profile-20.png')}
                         onPress={toggleModal4}
-                        selectedOption={selectedWeight !== null ? `Selected: ${selectedWeight}` : "Please Select"}
+                        selectedOption={selectedWeight !== null ? `selected: ${selectedWeight}` : "please_select"}
                     />
                     <AppProfileCard
-                        title="Birthday"
+                        title="birthday"
                         iconName="cake-variant"
                         imageSource={require('../../../assets/images/profile-9.png')}
                         onPress={toggleModal3}
-                        selectedOption={selectedBirthday !== null ? `Selected: ${selectedBirthday}` : "Please Select"}
+                        selectedOption={selectedBirthday !== null ? `selected: ${selectedBirthday}` : "please_select"}
                     />
-                    <AppBottomSelectorModal selectedOption={selectedOption} onSelect={handleGenderSelect} title="Select Gender" isVisible={isModalVisible} onClose={toggleModal} />
+                    <AppBottomSelectorModal selectedOption={selectedOption} onSelect={handleGenderSelect} title="select_gender" isVisible={isModalVisible} onClose={toggleModal} />
                     <AppTextInputComponent
                         isVisible={isModalVisible2}
                         onToggle={toggleModal2}

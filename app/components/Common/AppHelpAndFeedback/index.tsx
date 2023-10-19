@@ -15,19 +15,19 @@ const AppHelpAndFeedback: React.FC = ({ }) => {
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.contentContainer}>
                     <AppDetailsSection
-                        title="FAQ"
+                        title="faq"
                         iconName="account-tie"
                         imageSource={require('../../../assets/images/help-1.png')}
                         onPress={() => { }}
                     />
                     <AppDetailsSection
-                        title="Help and Feedback"
+                        title="help_and_feedback"
                         iconName="account-tie"
                         imageSource={require('../../../assets/images/help-2.png')}
                         onPress={() => { }}
                     />
                     <AppDetailsSection
-                        title="Contact Customer Service"
+                        title="contact_customer_service"
                         iconName="account-tie"
                         imageSource={require('../../../assets/images/help-3.png')}
                         onPress={() => {

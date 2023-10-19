@@ -41,14 +41,14 @@ const AppChart: React.FC<ChartProps> = ({ }) => {
     return (
         <View style={{ marginBottom: '6%' }}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                <AppLable title="Today's Workout" />
+                <AppLable title="todays_workout" />
             </View>
             <AppCard>
                 <View style={{ flexDirection: 'column', alignSelf: 'center' }}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingBottom: 10, paddingLeft: '2%' }}>
-                        <AppStatsCard title="Workouts" value="0 min" />
-                        <AppStatsCard title="Calories" value="0 kcal" />
-                        <AppStatsCard title="Clock In" value="0 day" />
+                        <AppStatsCard title="workouts" value="0 min" />
+                        <AppStatsCard title="calories" value="0 kcal" />
+                        <AppStatsCard title="clock_in" value="0 day" />
                     </View>
                     <LineChart
                         style={{ padding: 7, marginLeft: -22 }}

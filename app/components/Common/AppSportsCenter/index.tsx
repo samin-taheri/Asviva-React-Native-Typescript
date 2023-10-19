@@ -13,7 +13,7 @@ import AppMultiplayerComponent from "../AppMultiplayerComponent";
 const AppSportsCenter = () => {
 
     const [activeTab, setActiveTab] = useState<number>(0);
-    const tabs: string[] = ['Coaching', 'Challenge', 'Workout', 'Multiplayer'];
+    const tabs: string[] = ['coaching', 'challenge', 'workout', 'multiplayer'];
 
     const handleTabPress = (index: number) => {
         setActiveTab(index);

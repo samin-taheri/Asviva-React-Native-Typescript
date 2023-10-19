@@ -22,7 +22,7 @@ interface CochingCardProps {
 const AppHorizontalChallengeCard: React.FC<CochingCardProps> = ({ onPress }) => {
     return (
         <View style={styles.container}>
-            <AppLable title="Challenge" />
+            <AppLable title="challenge" />
             <FlatList
                 data={cardData}
                 keyExtractor={(item) => item.id}

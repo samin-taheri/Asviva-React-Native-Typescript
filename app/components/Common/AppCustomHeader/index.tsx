@@ -1,9 +1,11 @@
 import React from 'react';
-import { View, Text, StyleSheet, Platform, Image, Pressable, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Platform, Image, Pressable, TouchableOpacity } from 'react-native';
 import { Routes } from '@/navigation';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import Feather from 'react-native-vector-icons/Feather'
 import { StatusBar } from 'react-native';
+import { COLORS } from '@/theme';
+import Text from '../Text';
 
 interface CustomHeaderProps {
     title?: string;
@@ -11,11 +13,12 @@ interface CustomHeaderProps {
     navigation: any;
     onLogo: boolean;
 }
+
 const AppCustomHeader: React.FC<CustomHeaderProps> = ({ title, onBack, onLogo, navigation }) => {
 
     return (
         <View style={styles.container}>
-            <StatusBar hidden={true} />
+            <StatusBar backgroundColor={COLORS.primary} barStyle="light-content" />
             {onBack && (
                 <TouchableOpacity onPress={onBack} style={{ paddingTop: '9%', paddingLeft: '5%' }}>
                     <Feather name="arrow-left" size={30} />
@@ -35,7 +38,7 @@ const AppCustomHeader: React.FC<CustomHeaderProps> = ({ title, onBack, onLogo, n
                     <View style={{ flexDirection: 'row', alignItems: 'center', paddingLeft: Platform.OS === 'ios' ? '35%' : '40%' }}>
                         <Pressable style={{ borderRadius: 8, backgroundColor: '#e8e8e8', padding: 6, flexDirection: 'row', height: 29 }} onPress={() => navigation.navigate(Routes.CONNECTDEVICES_SCREEN)}>
                             <Feather name="radio" size={18} color='#000' style={{ paddingRight: 4 }} />
-                            <Text style={{ fontSize: 12, paddingRight: 3 }}>Tap to Connect</Text>
+                            <Text style={{ fontSize: 12, paddingRight: 3 }}>tap_to_connect</Text>
                         </Pressable>
                         <Pressable onPress={() => navigation.navigate(Routes.PROFILE_SCREEN)} style={{ marginLeft: 8, marginRight: 20 }}>
                             <MaterialIcons name="account-circle" size={37} color="#dadada" />
@@ -81,3 +84,7 @@ const styles = StyleSheet.create({
 });
 
 export default AppCustomHeader;
+function dispatch(arg0: any) {
+    throw new Error('Function not implemented.');
+}
+

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, ActivityIndicator, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import AppCustomHeader from '../AppCustomHeader';
 import { COLORS } from '@/theme';
 import AppMyloader from '../AppMyLoader';
-import { Routes } from '@/navigation';
+import Text from '../Text';
 
 interface LoadingProps {
     navigation: any;
@@ -24,22 +24,22 @@ const AppLoading: React.FC<LoadingProps> = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <AppCustomHeader title="Device Pairing" onBack={() => navigation.goBack()} navigation={navigation} onLogo={false} />
+            <AppCustomHeader title="device_pairing" onBack={() => navigation.goBack()} navigation={navigation} onLogo={false} />
             <>
                 {isLoading ?
                     <View style={styles.contentContainer}>
-                        <AppMyloader title='Searching...' image={require('../../../assets/images/power-bike-5.png')} />
+                        <AppMyloader title='searching' image={require('../../../assets/images/power-bike-5.png')} />
                     </View>
                     :
                     <View style={styles.contentContainer}>
                         <Image source={require("../../../assets/images/oops.png")} style={styles.image} />
-                        <Text style={styles.text}>No device found!</Text>
+                        <Text style={styles.text}>no_device_found</Text>
                     </View>
                 }
             </>
             <View style={styles.buttonContainer}>
                 <TouchableOpacity style={styles.button} onPress={() => navigation.goBack()}>
-                    <Text style={styles.buttonText}>Search Again</Text>
+                    <Text style={styles.buttonText}>search_again</Text>
                 </TouchableOpacity>
             </View>
         </View>

@@ -1,9 +1,10 @@
 
-import { View, Text, StyleSheet, Image, Pressable } from "react-native";
+import { View, StyleSheet, Image, Pressable } from "react-native";
 import AppLable from "../AppLable";
 import React from "react";
 import AppCard from "../AppCard";
 import { COLORS } from "@/theme";
+import Text from "../Text";
 
 interface WeaklyGoalsProps {
     onPress?: () => void;
@@ -12,12 +13,12 @@ interface WeaklyGoalsProps {
 const AppWeaklyGoals: React.FC<WeaklyGoalsProps> = ({ onPress }) => {
     return (
         <View>
-            <AppLable title="Weekly Goals" />
+            <AppLable title="weekly_goals" />
             <AppCard>
                 <View style={styles.textContainer}>
-                    <Text style={styles.title}>Personalized healthy exercise goal customization</Text>
+                    <Text style={styles.title}>personalized_healthy_exercise_goal_customization</Text>
                     <Pressable onPress={onPress} style={styles.button}>
-                        <Text style={styles.description}>Start Creating</Text>
+                        <Text style={styles.description}>start_creating</Text>
                     </Pressable>
                 </View>
                 <Image source={require("../../../assets/images/exersize.png")} style={styles.image} />

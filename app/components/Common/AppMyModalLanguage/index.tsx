@@ -1,17 +1,35 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
 import Modal from "react-native-modal";
-import AppListItem from "../AppListItem";
 import Feather from "react-native-vector-icons/Feather";
+import { useAppDispatch, useAppSelector } from "@/hooks";
+import { settingsRedux } from "@/store";
+import AppButton from "../AppButton";
+import Text from "../Text";
 
 interface MyModalProps {
     isVisible: boolean;
     onClose: () => void;
 }
-const AppMyModal: React.FC<MyModalProps> = ({ isVisible, onClose }) => {
+const HeaderRight = ({ language }: { language: string }) => (
+    <View style={{ padding: 10, paddingBottom: 30, flexDirection: 'row' }}>
+        <Text style={{ fontSize: 18, fontWeight: '700' }}>language</Text>
+        <Text style={{ fontSize: 18, fontWeight: '700' }}>: {language}</Text>
+    </View>
+);
+
+const AppMyModalLanguage: React.FC<MyModalProps> = ({ isVisible, onClose }) => {
+    const dispatch = useAppDispatch();
+
     const toggleModal = () => {
         onClose();
     };
+    const language = useAppSelector(state => state.settings.language);
+
+    const onChangeLang = (_language: string) => {
+        dispatch(settingsRedux.changeLanguage(_language));
+    };
+
     return (
         <Modal isVisible={isVisible} style={{ justifyContent: "flex-end", margin: 0 }} onBackdropPress={toggleModal}>
             <View style={{ backgroundColor: "white", padding: 16 }}>
@@ -24,9 +42,9 @@ const AppMyModal: React.FC<MyModalProps> = ({ isVisible, onClose }) => {
                         onPress={onClose}
                     />
                     <View style={styles.container2}>
-                        <AppListItem iconName="file-text" style={{ fontSize: 16, paddingLeft: 10, paddingRight: '25%', textAlign: 'left' }} itemText="questionnaire_evaluation" />
-                        <AppListItem iconName="battery-charging" style={{ fontSize: 16, paddingLeft: 10, paddingRight: '33%', textAlign: 'left' }} itemText="physical_fitness_test" />
-                        <AppListItem iconName="edit" style={{ fontSize: 16, paddingRight: '35%', paddingLeft: 10, textAlign: 'left' }} itemText="manual_fine_tuning" />
+                        <HeaderRight language={language} />
+                        <AppButton type="primary" title={'Deutch'} onPress={() => onChangeLang('de')} mb-10 />
+                        <AppButton type="primary" title={'English'} onPress={() => onChangeLang('en')} />
                     </View>
                 </View>
             </View>
@@ -44,7 +62,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     container2: {
-        top: 50,
+        top: 0,
         width: '100%'
     },
     closeIcon: {
@@ -59,4 +77,8 @@ const styles = StyleSheet.create({
     }
 });
 
-export default AppMyModal;
+export default AppMyModalLanguage;
+function dispatch(arg0: any) {
+    throw new Error("Function not implemented.");
+}
+

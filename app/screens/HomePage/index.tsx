@@ -2,9 +2,9 @@ import React, { useCallback, useLayoutEffect, useState } from 'react';
 
 import { useFocusEffect, useNavigation, useRoute } from '@react-navigation/native';
 
-import { AppScreen, Block, Text } from '@/components';
+import { AppButton, AppScreen, Block, Text } from '@/components';
 import { useAppDispatch, useAppSelector, useDialog, useStyledTag } from '@/hooks';
-import { HomeStackNavigationPropsType, HomeStackNavigationRouteType, Routes } from '@/navigation';
+import { HomeStackNavigationPropsType, Routes } from '@/navigation';
 import { settingsRedux } from '@/store';
 import { Permission, PERMISSION_TYPE } from '@/utils';
 import AppBackgroundCard from '@/components/Common/AppBackgroundCard';
@@ -17,9 +17,9 @@ import AppChart from '@/components/Common/AppCharts';
 
 const HeaderRight = ({ language }: { language: string }) => (
   <Block row s="pr-20">
-    <Text white>language</Text>
-    <Text white>:</Text>
-    <Text white s="pl-5">
+    <Text black>language</Text>
+    <Text black>:</Text>
+    <Text black s="pl-5">
       {language}
     </Text>
   </Block>
@@ -65,19 +65,13 @@ const HomePage = () => {
     <React.Fragment>
       <AppCustomHeader navigation={navigation} onLogo={true} />
       <AppScreen scroll customStyle={{ backgroundColor: COLORS.backgroundColor }}>
-        <AppBackgroundCard title="Find your coach" backgroundImage={require('../../assets/images/bg-3.jpg')} onPress={() => { navigation.navigate(Routes.SPORTS_CENTER_SCREEN) }}
+        <AppBackgroundCard title="find_your_coach" backgroundImage={require('../../assets/images/bg-3.jpg')} onPress={() => { navigation.navigate(Routes.SPORTS_CENTER_SCREEN) }}
         />
         <AppTotalWorkout />
         <AppWeaklyGoals onPress={() => { navigation.navigate(Routes.QUESTIONNAIRE_SCREEN) }} />
-        <AppWorkoutDetails onPress={() => navigation.navigate(Routes.WORKOUTDETAILS_SCREEN)} title="Record of Workouts" />
+        <AppWorkoutDetails onPress={() => navigation.navigate(Routes.WORKOUTDETAILS_SCREEN)} title="record_of_workouts" />
         <AppChart />
         {/* <SegmentedControl currentIndex={activeTab} onChange={(index: number) => setActiveTab(index)} segments={[{ label: '1st' }, { label: '2nd' }, { label: '3nd' }]} mt-10 mb-10 /> */}
-
-        {/* <LanguageArea>
-          <AppButton type="primary" title={'Türkçe'} onPress={() => onChangeLang('tr')} mb-5 />
-          <AppButton type="primary" title={'İngilizce'} onPress={() => onChangeLang('en')} />
-        </LanguageArea> */}
-
       </AppScreen>
     </React.Fragment>
   );

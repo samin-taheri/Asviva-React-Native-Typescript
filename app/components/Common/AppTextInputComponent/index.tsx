@@ -1,7 +1,8 @@
 import { COLORS } from '@/theme';
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Button, TextInput, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import Modal from 'react-native-modal';
+import Text from '../Text';
 
 interface TextInputComponentProps {
     isVisible: boolean;
@@ -36,7 +37,7 @@ const AppTextInputComponent: React.FC<TextInputComponentProps> = ({
             style={styles.modal}
         >
             <View style={styles.modalContainer}>
-                <Text style={styles.modalTitle}>Enter Nickname</Text>
+                <Text style={styles.modalTitle}>enter_nickname</Text>
                 <TextInput
                     style={styles.textInput}
                     onChangeText={handleTextInputChange}
@@ -44,7 +45,7 @@ const AppTextInputComponent: React.FC<TextInputComponentProps> = ({
                     placeholder="Select Nickname"
                 />
                 <TouchableOpacity style={styles.loginButton} onPress={() => onSelectNickname(inputText)}>
-                    <Text style={styles.buttonText}>Select</Text>
+                    <Text style={styles.buttonText}>select</Text>
                 </TouchableOpacity>
             </View>
         </Modal>

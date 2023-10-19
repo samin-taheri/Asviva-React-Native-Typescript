@@ -1,7 +1,8 @@
 import React from "react";
-import { View, Text, StyleSheet, Pressable, Image, ImageSourcePropType, ViewStyle } from "react-native";
+import { View, StyleSheet, Pressable, Image, ImageSourcePropType, ViewStyle } from "react-native";
 import { COLORS } from "@/theme";
 import Feather from "react-native-vector-icons/Feather";
+import Text from "../Text";
 
 interface ProfileCardProps {
     title: string;
@@ -36,10 +37,10 @@ const AppProfileCard: React.FC<ProfileCardProps> = ({
                     {selectedOption !== null
                         ? selectedOption
                         : selectedNumber !== null
-                            ? `Selected: ${selectedNumber}`
+                            ? `"selected" ${selectedNumber}`
                             : selectedNickname !== null
-                                ? `Selected: ${selectedNickname}`
-                                : "Please select"}
+                                ? `"selected" ${selectedNickname}`
+                                : "please_select"}
                 </Text>
             </View>
             <View style={[styles.icon]}>

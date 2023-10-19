@@ -1,10 +1,11 @@
 import React from "react";
-import { View, Text, StyleSheet, Pressable, Image } from "react-native";
+import { View, StyleSheet, Pressable, Image } from "react-native";
 import AppLable from "../AppLable";
 import AppCard from "../AppCard";
 import { COLORS } from "@/theme";
 import Feather from 'react-native-vector-icons/Feather';
 import Ionicons from "react-native-vector-icons/Ionicons";
+import Text from "../Text";
 
 interface WorkoutDetailsProps {
     title: string;
@@ -17,7 +18,7 @@ const AppWorkoutDetails: React.FC<WorkoutDetailsProps> = ({
 }) => {
     return (
         <View>
-            <AppLable title="Workout Details" />
+            <AppLable title="workout_details" />
             <AppCard>
                 <View style={styles.iconContainer}>
                     <Image source={require('../../../assets/images/records-3.png')} style={styles.image} />
@@ -30,7 +31,7 @@ const AppWorkoutDetails: React.FC<WorkoutDetailsProps> = ({
                             size={23}
                             color={COLORS.gray}
                         />
-                        <Text style={styles.title2}>Cycling Milage</Text>
+                        <Text style={styles.title2}>cycling_milage</Text>
                     </View>
                 </View>
                 <Pressable style={[styles.icon]} onPress={onPress}>

@@ -1,10 +1,11 @@
 import { COLORS } from '@/theme';
 import React, { useEffect, useRef } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity, Animated, ViewStyle, Easing } from 'react-native';
+import { View, StyleSheet, Image, TouchableOpacity, Animated, ViewStyle, Easing } from 'react-native';
 import Swiper from 'react-native-swiper';
 import AppSplashIcons from '../AppSplashIcons';
 import { useNavigation } from '@react-navigation/native';
 import { HomeStackNavigationPropsType, Routes } from '@/navigation';
+import Text from '../Text';
 
 interface SplashIconsProps {
     onPress: () => void;
@@ -47,8 +48,8 @@ const AppSplash: React.FC<SplashIconsProps> = ({ onPress }) => {
                     </Animated.View>
                     <View style={{ paddingTop: '135%' }}>
                         <AppSplashIcons />
-                        <Text style={styles.title}>Welcome to AsVIVA</Text>
-                        <Text style={styles.title2}>Track Your Fitness Health Data!</Text>
+                        <Text style={styles.title}>welcome_to_asviva</Text>
+                        <Text style={styles.title2}>track_your_fitness_health_data</Text>
                     </View>
                 </View>
                 <View style={styles.slide}>
@@ -57,7 +58,7 @@ const AppSplash: React.FC<SplashIconsProps> = ({ onPress }) => {
                         style={styles.image3}
                         resizeMode="cover"
                     />
-                    <Text style={styles.title3}>Buy fitness equipment at AsVIVA. Exercise bikes, cross trainers, treadmills, indoor bikes and much more...</Text>
+                    <Text style={styles.title3}>buy_fitness_equipment</Text>
                 </View>
                 <View style={styles.slide}>
                     <Image
@@ -65,7 +66,7 @@ const AppSplash: React.FC<SplashIconsProps> = ({ onPress }) => {
                         style={styles.image3}
                         resizeMode="cover"
                     />
-                    <Text style={styles.title3}>Quality, service and expert advice. This is fitness shopping made in Germany! </Text>
+                    <Text style={styles.title3}>quality_service_and_expert_advice</Text>
                 </View>
                 <View style={styles.slide}>
                     <Image
@@ -73,11 +74,11 @@ const AppSplash: React.FC<SplashIconsProps> = ({ onPress }) => {
                         style={styles.image3}
                         resizeMode="cover"
                     />
-                    <Text style={styles.title3}>Fitness with Asviva. Our fitness equipment for your training at home! </Text>
+                    <Text style={styles.title3}>fitness_with_asviva</Text>
                 </View>
             </Swiper>
             <TouchableOpacity style={styles.buttonContainer} onPress={onPress}>
-                <Text style={styles.buttonText}>Get Started</Text>
+                <Text style={styles.buttonText}>get_started</Text>
             </TouchableOpacity>
         </View>
     );

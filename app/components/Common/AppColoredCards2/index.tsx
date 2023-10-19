@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, Text, StyleSheet, Dimensions, Image } from 'react-native';
+import { View, StyleSheet, Dimensions, Image } from 'react-native';
 import { ImageSourcePropType } from "react-native";
+import Text from '../Text';
 
 interface ColoredCards2Props {
     title: string;

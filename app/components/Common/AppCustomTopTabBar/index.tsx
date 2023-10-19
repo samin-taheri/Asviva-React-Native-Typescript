@@ -1,6 +1,7 @@
 import { COLORS } from '@/theme';
 import React from 'react';
-import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { View, TouchableOpacity, StyleSheet } from 'react-native';
+import Text from '../Text';
 
 interface CustomTopTabBarProps {
     tabs: string[];

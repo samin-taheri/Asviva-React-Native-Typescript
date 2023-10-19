@@ -1,20 +1,25 @@
 import React, { useState } from 'react';
-import { View, Text, ImageBackground, StyleSheet, Pressable } from 'react-native';
+import { View, ImageBackground, StyleSheet, Pressable } from 'react-native';
 import { ImageSourcePropType } from "react-native";
 import { COLORS } from '@/theme';
 import AppLable from '../AppLable';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Feather from 'react-native-vector-icons/Feather';
+import { useTranslate } from '@/hooks';
+import { Text } from '@/components';
 
 interface BackgroundCardProps {
     title: string;
     backgroundImage: ImageSourcePropType;
     onPress: () => void;
+    params?: object;
+    children?: string | string[];
 }
-const AppBackgroundCard: React.FC<BackgroundCardProps> = ({ title, backgroundImage, onPress }) => {
+const AppBackgroundCard: React.FC<BackgroundCardProps> = ({ title, backgroundImage, onPress, params, children }) => {
+
     return (
         <View>
-            <AppLable title="Physical Fitness Test" />
+            <AppLable title="physical_fitness_test" />
             <View style={{ padding: 8 }}>
                 <View style={styles.cardContainer}>
                     <ImageBackground source={backgroundImage} style={styles.cardBackground}>

@@ -24,7 +24,7 @@ const AppHorizontalWorkoutCard: React.FC<CochingCardProps> = ({ onPress }) => {
 
     return (
         <View style={styles.container}>
-            <AppLable title="Workout Course" />
+            <AppLable title="workout_course" />
             <FlatList
                 data={cardData}
                 keyExtractor={(item) => item.id}

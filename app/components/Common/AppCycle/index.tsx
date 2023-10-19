@@ -1,4 +1,4 @@
-import { View, StyleSheet, Text, ScrollView } from "react-native";
+import { View, StyleSheet, ScrollView } from "react-native";
 import React from "react";
 import AppCustomHeader from "../AppCustomHeader";
 import { COLORS } from "@/theme";

@@ -1,7 +1,8 @@
 import React from "react";
-import { View, Text, StyleSheet, Pressable, Image, ImageSourcePropType } from "react-native";
+import { View, StyleSheet, Pressable, Image, ImageSourcePropType } from "react-native";
 import { COLORS } from "@/theme";
 import Feather from "react-native-vector-icons/Feather";
+import Text from "../Text";
 
 interface DeviceCardProps {
     title: string;
