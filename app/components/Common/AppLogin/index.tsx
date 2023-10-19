@@ -50,7 +50,7 @@ const AppLogin: React.FC<LoginProps> = ({ onLogin, onRegister, navigate, forgotP
                     <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
                         <Text style={styles.title}>Login</Text>
                     </View>
-                    <Pressable style={{ borderRadius: 8, backgroundColor: COLORS.backgroundColor, padding: 8, flexDirection: 'row', height: 33, alignItems: 'center' }} onPress={NavigateHome}>
+                    <Pressable style={{ borderRadius: 8, backgroundColor: COLORS.white, padding: 8, flexDirection: 'row', height: 33, alignItems: 'center' }} onPress={NavigateHome}>
                         <Text style={{ fontSize: 13 }}>Guest Mode</Text>
                     </Pressable>
                 </View>
@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: COLORS.backgroundColor,
+        backgroundColor: COLORS.white,
         borderRadius: 30,
         height: 62,
         width: 62,
@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: COLORS.backgroundColor,
+        backgroundColor: COLORS.white,
         borderRadius: 30,
         height: 62,
         width: 62,

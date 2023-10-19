@@ -8,7 +8,6 @@ import AppGraphDetails from "../AppGraphDetails";
 import AppBoxWithItems from "../AppBoxWithItems";
 import { COLORS } from "@/theme";
 import { HomeStackNavigationPropsType } from "@/navigation";
-import AppButton from "../AppButton";
 import Feather from "react-native-vector-icons/Feather";
 
 interface DataItem {

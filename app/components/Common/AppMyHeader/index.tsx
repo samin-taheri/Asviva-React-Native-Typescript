@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
         left: '5%',
         padding: 16,
         position: 'absolute',
-        backgroundColor: COLORS.white,
+        backgroundColor: COLORS.backgroundColor,
         margin: 'auto',
         algnSelf: 'center',
         borderRadius: 12,

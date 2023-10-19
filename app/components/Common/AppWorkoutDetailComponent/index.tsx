@@ -6,6 +6,9 @@ import { HomeStackNavigationPropsType, Routes } from "@/navigation";
 import LinearGradient from 'react-native-linear-gradient';
 import { COLORS } from "@/theme";
 import AppButton from "../AppButton";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import Feather from "react-native-vector-icons/Feather";
 
 interface DataItem {
     id: string;
@@ -48,11 +51,19 @@ const AppWorkoutDetailComponent: React.FC = ({ }) => {
                                 <Text style={styles.title3}>{item.title2}</Text>
                                 <View style={{ flexDirection: 'row' }}>
                                     <View style={[styles.iconContainer, { backgroundColor: item.backgroundColor }]}>
-
+                                        <FontAwesome
+                                            name="flash"
+                                            size={15}
+                                            color={item.color}
+                                        />
                                         <Text style={[styles.desc2, { color: item.color }]}>{item.kcal}</Text>
                                     </View>
                                     <View style={[styles.iconContainer, { backgroundColor: item.backgroundColor }]}>
-
+                                        <MaterialCommunityIcons
+                                            name="bike"
+                                            size={20}
+                                            color={item.color}
+                                        />
                                         <Text style={[styles.desc2, { color: item.color }]}>{item.time}</Text>
                                     </View>
                                 </View>
@@ -75,7 +86,7 @@ const AppWorkoutDetailComponent: React.FC = ({ }) => {
                     style={styles.linearGradient}
                 >
                     <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
-                        <AppButton pb-10 pr-30 w-40 h-40 type="icon" icon={'chevronLeft'} iconSize={26} iconColor={COLORS.white} onPress={() => navigation.goBack()} />
+                        <Feather name="arrow-left" size={30} color="#fff" />
                     </TouchableOpacity>
                     <View style={styles.cardContent2}>
                         <View style={{ flexDirection: 'column', paddingTop: '20%' }}>

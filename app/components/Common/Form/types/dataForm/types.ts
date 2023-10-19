@@ -35,4 +35,5 @@ export interface SchemaMeta {
   displayProp?: string;
   form?: UseFormReturn;
   isVisible?: boolean;
+  backgroundColor?: string;
 }

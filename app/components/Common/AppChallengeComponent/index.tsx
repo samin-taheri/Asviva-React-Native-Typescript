@@ -79,7 +79,11 @@ const AppChallengeComponent: React.FC<CouchingCourseComponentProps> = ({ onPress
                                 </View>
                             </View>
                             <View style={styles.icon}>
-
+                                <MaterialCommunityIcons
+                                    name="download-outline"
+                                    size={20}
+                                    color={COLORS.gray}
+                                />
                             </View>
                         </View>
                     </ImageBackground>

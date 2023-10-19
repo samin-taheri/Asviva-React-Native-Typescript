@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Platform, Image, Pressable, TouchableOpacity } 
 import { Routes } from '@/navigation';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import Feather from 'react-native-vector-icons/Feather'
+import { StatusBar } from 'react-native';
 
 interface CustomHeaderProps {
     title?: string;
@@ -14,6 +15,7 @@ const AppCustomHeader: React.FC<CustomHeaderProps> = ({ title, onBack, onLogo, n
 
     return (
         <View style={styles.container}>
+            <StatusBar hidden={true} />
             {onBack && (
                 <TouchableOpacity onPress={onBack} style={{ paddingTop: '9%', paddingLeft: '5%' }}>
                     <Feather name="arrow-left" size={30} />

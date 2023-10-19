@@ -65,11 +65,7 @@ const HomePage = () => {
     <React.Fragment>
       <AppCustomHeader navigation={navigation} onLogo={true} />
       <AppScreen scroll customStyle={{ backgroundColor: COLORS.backgroundColor }}>
-        <AppBackgroundCard title="Find your coach" backgroundImage={require('../../assets/images/bg-3.jpg')} onPress={() => {
-          navigation.navigate(Routes.FORM_SCREEN, {
-            detailId: '1230',
-          });
-        }}
+        <AppBackgroundCard title="Find your coach" backgroundImage={require('../../assets/images/bg-3.jpg')} onPress={() => { navigation.navigate(Routes.SPORTS_CENTER_SCREEN) }}
         />
         <AppTotalWorkout />
         <AppWeaklyGoals onPress={() => { navigation.navigate(Routes.QUESTIONNAIRE_SCREEN) }} />

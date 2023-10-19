@@ -5,10 +5,12 @@ import DataFormInput from './DataFormInput';
 import { formitMeta } from './formit';
 import { SchemaMeta } from './types/dataForm/types';
 import Block from '../Block';
+import { ViewStyle } from 'react-native';
 
 interface DataFormProps {
   form: any;
   schema: any;
+  style?: ViewStyle;
 }
 
 export default function DataForm({ form, schema }: DataFormProps) {

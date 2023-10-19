@@ -15,7 +15,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   text: {
-    fontFamily: FONTS.semiBold,
+    fontWeight: '600',
+    fontSize: 15
   },
   activityIndicator: {
     paddingRight: 10,
@@ -27,6 +28,7 @@ export const buttonTypesStyles: IButtonTypes = {
     text: {
       color: COLORS.white,
       fontWeight: 'bold',
+      fontSize: 18
     },
   },
   secondary: {

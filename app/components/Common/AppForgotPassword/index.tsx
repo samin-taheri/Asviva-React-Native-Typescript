@@ -46,8 +46,8 @@ const AppForgotPassword: React.FC<ForgotPasswordProps> = ({ onForgotPassword, ba
                         <Text style={styles.title}>Forgot Password</Text>
                     </View>
                 </View>
-                <Form schema={schema} form={form} />
-                <AppButton mt-10 type="primary" onPress={form.handleSubmit(onSubmit)} title="Submit" />
+                <Form schema={schema} form={form} style={{}} />
+                <AppButton mt-10 type="primary" onPress={form.handleSubmit(onSubmit)} title="Get Verification Code" />
             </AppMyHeader>
         </View>
     );
