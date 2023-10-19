@@ -8,6 +8,7 @@ import { AppButton, Form, fields } from '@/components';
 import AppMyHeader from '../AppMyHeader';
 import { useNavigation } from '@react-navigation/native';
 import { HomeStackNavigationPropsType, Routes } from '@/navigation';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 const initial = {
     username: '',
@@ -49,7 +50,7 @@ const AppLogin: React.FC<LoginProps> = ({ onLogin, onRegister, navigate, forgotP
                     <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
                         <Text style={styles.title}>Login</Text>
                     </View>
-                    <Pressable style={{ borderRadius: 8, backgroundColor: COLORS.white, padding: 8, flexDirection: 'row', height: 33, alignItems: 'center' }} onPress={NavigateHome}>
+                    <Pressable style={{ borderRadius: 8, backgroundColor: COLORS.backgroundColor, padding: 8, flexDirection: 'row', height: 33, alignItems: 'center' }} onPress={NavigateHome}>
                         <Text style={{ fontSize: 13 }}>Guest Mode</Text>
                     </Pressable>
                 </View>
@@ -68,8 +69,10 @@ const AppLogin: React.FC<LoginProps> = ({ onLogin, onRegister, navigate, forgotP
                 </View>
                 <View style={styles.container2}>
                     <TouchableOpacity style={styles.googleButton}>
+                        <FontAwesome name="google" size={30} color={COLORS.primary} />
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.appleButton}>
+                    <TouchableOpacity style={styles.appleButton} >
+                        <FontAwesome name="apple" size={30} color={COLORS.primary} />
                     </TouchableOpacity>
                 </View>
             </AppMyHeader>
@@ -80,6 +83,7 @@ const AppLogin: React.FC<LoginProps> = ({ onLogin, onRegister, navigate, forgotP
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: 'white'
     },
     title: {
         fontSize: 24,
@@ -148,7 +152,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: COLORS.white,
+        backgroundColor: COLORS.backgroundColor,
         borderRadius: 12,
         height: 50,
         width: '100%',
@@ -159,7 +163,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: COLORS.white,
+        backgroundColor: COLORS.backgroundColor,
         borderRadius: 30,
         height: 62,
         width: 62,
@@ -169,7 +173,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: COLORS.white,
+        backgroundColor: COLORS.backgroundColor,
         borderRadius: 30,
         height: 62,
         width: 62,

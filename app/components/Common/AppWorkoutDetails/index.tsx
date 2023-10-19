@@ -3,6 +3,8 @@ import { View, Text, StyleSheet, Pressable, Image } from "react-native";
 import AppLable from "../AppLable";
 import AppCard from "../AppCard";
 import { COLORS } from "@/theme";
+import Feather from 'react-native-vector-icons/Feather';
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 interface WorkoutDetailsProps {
     title: string;
@@ -23,12 +25,20 @@ const AppWorkoutDetails: React.FC<WorkoutDetailsProps> = ({
                 <View style={{ flexDirection: 'column', flex: 1 }}>
                     <Text style={styles.title}>{title}</Text>
                     <View style={{ flexDirection: 'row', marginTop: '2%', paddingLeft: '4%' }}>
-
+                        <Ionicons
+                            name="bicycle"
+                            size={23}
+                            color={COLORS.gray}
+                        />
                         <Text style={styles.title2}>Cycling Milage</Text>
                     </View>
                 </View>
                 <Pressable style={[styles.icon]} onPress={onPress}>
-
+                    <Feather
+                        name="arrow-right"
+                        size={25}
+                        color={COLORS.gray}
+                    />
                 </Pressable>
             </AppCard>
         </View>

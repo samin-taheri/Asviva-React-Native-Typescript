@@ -1,7 +1,8 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import Modal from "react-native-modal";
 import AppListItem from "../AppListItem";
+import Feather from "react-native-vector-icons/Feather";
 
 interface MyModalProps {
     isVisible: boolean;
@@ -15,7 +16,13 @@ const AppMyModal: React.FC<MyModalProps> = ({ isVisible, onClose }) => {
         <Modal isVisible={isVisible} style={{ justifyContent: "flex-end", margin: 0 }} onBackdropPress={toggleModal}>
             <View style={{ backgroundColor: "white", padding: 16 }}>
                 <View style={styles.modalContent}>
-
+                    <Feather
+                        name="x"
+                        size={24}
+                        color="black"
+                        style={styles.closeIcon}
+                        onPress={onClose}
+                    />
                     <View style={styles.container2}>
                         <AppListItem iconName="file-text" style={{ fontSize: 16, paddingLeft: 10, paddingRight: '25%', textAlign: 'left' }} itemText="Questionnaire evaluation" />
                         <AppListItem iconName="battery-charging" style={{ fontSize: 16, paddingLeft: 10, paddingRight: '33%', textAlign: 'left' }} itemText="Physical fitness test" />

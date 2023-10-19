@@ -8,6 +8,7 @@ import * as Yup from 'yup';
 import { AppButton, Form, fields } from '@/components';
 import { useNavigation } from '@react-navigation/native';
 import { HomeStackNavigationPropsType, Routes } from '@/navigation';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 const initial = {
     username: '',
@@ -42,7 +43,6 @@ const AppSignUp: React.FC<SignUpProps> = ({ navigate, signUp, back }) => {
             <AppMyHeader onPress={back}>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                     <Text style={styles.title}>Sign Up</Text>
-
                 </View>
                 <Form schema={schema} form={form} />
                 <AppButton mt-10 type="primary" onPress={form.handleSubmit(onSubmit)} title="Sign Up" />
@@ -54,10 +54,10 @@ const AppSignUp: React.FC<SignUpProps> = ({ navigate, signUp, back }) => {
                 </View>
                 <View style={styles.container2}>
                     <TouchableOpacity style={styles.googleButton}>
-
+                        <FontAwesome name="google" size={30} color={COLORS.primary} />
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.appleButton}>
-
+                    <TouchableOpacity style={styles.appleButton} >
+                        <FontAwesome name="apple" size={30} color={COLORS.primary} />
                     </TouchableOpacity>
                 </View>
             </AppMyHeader>
@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: COLORS.white,
+        backgroundColor: COLORS.backgroundColor,
         borderRadius: 30,
         height: 62,
         width: 62,
@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: COLORS.white,
+        backgroundColor: COLORS.backgroundColor,
         borderRadius: 30,
         height: 62,
         width: 62,
@@ -181,7 +181,7 @@ const styles = StyleSheet.create({
     container3: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingTop: 10,
+        paddingTop: 30,
         paddingBottom: 20
     },
     checkBoxContainer: {

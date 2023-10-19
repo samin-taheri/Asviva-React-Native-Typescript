@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, StyleSheet, ImageBackground, SafeAreaView, ImageSourcePropType, Pressable, ActivityIndicator } from 'react-native';
 import { COLORS } from '@/theme';
 import AppMyloader from '../AppMyLoader';
+import Entypo from 'react-native-vector-icons/Entypo';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 interface DataItem {
     id: string;
@@ -50,15 +53,27 @@ const AppChallengeComponent: React.FC<CouchingCourseComponentProps> = ({ onPress
                                 <Text style={styles.title}>{item.title}</Text>
                                 <View style={{ flexDirection: 'row' }}>
                                     <View style={styles.iconContainer}>
-
+                                        <MaterialCommunityIcons
+                                            name="account-supervisor"
+                                            size={20}
+                                            color={COLORS.gray}
+                                        />
                                         <Text style={{ fontSize: 11 }}>{item.user}</Text>
                                     </View>
                                     <View style={[styles.iconContainer, { marginLeft: 10 }]}>
-
+                                        <Entypo
+                                            name="location-pin"
+                                            size={20}
+                                            color={COLORS.gray}
+                                        />
                                         <Text style={{ fontSize: 11 }}>{item.loc}</Text>
                                     </View>
                                     <View style={[styles.iconContainer, { marginLeft: 10 }]}>
-
+                                        <Ionicons
+                                            name="bicycle"
+                                            size={20}
+                                            color={COLORS.gray}
+                                        />
                                         <Text style={{ fontSize: 11, paddingLeft: 2 }}>{item.time}</Text>
                                     </View>
                                 </View>

@@ -1,5 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, ImageBackground, Pressable } from "react-native";
+import Entypo from "react-native-vector-icons/Entypo";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 interface MultiplayerCardProps {
     imageSource: { uri: string };
@@ -32,11 +34,20 @@ const AppMultiplayerCard: React.FC<MultiplayerCardProps> = ({
                             </View>
                             <View style={styles.iconContainers}>
                                 <View style={styles.iconContainer}>
-
+                                    <MaterialCommunityIcons
+                                        name="account-clock"
+                                        size={20}
+                                        color="#fff"
+                                        style={{ paddingRight: 2 }}
+                                    />
                                     <Text style={{ fontSize: 11, color: "#fff" }}>{min}</Text>
                                 </View>
                                 <View style={[styles.iconContainer, { marginLeft: 10 }]}>
-
+                                    <Entypo
+                                        name="location-pin"
+                                        size={20}
+                                        color="#fff"
+                                    />
                                     <Text style={{ fontSize: 11, color: "#fff" }}>{km}</Text>
                                 </View>
                             </View>

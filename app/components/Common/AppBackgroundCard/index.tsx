@@ -3,6 +3,8 @@ import { View, Text, ImageBackground, StyleSheet, Pressable } from 'react-native
 import { ImageSourcePropType } from "react-native";
 import { COLORS } from '@/theme';
 import AppLable from '../AppLable';
+import Entypo from 'react-native-vector-icons/Entypo';
+import Feather from 'react-native-vector-icons/Feather';
 
 interface BackgroundCardProps {
     title: string;
@@ -17,9 +19,11 @@ const AppBackgroundCard: React.FC<BackgroundCardProps> = ({ title, backgroundIma
                 <View style={styles.cardContainer}>
                     <ImageBackground source={backgroundImage} style={styles.cardBackground}>
                         <View style={[styles.cardContent, { backgroundColor: 'rgba(255, 255, 255, 0.77)' }]}>
+                            <Entypo name="dot-single" color={COLORS.primary} size={30} />
                             <Text style={styles.title}>{title}</Text>
                             <Pressable style={styles.buttonContainer} onPress={onPress}>
                                 <Text style={styles.button}>Start</Text>
+                                <Feather name="chevron-right" size={20} color='white' style={{ marginRight: 15 }} />
                             </Pressable>
                         </View>
                     </ImageBackground>
@@ -67,7 +71,7 @@ const styles = StyleSheet.create({
     },
     buttonContainer: {
         backgroundColor: COLORS.primary,
-        width: 70,
+        width: 80,
         height: 30,
         borderRadius: 8,
         alignItems: 'center',
@@ -79,6 +83,7 @@ const styles = StyleSheet.create({
         color: 'white',
         fontWeight: 'bold',
         paddingTop: 1,
+        paddingLeft: 20
     }
 });
 

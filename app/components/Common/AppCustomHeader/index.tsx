@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, Text, StyleSheet, Platform, Image, Pressable } from 'react-native';
-import AppButton from '../AppButton';
-import { COLORS } from '@/theme';
+import { View, Text, StyleSheet, Platform, Image, Pressable, TouchableOpacity } from 'react-native';
 import { Routes } from '@/navigation';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import Feather from 'react-native-vector-icons/Feather'
 
 interface CustomHeaderProps {
     title?: string;
@@ -15,7 +15,9 @@ const AppCustomHeader: React.FC<CustomHeaderProps> = ({ title, onBack, onLogo, n
     return (
         <View style={styles.container}>
             {onBack && (
-                <AppButton pt-30 pl-20 w-40 h-40 type="icon" icon={'chevronLeft'} iconSize={26} iconColor={COLORS.black} onPress={() => navigation.goBack()} />
+                <TouchableOpacity onPress={onBack} style={{ paddingTop: '9%', paddingLeft: '5%' }}>
+                    <Feather name="arrow-left" size={30} />
+                </TouchableOpacity>
             )}
             <View style={styles.titleContainer}>
                 <Text style={[styles.title, onBack ? styles.withPadding : null]}>{title}</Text>
@@ -29,14 +31,12 @@ const AppCustomHeader: React.FC<CustomHeaderProps> = ({ title, onBack, onLogo, n
                         />
                     </View>
                     <View style={{ flexDirection: 'row', alignItems: 'center', paddingLeft: Platform.OS === 'ios' ? '35%' : '40%' }}>
-                        <Pressable style={{ borderRadius: 8, backgroundColor: '#e8e8e8', padding: 7 }} onPress={() => navigation.navigate(Routes.CONNECTDEVICES_SCREEN)}>
+                        <Pressable style={{ borderRadius: 8, backgroundColor: '#e8e8e8', padding: 6, flexDirection: 'row', height: 29 }} onPress={() => navigation.navigate(Routes.CONNECTDEVICES_SCREEN)}>
+                            <Feather name="radio" size={18} color='#000' style={{ paddingRight: 4 }} />
                             <Text style={{ fontSize: 12, paddingRight: 3 }}>Tap to Connect</Text>
                         </Pressable>
-                        <Pressable onPress={() => navigation.navigate(Routes.PROFILE_SCREEN)} style={{ width: 100, marginLeft: -30 }}>
-                            <Image
-                                source={require('../../../assets/images/p.png')}
-                                style={styles.logoImage}
-                            />
+                        <Pressable onPress={() => navigation.navigate(Routes.PROFILE_SCREEN)} style={{ marginLeft: 8, marginRight: 20 }}>
+                            <MaterialIcons name="account-circle" size={37} color="#dadada" />
                         </Pressable>
                     </View>
                 </View>

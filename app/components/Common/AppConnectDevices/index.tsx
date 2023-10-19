@@ -7,6 +7,7 @@ import { COLORS } from "@/theme";
 import AppBrandCard from "../AppBrandCard";
 import { useNavigation } from '@react-navigation/native';
 import { HomeStackNavigationPropsType, Routes } from '@/navigation';
+import Feather from "react-native-vector-icons/Feather";
 
 
 interface ConnectDevicesProps {
@@ -52,6 +53,7 @@ const AppConnectDevices: React.FC<ConnectDevicesProps> = ({ onPress, brandsNavig
                     <AppLable title="Brands" />
                     <Pressable style={{ flexDirection: 'row', paddingTop: 10, paddingRight: 15 }} onPress={brandsNavigate}>
                         <Text style={{ paddingTop: 3, color: '#636363', fontSize: 14 }}>View more</Text>
+                        <Feather name="chevron-right" size={16} color="#636363" style={Platform.OS === 'ios' ? { paddingTop: 4 } : { paddingTop: 5 }} />
                     </Pressable>
                 </View>
                 <View style={styles.brandsContainer}>

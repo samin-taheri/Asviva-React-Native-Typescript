@@ -1,5 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, ImageBackground, Pressable } from "react-native";
+import Entypo from "react-native-vector-icons/Entypo";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 interface ChallengeCardProps {
     imageSource: { uri: string };
@@ -28,11 +30,19 @@ const AppChallengeCard: React.FC<ChallengeCardProps> = ({
                             </View>
                             <View style={styles.iconContainers}>
                                 <View style={styles.iconContainer}>
-
+                                    <MaterialCommunityIcons
+                                        name="account-supervisor"
+                                        size={20}
+                                        color="#fff"
+                                    />
                                     <Text style={{ fontSize: 11, color: "#fff" }}>{user}</Text>
                                 </View>
                                 <View style={[styles.iconContainer, { marginLeft: 10 }]}>
-
+                                    <Entypo
+                                        name="location-pin"
+                                        size={20}
+                                        color="#fff"
+                                    />
                                     <Text style={{ fontSize: 11, color: "#fff" }}>{loc}</Text>
                                 </View>
                             </View>

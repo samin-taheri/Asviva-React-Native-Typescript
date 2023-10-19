@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, Pressable, Image, ImageSourcePropType } from "react-native";
 import { COLORS } from "@/theme";
+import Feather from "react-native-vector-icons/Feather";
 
 interface DeviceCardProps {
     title: string;
@@ -23,7 +24,11 @@ const AppDeviceCard: React.FC<DeviceCardProps> = ({
                 <Text style={styles.title}>{title}</Text>
             </View>
             <View style={[styles.icon]}>
-
+                <Feather
+                    name="arrow-right"
+                    size={20}
+                    color={COLORS.gray}
+                />
             </View>
         </Pressable>
     );

@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, FlatList, TouchableOpacity } from "react-native";
 import Modal from "react-native-modal";
+import Feather from "react-native-vector-icons/Feather";
 
 interface Option {
     id: string;
@@ -41,7 +42,13 @@ const AppBottomSelectorModal: React.FC<MyModalProps> = ({ isVisible, onClose, ti
     return (
         <Modal isVisible={isVisible} style={{ justifyContent: "flex-end", margin: 0 }} onBackdropPress={toggleModal}>
             <View style={{ backgroundColor: "white", padding: 16 }}>
-
+                <Feather
+                    name="x"
+                    size={24}
+                    color="black"
+                    style={styles.closeIcon}
+                    onPress={onClose}
+                />
                 <Text style={styles.title}>{title}</Text>
                 <View style={styles.modalContent2}>
                     <FlatList

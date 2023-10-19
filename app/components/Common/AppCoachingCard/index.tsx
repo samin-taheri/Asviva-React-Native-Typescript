@@ -1,5 +1,8 @@
+import { COLORS } from "@/theme";
 import React from "react";
 import { View, Text, StyleSheet, Image, Pressable } from "react-native";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 
 interface CoouchingCardProps {
     imageSource: { uri: string };
@@ -26,11 +29,21 @@ const AppCouchingCard: React.FC<CoouchingCardProps> = ({
                         <Text style={styles.title}>{title}</Text>
                         <View style={styles.iconContainers}>
                             <View style={styles.iconContainer}>
-
+                                <MaterialCommunityIcons
+                                    name="account-clock"
+                                    size={20}
+                                    color={COLORS.gray}
+                                    style={{ paddingRight: 2 }}
+                                />
                                 <Text style={{ fontSize: 11 }}>{user}</Text>
                             </View>
                             <View style={[styles.iconContainer]}>
-
+                                <FontAwesome
+                                    name="flash"
+                                    size={15}
+                                    color={COLORS.gray}
+                                    style={{ paddingRight: 5 }}
+                                />
                                 <Text style={{ fontSize: 11 }}>{kcal}</Text>
                             </View>
                         </View>

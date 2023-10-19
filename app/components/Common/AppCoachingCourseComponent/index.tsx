@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, StyleSheet, ImageBackground, SafeAreaView, ImageSourcePropType, Pressable, ActivityIndicator } from 'react-native';
 import { COLORS } from '@/theme';
 import AppMyloader from '../AppMyLoader';
-import { Path, Svg } from 'react-native-svg';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 interface DataItem {
     id: string;
@@ -48,11 +49,20 @@ const AppCouchingCourseComponent: React.FC<CouchingCourseComponentProps> = ({ on
                                 <Text style={styles.title}>{item.title}</Text>
                                 <View style={{ flexDirection: 'row' }}>
                                     <View style={styles.iconContainer}>
-
+                                        <MaterialCommunityIcons
+                                            name="account-supervisor"
+                                            size={20}
+                                            color={COLORS.gray}
+                                        />
                                         <Text style={{ fontSize: 11 }}>{item.user}</Text>
                                     </View>
                                     <View style={[styles.iconContainer, { marginLeft: 10 }]}>
-
+                                        <FontAwesome
+                                            name="flash"
+                                            size={15}
+                                            color={COLORS.gray}
+                                            style={{ paddingRight: 5 }}
+                                        />
                                         <Text style={{ fontSize: 11 }}>{item.kcal}</Text>
                                     </View>
                                 </View>

@@ -1,6 +1,7 @@
 import { COLORS } from "@/theme";
 import React from "react";
 import { View, Text, StyleSheet, Pressable, Image, ViewStyle, ImageSourcePropType } from "react-native";
+import Feather from "react-native-vector-icons/Feather";
 
 interface DetailsSectionProps {
     title: string;
@@ -24,6 +25,11 @@ const AppDetailsSection: React.FC<DetailsSectionProps> = ({
                 <Text style={styles.title}>{title}</Text>
             </View>
             <View style={[styles.icon]}>
+                <Feather
+                    name="arrow-right"
+                    size={20}
+                    color={COLORS.gray}
+                />
             </View>
         </Pressable>
     );

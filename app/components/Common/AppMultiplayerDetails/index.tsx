@@ -7,6 +7,7 @@ import { COLORS } from "@/theme";
 import AppGraphDetails from "../AppGraphDetails";
 import AppBoxWithItems from "../AppBoxWithItems";
 import AppButton from "../AppButton";
+import Feather from "react-native-vector-icons/Feather";
 
 interface DataItem {
     id: string;
@@ -41,7 +42,7 @@ const AppMultiplayerDetails: React.FC = ({ }) => {
                 <View style={styles.imageContainer}>
                     <ImageBackground source={selectedItem.imageSource} style={styles.image}>
                         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
-                            <AppButton pb-10 pr-30 w-40 h-40 type="icon" icon={'chevronLeft'} iconSize={26} iconColor={COLORS.black} onPress={() => navigation.goBack()} />
+                            <Feather name="arrow-left" size={30} color="#fff" />
                         </TouchableOpacity>
                         <View style={[styles.cardContent, { backgroundColor: 'rgba(255, 255, 255, 0.77)' }]}>
                             <Text style={styles.title}>{selectedItem.title}</Text>

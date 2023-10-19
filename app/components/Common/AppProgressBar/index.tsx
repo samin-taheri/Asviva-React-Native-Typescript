@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import AppCard from '../AppCard';
 import { COLORS } from '@/theme';
+import Feather from 'react-native-vector-icons/Feather';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 interface ProgressBarProps {
     progress: number;
@@ -68,7 +70,11 @@ const AppProgressBar2: React.FC = () => {
                                 onPress={startLoading}
                                 disabled={loading}
                             >
-
+                                <MaterialCommunityIcons
+                                    name="download-outline"
+                                    size={20}
+                                    color={COLORS.gray}
+                                />
                             </TouchableOpacity>
                         ) : (
                             <TouchableOpacity
@@ -76,7 +82,11 @@ const AppProgressBar2: React.FC = () => {
                                 onPress={startLoading}
                                 disabled={loading}
                             >
-
+                                <Feather
+                                    name="loader"
+                                    size={20}
+                                    color={COLORS.gray}
+                                />
                             </TouchableOpacity>
                         )}
                         <Text style={styles.introTitle}>{loading ? 'Loading' : 'Download'}</Text>
@@ -84,14 +94,24 @@ const AppProgressBar2: React.FC = () => {
                     <AppProgressBar progress={progress} />
                     <View style={{ justifyContent: 'space-between', flexDirection: 'row', borderWidth: 1.5, borderColor: '#e2e2e2', borderStyle: 'dashed', borderRadius: 12, marginTop: 10 }}>
                         <View style={{ flexDirection: 'row' }}>
-
+                            <Feather
+                                name="flag"
+                                size={20}
+                                color={COLORS.gray}
+                                style={{ marginTop: 8, marginLeft: 10 }}
+                            />
                             <Text style={styles.introTitle}>Contest</Text>
                         </View>
                         <Text style={styles.introTitle}>0</Text>
                     </View>
                     <View style={{ justifyContent: 'space-between', flexDirection: 'row', borderWidth: 1.5, borderColor: '#e2e2e2', borderStyle: 'dashed', borderRadius: 12, marginBottom: 10, marginTop: 15 }}>
                         <View style={{ flexDirection: 'row' }}>
-
+                            <Feather
+                                name="users"
+                                size={20}
+                                color={COLORS.gray}
+                                style={{ marginTop: 8, marginLeft: 10 }}
+                            />
                             <Text style={styles.introTitle}>Square</Text>
                         </View>
                         <Text style={styles.introTitle}>19</Text>

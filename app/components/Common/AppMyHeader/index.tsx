@@ -5,6 +5,7 @@ import { COLORS } from '@/theme';
 import AppButton from '../AppButton';
 import { useNavigation } from '@react-navigation/native';
 import { HomeStackNavigationPropsType } from '@/navigation';
+import Feather from 'react-native-vector-icons/Feather';
 
 interface MyHeaderProps {
     showLogo?: boolean;
@@ -40,8 +41,8 @@ const AppMyHeader: React.FC<MyHeaderProps> = (props) => {
                             )
                             : (
                                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                    <TouchableOpacity onPress={props.onPress} style={{}}>
-                                        <AppButton pt-60 pl-30 w-40 h-40 type="icon" icon={'chevronLeft'} iconSize={26} iconColor={COLORS.black} onPress={() => navigation.goBack()} />
+                                    <TouchableOpacity onPress={props.onPress} style={{ paddingTop: '12%', paddingLeft: '5%', zIndex: 1 }}>
+                                        <Feather name="arrow-left" size={30} color={'black'} />
                                     </TouchableOpacity>
                                     <Animatable.Text style={styles.HeaderText} animation="fadeInDown">{props.Title}</Animatable.Text>
                                 </View>
@@ -69,7 +70,7 @@ const styles = StyleSheet.create({
     container: {
         width: '100%',
         height: '100%',
-        backgroundColor: '#000'
+        backgroundColor: '#fff'
     },
     HeaderText: {
         fontSize: 23,
@@ -90,7 +91,7 @@ const styles = StyleSheet.create({
         left: '5%',
         padding: 16,
         position: 'absolute',
-        backgroundColor: COLORS.cardBackground,
+        backgroundColor: COLORS.white,
         margin: 'auto',
         algnSelf: 'center',
         borderRadius: 12,

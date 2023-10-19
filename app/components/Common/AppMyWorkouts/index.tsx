@@ -7,6 +7,7 @@ import AppMyModal from '../AppMyModal';
 import { COLORS } from '@/theme';
 import { useNavigation } from '@react-navigation/native';
 import { HomeStackNavigationPropsType } from '@/navigation';
+import Feather from 'react-native-vector-icons/Feather';
 
 LocaleConfig.locales['custom'] = {
     monthNames: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
@@ -58,7 +59,7 @@ const AppMyWorkouts: React.FC = () => {
                 style={styles.currentDateButton}
                 onPress={() => setCalendarVisible(true)}
             >
-
+                <Feather name="calendar" size={22} color="#000" style={{ marginRight: 8 }} />
                 <Text style={styles.currentDateText}>
                     {selectedDate ? formatDateString(selectedDate) : formatDateString(currentDate)}
                 </Text>

@@ -1,18 +1,29 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
+import Feather from "react-native-vector-icons/Feather";
 
 interface ListItemProps {
     iconName: string;
     itemText: string;
     style?: any;
 }
+const iconMap: { [key: string]: React.ReactNode } = {
+    "file-text": <Feather name="file-text" size={24} color="#424242" />,
+    "battery-charging": <Feather name="battery-charging" size={24} color="#424242" />,
+    edit: <Feather name="edit" size={24} color="#424242" />,
+};
 
 const AppListItem: React.FC<ListItemProps> = ({ iconName, itemText, style }) => {
     return (
         <View style={styles.itemContainer}>
-
+            {iconMap[iconName]}
             <Text style={style}>{itemText}</Text>
-
+            <Feather
+                name="chevron-right"
+                size={20}
+                color="#424242"
+                style={styles.iconRight}
+            />
         </View>
     );
 };

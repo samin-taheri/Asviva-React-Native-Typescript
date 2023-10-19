@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, Pressable, Image, ImageSourcePropType, ViewStyle } from "react-native";
 import { COLORS } from "@/theme";
+import Feather from "react-native-vector-icons/Feather";
 
 interface ProfileCardProps {
     title: string;
@@ -42,7 +43,11 @@ const AppProfileCard: React.FC<ProfileCardProps> = ({
                 </Text>
             </View>
             <View style={[styles.icon]}>
-
+                <Feather
+                    name="arrow-right"
+                    size={20}
+                    color={COLORS.gray}
+                />
             </View>
         </Pressable>
     );

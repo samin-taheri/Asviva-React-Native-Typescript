@@ -2,6 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, StyleSheet, ImageBackground, SafeAreaView, ImageSourcePropType, Pressable, ActivityIndicator } from 'react-native';
 import AppMyloader from '../AppMyLoader';
 import { COLORS } from '@/theme';
+import Feather from 'react-native-vector-icons/Feather';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 interface DataItem {
     id: string;
@@ -48,18 +52,36 @@ const AppMultiplayerComponent: React.FC<MultiplayerComponentProps> = ({ onPress 
                                 <Text style={styles.subtitle}>{item.subtitle}</Text>
                                 <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
                                     <View style={[styles.iconContainer, { marginLeft: 10 }]}>
-
+                                        <MaterialCommunityIcons
+                                            name="account-supervisor"
+                                            size={20}
+                                            color={COLORS.gray}
+                                        />
                                         <Text style={{ fontSize: 11 }}>{item.km}</Text>
                                     </View>
                                     <View style={[styles.iconContainer, { marginLeft: 30 }]}>
-
+                                        <FontAwesome
+                                            name="flash"
+                                            size={15}
+                                            color={COLORS.gray}
+                                            style={{ paddingRight: 5 }}
+                                        />
                                         <Text style={{ fontSize: 11 }}>{item.min}</Text>
                                     </View>
                                     <View style={[styles.iconContainer, { marginLeft: 30 }]}>
-
+                                        <Ionicons
+                                            name="bicycle"
+                                            size={23}
+                                            color={COLORS.gray}
+                                        />
                                     </View>
                                     <View style={[styles.iconContainer, { marginLeft: 30 }]}>
-
+                                        <Feather
+                                            name="calendar"
+                                            size={17}
+                                            style={{ paddingRight: 5 }}
+                                            color={COLORS.gray}
+                                        />
                                         <Text style={{ fontSize: 11 }}>{item.date}</Text>
                                     </View>
                                 </View>

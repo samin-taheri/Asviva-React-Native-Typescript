@@ -29,6 +29,36 @@
       "setId": 5,
       "iconIdx": 0
     },
+    {
+            "icon": {
+                "paths": [
+                    "M0 192v128h768v-128h-768zM0 576h768v-128h-768v128zM0 832h768v-128h-768v128z"
+                ],
+                "attrs": [
+                    {}
+                ],
+                "width": 768,
+                "isMulticolor": false,
+                "isMulticolor2": false,
+                "tags": [
+                    "three-bars"
+                ],
+                "grid": 16
+            },
+            "attrs": [
+                {}
+            ],
+            "properties": {
+                "order": 4,
+                "id": 3,
+                "prevSize": 32,
+                "code": 59650,
+                "name": "three-bars"
+            },
+            "setIdx": 2,
+            "setId": 1,
+            "iconIdx": 0
+        },
      {
       "icon": {
         "paths": [

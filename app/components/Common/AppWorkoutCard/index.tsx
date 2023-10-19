@@ -1,6 +1,8 @@
+import { COLORS } from "@/theme";
 import React from "react";
 import { View, Text, StyleSheet, Image, Pressable } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 
 interface SimpleCardProps {
     backgroundColor: string;
@@ -30,7 +32,12 @@ const AppWorkoutCard: React.FC<SimpleCardProps> = ({
                     <Text style={styles.title}>{title}</Text>
                     <View style={{ flexDirection: 'row', justifyContent: "space-between" }}>
                         <View style={styles.iconContainer}>
-
+                            <FontAwesome
+                                name="flash"
+                                size={15}
+                                color={COLORS.gray}
+                                style={{ paddingRight: 5 }}
+                            />
                             <Text style={{ fontSize: 11 }}>{kcal}</Text>
                         </View>
                     </View>

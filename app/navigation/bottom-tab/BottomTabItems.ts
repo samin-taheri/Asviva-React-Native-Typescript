@@ -1,6 +1,5 @@
-import {FetchDataPage, FormPage, HomePage, LoginPage} from '@/screens';
+import { HomePage} from '@/screens';
 import {IScreen} from '@/utils';
-
 import {BottomTabStackNavigationProps} from './types';
 import {ICONS} from '../../utils/icon-enums';
 import Routes from '../Routes';
