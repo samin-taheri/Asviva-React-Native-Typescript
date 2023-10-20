@@ -5,7 +5,7 @@ import { View, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import AppCustomHeader from '../AppCustomHeader';
 import AppDetailsSection from '../AppDetailsSection';
 import { COLORS } from '@/theme';
-import Text from '../Text';
+import AppButton from '../AppButton';
 
 const AppSettings: React.FC = ({ }) => {
     const navigation = useNavigation<HomeStackNavigationPropsType>();
@@ -42,9 +42,9 @@ const AppSettings: React.FC = ({ }) => {
                         onPress={() => {
                         }}
                     />
-                    <TouchableOpacity style={styles.loginButton} onPress={() => { navigation.navigate(Routes.LOGIN_SCREEN) }}>
-                        <Text style={styles.buttonText2}>sign_out</Text>
-                    </TouchableOpacity>
+                    <View style={{ width: '98%', alignSelf: 'center' }}>
+                        <AppButton mt-10 type="primary" onPress={() => { navigation.navigate(Routes.LOGIN_SCREEN) }} title="sign_out" />
+                    </View>
                 </View>
             </ScrollView>
         </View>

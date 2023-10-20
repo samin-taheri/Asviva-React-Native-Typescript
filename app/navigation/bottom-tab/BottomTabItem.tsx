@@ -33,7 +33,7 @@ export const BottomTabItem = (props: Props) => {
                 <Entypo
                   name={item?.icon as keyof typeof Entypo}
                   size={bottomTabConfig?.iconSize}
-                  color={isFocused ? colors.tabItemFocused : colors.tabItem}
+                  color={isFocused ? colors.tabItemFocused : colors.gray}
                 />
               </Block>
             ),

@@ -110,6 +110,15 @@ const de = {
   this_weeks_goals_have_been_generated_for_you: 'Für diese Woche wurden Ziele für Sie generiert',
   complete: 'Vollständig',
   goals: 'Ziele',
-  generating: 'Erstellen...'
+  generating: 'Erstellen...',
+  change_language: 'Sprache ändern: ',
+  fitness_with_asviva: 'Fitness mit Asviva. Unsere Fitnessgeräte für Ihr Training zu Hause!',
+  guest_mode: 'Gastmodus',
+  forgot_password: 'Passwort vergessen?',
+  sign_in_with: 'Melden Sie sich an mit',
+  sign_in: 'Anmelden',
+  sign_up: 'Melden Sie sich an',
+  get_verification_code: 'Holen Sie sich den Bestätigungscode',
+
 };
 export default de;

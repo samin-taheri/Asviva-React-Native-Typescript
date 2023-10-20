@@ -19,7 +19,7 @@ const AppCycle: React.FC = ({ }) => {
                 <AppHorizontalChallengeCard onPress={(id) => navigation.navigate(Routes.CHALLENGE_DETAILS, { id })} />
                 <AppHorizontalCoachingCard onPress={(id) => navigation.navigate(Routes.COACHINGCOURSE_DETAILS, { id })} />
                 <AppHorizontalMultiplayerCard onPress={(id) => navigation.navigate(Routes.MULTIPLAYER_DETAILS, { id })} />
-                <AppHorizontalWorkoutCard onPress={(id) => navigation.navigate(Routes.WORKOUT_DETAILS, { id })} />
+                <AppHorizontalWorkoutCard onPress={(id) => navigation.navigate(Routes.WORKOUT_SUBDETAILS, { id })} />
             </ScrollView>
         </View>
     )

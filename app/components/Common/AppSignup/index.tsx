@@ -1,11 +1,11 @@
 import { COLORS } from '@/theme';
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Pressable } from 'react-native';
+import { View, TouchableOpacity, StyleSheet, Pressable } from 'react-native';
 import AppMyHeader from '../AppMyHeader';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
-import { AppButton, Form, fields } from '@/components';
+import { AppButton, Form, Text, fields } from '@/components';
 import { useNavigation } from '@react-navigation/native';
 import { HomeStackNavigationPropsType, Routes } from '@/navigation';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -42,14 +42,14 @@ const AppSignUp: React.FC<SignUpProps> = ({ navigate, signUp, back }) => {
         <View>
             <AppMyHeader onPress={back}>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                    <Text style={styles.title}>Sign Up</Text>
+                    <Text style={styles.title}>sign_up</Text>
                 </View>
                 <Form schema={schema} form={form} />
-                <AppButton mt-10 type="primary" onPress={form.handleSubmit(onSubmit)} title="Sign Up" />
-                <AppButton mt-10 type="secondary" onPress={() => navigation.navigate(Routes.LOGIN_SCREEN)} title="Sign In" />
+                <AppButton mt-10 type="primary" onPress={form.handleSubmit(onSubmit)} title="sign_up" />
+                <AppButton mt-10 type="secondary" onPress={() => navigation.navigate(Routes.LOGIN_SCREEN)} title="sign_in" />
                 <View style={styles.container3}>
                     <View style={styles.divider} />
-                    <Text style={styles.text}>Sign up with</Text>
+                    <Text style={styles.text}>sign_up_with</Text>
                     <View style={styles.divider} />
                 </View>
                 <View style={styles.container2}>

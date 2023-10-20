@@ -3,17 +3,21 @@ import React, { useState } from 'react';
 import { View, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import Modal from 'react-native-modal';
 import Text from '../Text';
+import AppButton from '../AppButton';
+import Feather from 'react-native-vector-icons/Feather';
 
 interface TextInputComponentProps {
     isVisible: boolean;
     onToggle: () => void;
     onSelectNickname: (selectedNickname: string) => void;
+    onClose: () => void;
 }
 
 const AppTextInputComponent: React.FC<TextInputComponentProps> = ({
     isVisible,
     onToggle,
     onSelectNickname,
+    onClose
 }) => {
     const [inputText, setInputText] = useState<string>('');
     const [selectedNickname, setsSlectedNickname] = useState<string>('');
@@ -38,15 +42,22 @@ const AppTextInputComponent: React.FC<TextInputComponentProps> = ({
         >
             <View style={styles.modalContainer}>
                 <Text style={styles.modalTitle}>enter_nickname</Text>
+                <Feather
+                    name="x"
+                    size={24}
+                    color="black"
+                    style={styles.closeIcon}
+                    onPress={onClose}
+                />
                 <TextInput
                     style={styles.textInput}
                     onChangeText={handleTextInputChange}
                     value={inputText}
                     placeholder="Select Nickname"
                 />
-                <TouchableOpacity style={styles.loginButton} onPress={() => onSelectNickname(inputText)}>
-                    <Text style={styles.buttonText}>select</Text>
-                </TouchableOpacity>
+                <View style={{ marginBottom: 20 }}>
+                    <AppButton mt-10 type="primary" onPress={() => onSelectNickname(inputText)} title="select" />
+                </View>
             </View>
         </Modal>
     );
@@ -56,6 +67,11 @@ const styles = StyleSheet.create({
     modal: {
         justifyContent: 'flex-end',
         margin: 0,
+    },
+    closeIcon: {
+        position: "absolute",
+        top: 10,
+        right: 15,
     },
     modalContainer: {
         backgroundColor: 'white',

@@ -13,7 +13,7 @@ import Block from '../Block';
 import Text from '../Text';
 
 const AppButton = (props: Props | never) => {
-  const { disabled, type, title, titleColor = COLORS.white, icon, iconColor, iconSize = 22, width = '100%', height = 56, loading, loadingTitle = 'please_wait', style } = props;
+  const { disabled, type, title, titleColor = COLORS.white, icon, iconColor, iconSize = 22, width = '100%', height = 50, loading, loadingTitle = 'please_wait', style } = props;
 
   const theme = useTheme(props as UseThemeType);
 

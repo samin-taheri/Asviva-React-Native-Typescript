@@ -18,7 +18,6 @@ const AppCustomHeader: React.FC<CustomHeaderProps> = ({ title, onBack, onLogo, n
 
     return (
         <View style={styles.container}>
-            <StatusBar backgroundColor={COLORS.primary} barStyle="light-content" />
             {onBack && (
                 <TouchableOpacity onPress={onBack} style={{ paddingTop: '9%', paddingLeft: '5%' }}>
                     <Feather name="arrow-left" size={30} />

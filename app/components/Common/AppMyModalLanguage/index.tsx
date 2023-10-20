@@ -1,18 +1,19 @@
-import React from "react";
-import { View, StyleSheet } from "react-native";
+import React, { useState, useEffect } from "react";
+import { View, StyleSheet, Switch } from "react-native";
 import Modal from "react-native-modal";
 import Feather from "react-native-vector-icons/Feather";
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import { settingsRedux } from "@/store";
 import AppButton from "../AppButton";
 import Text from "../Text";
+import { COLORS } from "@/theme";
 
 interface MyModalProps {
     isVisible: boolean;
     onClose: () => void;
 }
 const HeaderRight = ({ language }: { language: string }) => (
-    <View style={{ padding: 10, paddingBottom: 30, flexDirection: 'row' }}>
+    <View style={{ padding: 0, paddingBottom: 0, flexDirection: 'row' }}>
         <Text style={{ fontSize: 18, fontWeight: '700' }}>language</Text>
         <Text style={{ fontSize: 18, fontWeight: '700' }}>: {language}</Text>
     </View>
@@ -20,19 +21,37 @@ const HeaderRight = ({ language }: { language: string }) => (
 
 const AppMyModalLanguage: React.FC<MyModalProps> = ({ isVisible, onClose }) => {
     const dispatch = useAppDispatch();
+    const [isEnabled, setIsEnabled] = useState(false);
+
+    // Define the language values
+    const languages = {
+        de: 'Deutsch',
+        en: 'English',
+    };
+
+    const toggleSwitch = () => {
+        // Toggle the isEnabled state
+        setIsEnabled((prev) => !prev);
+    };
 
     const toggleModal = () => {
         onClose();
     };
-    const language = useAppSelector(state => state.settings.language);
 
-    const onChangeLang = (_language: string) => {
-        dispatch(settingsRedux.changeLanguage(_language));
-    };
+    const language = useAppSelector((state) => state.settings.language);
+
+    useEffect(() => {
+        // When isEnabled changes, update the language
+        if (isEnabled) {
+            dispatch(settingsRedux.changeLanguage('de'));
+        } else {
+            dispatch(settingsRedux.changeLanguage('en'));
+        }
+    }, [isEnabled, dispatch]);
 
     return (
         <Modal isVisible={isVisible} style={{ justifyContent: "flex-end", margin: 0 }} onBackdropPress={toggleModal}>
-            <View style={{ backgroundColor: "white", padding: 16 }}>
+            <View style={{ backgroundColor: "white", padding: 10 }}>
                 <View style={styles.modalContent}>
                     <Feather
                         name="x"
@@ -43,8 +62,16 @@ const AppMyModalLanguage: React.FC<MyModalProps> = ({ isVisible, onClose }) => {
                     />
                     <View style={styles.container2}>
                         <HeaderRight language={language} />
-                        <AppButton type="primary" title={'Deutch'} onPress={() => onChangeLang('de')} mb-10 />
-                        <AppButton type="primary" title={'English'} onPress={() => onChangeLang('en')} />
+                        <Switch
+                            trackColor={{ false: "#D6D6D6", true: COLORS.primary }}
+                            thumbColor={isEnabled ? "#fff" : "#fff"}
+                            ios_backgroundColor="#D6D6D6"
+                            onValueChange={toggleSwitch}
+                            value={isEnabled}
+                            style={{ marginLeft: 'auto' }}
+                        />
+                        {/* <AppButton type="primary" title={'Deutsch'} onPress={toggleSwitch} mb-10 />
+                        <AppButton type="primary" title={'English'} onPress={toggleSwitch} /> */}
                     </View>
                 </View>
             </View>
@@ -57,13 +84,14 @@ const styles = StyleSheet.create({
         backgroundColor: "white",
         padding: 16,
         width: "100%",
-        height: "30%",
+        height: "20%",
         borderRadius: 10,
         alignItems: "center",
     },
     container2: {
-        top: 0,
-        width: '100%'
+        width: '100%',
+        flexDirection: 'row',
+        top: '15%'
     },
     closeIcon: {
         position: "absolute",
@@ -78,7 +106,3 @@ const styles = StyleSheet.create({
 });
 
 export default AppMyModalLanguage;
-function dispatch(arg0: any) {
-    throw new Error("Function not implemented.");
-}
-

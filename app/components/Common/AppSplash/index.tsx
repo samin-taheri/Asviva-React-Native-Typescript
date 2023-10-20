@@ -6,6 +6,7 @@ import AppSplashIcons from '../AppSplashIcons';
 import { useNavigation } from '@react-navigation/native';
 import { HomeStackNavigationPropsType, Routes } from '@/navigation';
 import Text from '../Text';
+import Feather from 'react-native-vector-icons/Feather';
 
 interface SplashIconsProps {
     onPress: () => void;
@@ -79,6 +80,7 @@ const AppSplash: React.FC<SplashIconsProps> = ({ onPress }) => {
             </Swiper>
             <TouchableOpacity style={styles.buttonContainer} onPress={onPress}>
                 <Text style={styles.buttonText}>get_started</Text>
+                <Feather name="chevron-right" size={24} color='white' style={{ paddingLeft: '2%', right: -5 }} />
             </TouchableOpacity>
         </View>
     );
@@ -129,7 +131,7 @@ const styles = StyleSheet.create({
     },
     buttonContainer: {
         backgroundColor: COLORS.primary,
-        width: 110,
+        width: 140,
         height: 40,
         borderRadius: 12,
         alignItems: 'center',

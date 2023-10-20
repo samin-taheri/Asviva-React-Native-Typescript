@@ -3,16 +3,20 @@ import React, { useState } from 'react';
 import { View, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import Modal from 'react-native-modal';
 import Text from '../Text';
+import AppButton from '../AppButton';
+import Feather from 'react-native-vector-icons/Feather';
 
 interface TextInputComponentProps {
     isVisible: boolean;
     onToggle: () => void;
     onSelectNickname: (selectedNickname: string) => void;
+    onClose: () => void;
 }
 
 const AppNumberSelectorComponent: React.FC<TextInputComponentProps> = ({
     isVisible,
     onToggle,
+    onClose,
     onSelectNickname,
 }) => {
     const [inputText, setInputText] = useState<string>('');
@@ -32,6 +36,13 @@ const AppNumberSelectorComponent: React.FC<TextInputComponentProps> = ({
         >
             <View style={styles.modalContainer}>
                 <Text style={styles.modalTitle}>select_a_number</Text>
+                <Feather
+                    name="x"
+                    size={24}
+                    color="black"
+                    style={styles.closeIcon}
+                    onPress={onClose}
+                />
                 <TextInput
                     style={styles.textInput}
                     onChangeText={handleTextInputChange}
@@ -39,9 +50,9 @@ const AppNumberSelectorComponent: React.FC<TextInputComponentProps> = ({
                     placeholder="Select a Number"
                     keyboardType='numeric'
                 />
-                <TouchableOpacity style={styles.loginButton} onPress={() => onSelectNickname(inputText)}>
-                    <Text style={styles.buttonText}>select</Text>
-                </TouchableOpacity>
+                <View style={{ marginBottom: 20 }}>
+                    <AppButton mt-10 type="primary" onPress={() => onSelectNickname(inputText)} title="select" />
+                </View>
             </View>
         </Modal>
     );
@@ -51,6 +62,11 @@ const styles = StyleSheet.create({
     modal: {
         justifyContent: 'flex-end',
         margin: 0,
+    },
+    closeIcon: {
+        position: "absolute",
+        top: 10,
+        right: 15,
     },
     modalContainer: {
         backgroundColor: 'white',

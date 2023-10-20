@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Pressable } from 'react-native';
+import { View, TouchableOpacity, StyleSheet, Pressable } from 'react-native';
 import { COLORS } from '@/theme';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
-import { AppButton, Form, fields } from '@/components';
+import { AppButton, Form, Text, fields } from '@/components';
 import AppMyHeader from '../AppMyHeader';
 import { useNavigation } from '@react-navigation/native';
 import { HomeStackNavigationPropsType, Routes } from '@/navigation';
@@ -43,11 +43,11 @@ const AppForgotPassword: React.FC<ForgotPasswordProps> = ({ onForgotPassword, ba
             <AppMyHeader onPress={back}>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-                        <Text style={styles.title}>Forgot Password</Text>
+                        <Text style={styles.title}>forgot_password</Text>
                     </View>
                 </View>
                 <Form schema={schema} form={form} style={{}} />
-                <AppButton mt-10 type="primary" onPress={form.handleSubmit(onSubmit)} title="Get Verification Code" />
+                <AppButton mt-10 type="primary" onPress={form.handleSubmit(onSubmit)} title="get_verification_code" />
             </AppMyHeader>
         </View>
     );

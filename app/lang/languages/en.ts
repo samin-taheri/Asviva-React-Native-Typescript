@@ -18,7 +18,7 @@ const en = {
   fetch_data: 'Fetch Data Page',
   form: 'Form Page',
   find_your_coach: 'Find your coach',
-  Start: 'start',
+  Start: 'Start',
   no_feature_support: 'No feature support available!',
   no_phone: 'There is no phone number!',
   no_email: 'There is no e-mail address!',
@@ -111,6 +111,15 @@ const en = {
   this_weeks_goals_have_been_generated_for_you: 'This weeks goals have been generated for you',
   complete: 'Complete',
   goals: 'Goals',
-  generating: 'Generating...'
+  generating: 'Generating...',
+  change_language: 'Change Language: ',
+  fitness_with_asviva: 'Fitness with Asviva. Our fitness equipment for your training at home!',
+  guest_mode: 'Guest Mode',
+  forgot_password: 'Forgot Password?',
+  sign_in_with: 'Sign in with',
+  sign_in: 'Sign In',
+  sign_up: 'Sign Up',
+  get_verification_code: 'Get Verification Code',
+  
 };
 export default en;

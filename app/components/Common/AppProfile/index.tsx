@@ -129,21 +129,25 @@ const AppProfile: React.FC = ({ }) => {
                         isVisible={isModalVisible2}
                         onToggle={toggleModal2}
                         onSelectNickname={handleNicknameSelect}
+                        onClose={toggleModal2}
                     />
                     <AppNumberSelectorComponent
                         isVisible={isModalVisible3}
                         onToggle={toggleModal3}
                         onSelectNickname={handleBirthday}
+                        onClose={toggleModal3}
                     />
                     <AppNumberSelectorComponent
                         isVisible={isModalVisible4}
                         onToggle={toggleModal4}
                         onSelectNickname={handleWeight}
+                        onClose={toggleModal4}
                     />
                     <AppNumberSelectorComponent
                         isVisible={isModalVisible5}
                         onToggle={toggleModal5}
                         onSelectNickname={handleHeight}
+                        onClose={toggleModal5}
                     />
                 </View>
             </ScrollView>

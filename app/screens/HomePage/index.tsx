@@ -1,8 +1,8 @@
 import React, { useCallback, useLayoutEffect, useState } from 'react';
 
-import { useFocusEffect, useNavigation, useRoute } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 
-import { AppButton, AppScreen, Block, Text } from '@/components';
+import { AppScreen, Block, Text } from '@/components';
 import { useAppDispatch, useAppSelector, useDialog, useStyledTag } from '@/hooks';
 import { HomeStackNavigationPropsType, Routes } from '@/navigation';
 import { settingsRedux } from '@/store';
@@ -14,6 +14,7 @@ import AppWeaklyGoals from '@/components/Common/AppWeaklyGoals';
 import AppWorkoutDetails from '@/components/Common/AppWorkoutDetails';
 import { COLORS } from '@/theme';
 import AppChart from '@/components/Common/AppCharts';
+import { StatusBar } from 'react-native';
 
 const HeaderRight = ({ language }: { language: string }) => (
   <Block row s="pr-20">
@@ -63,6 +64,9 @@ const HomePage = () => {
 
   return (
     <React.Fragment>
+      <StatusBar
+        hidden={true}
+      />
       <AppCustomHeader navigation={navigation} onLogo={true} />
       <AppScreen scroll customStyle={{ backgroundColor: COLORS.backgroundColor }}>
         <AppBackgroundCard title="find_your_coach" backgroundImage={require('../../assets/images/bg-3.jpg')} onPress={() => { navigation.navigate(Routes.SPORTS_CENTER_SCREEN) }}

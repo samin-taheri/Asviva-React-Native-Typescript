@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Pressable } from 'react-native';
+import React, { useState } from 'react';
+import { View, TouchableOpacity, StyleSheet, Pressable } from 'react-native';
 import { COLORS } from '@/theme';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
-import { AppButton, Form, fields } from '@/components';
+import { AppButton, Form, Text, fields } from '@/components';
 import AppMyHeader from '../AppMyHeader';
 import { useNavigation } from '@react-navigation/native';
 import { HomeStackNavigationPropsType, Routes } from '@/navigation';
@@ -48,23 +48,23 @@ const AppLogin: React.FC<LoginProps> = ({ onLogin, onRegister, navigate, forgotP
             <AppMyHeader showLogoWithoutBack>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-                        <Text style={styles.title}>Login</Text>
+                        <Text style={styles.title}>login</Text>
                     </View>
                     <Pressable style={{ borderRadius: 8, backgroundColor: COLORS.white, padding: 8, flexDirection: 'row', height: 33, alignItems: 'center' }} onPress={NavigateHome}>
-                        <Text style={{ fontSize: 13 }}>Guest Mode</Text>
+                        <Text style={{ fontSize: 13 }}>guest_mode</Text>
                     </Pressable>
                 </View>
                 <Form schema={schema} form={form} />
                 <View style={styles.rememberMeContainer}>
                     <Pressable onPress={forgotPassword}>
-                        <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
+                        <Text style={styles.forgotPasswordText}>forgot_password</Text>
                     </Pressable>
                 </View>
-                <AppButton mt-10 type="primary" onPress={form.handleSubmit(onSubmit)} title="Sign In" />
-                <AppButton mt-10 type="secondary" onPress={() => navigation.navigate(Routes.SIGNUP_SCREEN)} title="Sign Up" />
+                <AppButton mt-10 type="primary" onPress={form.handleSubmit(onSubmit)} title="sign_in" />
+                <AppButton mt-10 type="secondary" onPress={() => navigation.navigate(Routes.SIGNUP_SCREEN)} title="sign_up" />
                 <View style={styles.container3}>
                     <View style={styles.divider} />
-                    <Text style={styles.text}>Sign in with</Text>
+                    <Text style={styles.text}>sign_in_with</Text>
                     <View style={styles.divider} />
                 </View>
                 <View style={styles.container2}>

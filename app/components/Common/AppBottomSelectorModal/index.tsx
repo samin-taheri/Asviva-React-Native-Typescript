@@ -43,6 +43,7 @@ const AppBottomSelectorModal: React.FC<MyModalProps> = ({ isVisible, onClose, ti
     return (
         <Modal isVisible={isVisible} style={{ justifyContent: "flex-end", margin: 0 }} onBackdropPress={toggleModal}>
             <View style={{ backgroundColor: "white", padding: 16 }}>
+                <Text style={styles.title}>{title}</Text>
                 <Feather
                     name="x"
                     size={24}
@@ -50,7 +51,6 @@ const AppBottomSelectorModal: React.FC<MyModalProps> = ({ isVisible, onClose, ti
                     style={styles.closeIcon}
                     onPress={onClose}
                 />
-                <Text style={styles.title}>{title}</Text>
                 <View style={styles.modalContent2}>
                     <FlatList
                         data={data}
