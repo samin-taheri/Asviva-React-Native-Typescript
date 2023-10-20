@@ -9,6 +9,7 @@ import { useNavigation } from '@react-navigation/native';
 import { HomeStackNavigationPropsType } from '@/navigation';
 import Feather from 'react-native-vector-icons/Feather';
 import DateTimePicker from '../DateTimePicker';
+import AppButton from '../AppButton';
 
 LocaleConfig.locales['custom'] = {
     monthNames: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
@@ -89,9 +90,9 @@ const AppMyWorkouts: React.FC = () => {
                     <Text style={styles.selectedDateText}>
                         {formatDateString(selectedDate)}
                     </Text>
-                    <TouchableOpacity style={styles.loginButton} onPress={toggleModal}>
-                        <Text style={styles.buttonText}>Create Activity</Text>
-                    </TouchableOpacity>
+                    <View style={{ width: '90%', alignSelf: 'center', top: '40%' }}>
+                        <AppButton mt-10 type="primary" onPress={toggleModal} title="create_activity" />
+                    </View>
                 </View>
             )}
             {/* <Modal isVisible={calendarVisible} onBackdropPress={handleCalendarClose}> */}

@@ -52,14 +52,12 @@ const LoginPage = () => {
         },
       ],
     });
-  }
-  const navigateHome2 = () => {
     navigation.navigate(Routes.MAIN_TABS_ROOT)
   }
 
   return (
     <React.Fragment>
-      <AppLogin onLogin={handleLogin} onRegister={handleRegister} navigate={() => navigation.navigate(Routes.HOME_ROOT)} forgotPassword={() => navigation.navigate(Routes.FORGOTPASSWORD_SCREEN)} signUp={() => navigation.navigate(Routes.SIGNUP_SCREEN)} NavigateHome={() => { navigateHome2(), navigateHome() }} />
+      <AppLogin onLogin={handleLogin} onRegister={handleRegister} navigate={() => navigation.navigate(Routes.HOME_ROOT)} forgotPassword={() => navigation.navigate(Routes.FORGOTPASSWORD_SCREEN)} signUp={() => navigation.navigate(Routes.SIGNUP_SCREEN)} NavigateHome={() => navigateHome()} />
     </React.Fragment>
   );
 };

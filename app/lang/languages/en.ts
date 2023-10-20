@@ -121,6 +121,7 @@ const en = {
   sign_up: 'Sign Up',
   get_verification_code: 'Get Verification Code',
   logged_out_successfully: 'Logged Out Successfully',
-  continue_with_the_app: 'Continue with the app'
+  continue_with_the_app: 'Continue with the app',
+  create_activity: 'Create Activity'
 };
 export default en;
