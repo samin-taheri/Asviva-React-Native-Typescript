@@ -8,13 +8,13 @@ import AppNumberSelectorComponent from "../AppNumberSelectorComponent";
 import { COLORS } from "@/theme";
 import { useNavigation } from '@react-navigation/native';
 import { HomeStackNavigationPropsType, Routes } from '@/navigation';
+import DateTimePicker from "../DateTimePicker";
 
 const AppProfile: React.FC = ({ }) => {
     const navigation = useNavigation<HomeStackNavigationPropsType>();
 
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [isModalVisible2, setIsModalVisibl2] = useState(false);
-    const [isModalVisible3, setIsModalVisibl3] = useState(false);
     const [isModalVisible4, setIsModalVisibl4] = useState(false);
     const [isModalVisible5, setIsModalVisibl5] = useState(false);
     const [selectedOption, setSelectedOption] = useState<string | null>(null);
@@ -22,6 +22,7 @@ const AppProfile: React.FC = ({ }) => {
     const [selectedBirthday, setselectedBirthday] = useState<string | null>(null);
     const [selectedWeight, setselectedWeight] = useState<string | null>(null);
     const [selectedHeight, setselectedHeight] = useState<string | null>(null);
+    const [dateVisible, setDateVisible] = useState(false);
 
     const handleGenderSelect = (option: string) => {
         setSelectedOption(option);
@@ -40,14 +41,6 @@ const AppProfile: React.FC = ({ }) => {
         setselectedNickname(string);
         toggleModal2();
     };
-    const toggleModal3 = () => {
-        setIsModalVisibl3(!isModalVisible3);
-    };
-
-    const handleBirthday = (string: string | null) => {
-        setselectedBirthday(string);
-        toggleModal3();
-    };
 
     const toggleModal4 = () => {
         setIsModalVisibl4(!isModalVisible4);
@@ -65,6 +58,14 @@ const AppProfile: React.FC = ({ }) => {
     const handleHeight = (string: string | null) => {
         setselectedHeight(string);
         toggleModal5();
+    };
+    const handleDateChange = (date: any) => {
+        setselectedBirthday(formatDate(date));
+        setDateVisible(false);
+    };
+    const formatDate = (date: any) => {
+        const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+        return new Date(date).toLocaleDateString(undefined);
     };
 
     return (
@@ -121,21 +122,16 @@ const AppProfile: React.FC = ({ }) => {
                         title="birthday"
                         iconName="cake-variant"
                         imageSource={require('../../../assets/images/profile-9.png')}
-                        onPress={toggleModal3}
+                        onPress={() => setDateVisible(true)}
                         selectedOption={selectedBirthday !== null ? `selected: ${selectedBirthday}` : "please_select"}
                     />
                     <AppBottomSelectorModal selectedOption={selectedOption} onSelect={handleGenderSelect} title="select_gender" isVisible={isModalVisible} onClose={toggleModal} />
+                    <DateTimePicker visible={dateVisible} onClose={() => setDateVisible(false)} onDateChange={handleDateChange} />
                     <AppTextInputComponent
                         isVisible={isModalVisible2}
                         onToggle={toggleModal2}
                         onSelectNickname={handleNicknameSelect}
                         onClose={toggleModal2}
-                    />
-                    <AppNumberSelectorComponent
-                        isVisible={isModalVisible3}
-                        onToggle={toggleModal3}
-                        onSelectNickname={handleBirthday}
-                        onClose={toggleModal3}
                     />
                     <AppNumberSelectorComponent
                         isVisible={isModalVisible4}

@@ -6,6 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 import { HomeStackNavigationPropsType, Routes } from '@/navigation';
 import { fields } from '@/components';
 import AppLogin from '@/components/Common/AppLogin';
+import { useDialog } from '@/hooks';
 
 const initial = {
   username: '',
@@ -36,10 +37,29 @@ const LoginPage = () => {
   const onSubmit = (values: typeof initial) => {
     console.log(values);
   };
+  const dialog = useDialog();
+
+  const navigateHome = () => {
+    dialog.show({
+      type: 'warning',
+      position: 'right',
+      title: 'logged_out_successfully',
+      message: 'continue_with_the_app',
+      action: [
+        {
+          text: 'Cancel',
+          style: 'cancel',
+        },
+      ],
+    });
+  }
+  const navigateHome2 = () => {
+    navigation.navigate(Routes.MAIN_TABS_ROOT)
+  }
 
   return (
     <React.Fragment>
-      <AppLogin onLogin={handleLogin} onRegister={handleRegister} navigate={() => navigation.navigate(Routes.HOME_ROOT)} forgotPassword={() => navigation.navigate(Routes.FORGOTPASSWORD_SCREEN)} signUp={() => navigation.navigate(Routes.SIGNUP_SCREEN)} NavigateHome={() => navigation.navigate(Routes.MAIN_TABS_ROOT)} />
+      <AppLogin onLogin={handleLogin} onRegister={handleRegister} navigate={() => navigation.navigate(Routes.HOME_ROOT)} forgotPassword={() => navigation.navigate(Routes.FORGOTPASSWORD_SCREEN)} signUp={() => navigation.navigate(Routes.SIGNUP_SCREEN)} NavigateHome={() => { navigateHome2(), navigateHome() }} />
     </React.Fragment>
   );
 };

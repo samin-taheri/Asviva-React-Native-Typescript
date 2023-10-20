@@ -6,10 +6,15 @@ import AppCustomHeader from '../AppCustomHeader';
 import AppDetailsSection from '../AppDetailsSection';
 import { COLORS } from '@/theme';
 import AppButton from '../AppButton';
+import { useDialog } from '@/hooks';
 
 const AppSettings: React.FC = ({ }) => {
     const navigation = useNavigation<HomeStackNavigationPropsType>();
+    const dialog = useDialog();
 
+    const navigateToLogin = () => {
+        navigation.navigate(Routes.LOGIN_SCREEN)
+    }
     return (
 
         <View style={styles.container}>
@@ -43,7 +48,7 @@ const AppSettings: React.FC = ({ }) => {
                         }}
                     />
                     <View style={{ width: '98%', alignSelf: 'center' }}>
-                        <AppButton mt-10 type="primary" onPress={() => { navigation.navigate(Routes.LOGIN_SCREEN) }} title="sign_out" />
+                        <AppButton mt-10 type="primary" onPress={() => navigateToLogin()} title="sign_out" />
                     </View>
                 </View>
             </ScrollView>

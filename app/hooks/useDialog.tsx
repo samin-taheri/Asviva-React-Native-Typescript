@@ -1,12 +1,11 @@
-import {useTranslation} from 'react-i18next';
-
-import {rootNavigationRef, Routes} from '@/navigation';
-import {DialogProps} from '@/utils';
+import { useTranslation } from 'react-i18next';
+import { rootNavigationRef, Routes } from '@/navigation';
+import { DialogProps } from '@/utils';
 
 export default function Dialog() {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
 
-  const show = ({type, title, message, position, action, option, alertType, placeholder}: DialogProps) => {
+  const show = ({ type, title, message, position, action, option, alertType, placeholder }: DialogProps) => {
     setTimeout(() => {
       rootNavigationRef.navigate(Routes.ALERT, {
         type: type ?? 'warning',
@@ -29,5 +28,5 @@ export default function Dialog() {
     }, 50);
   };
 
-  return {show};
+  return { show };
 }

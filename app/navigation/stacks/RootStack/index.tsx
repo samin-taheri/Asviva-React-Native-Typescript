@@ -1,12 +1,12 @@
 import React from 'react';
-import {View} from 'react-native';
+import { View } from 'react-native';
 
-import {createNavigationContainerRef} from '@react-navigation/native';
-import {createStackNavigator, StackCardInterpolationProps} from '@react-navigation/stack';
-import {random} from 'lodash';
+import { createNavigationContainerRef } from '@react-navigation/native';
+import { createStackNavigator, StackCardInterpolationProps } from '@react-navigation/stack';
+import { random } from 'lodash';
 
 import Dialog from '@/components/Common/Dialog';
-import {RootStackNavigationProps, Routes} from '@/navigation';
+import { RootStackNavigationProps, Routes } from '@/navigation';
 
 import screens from './screens';
 
@@ -14,7 +14,7 @@ import screens from './screens';
  * fade animate trasition navigation
  * @param {*} {current, closing}
  */
-export const forFade = ({current}: StackCardInterpolationProps) => ({
+export const forFade = ({ current }: StackCardInterpolationProps) => ({
   cardStyle: {
     opacity: current.progress,
   },
@@ -38,13 +38,13 @@ const RootStack = () => {
           }}
         />
       ))}
-      <RootStackNavigator.Group screenOptions={{presentation: 'transparentModal', headerShown: false}}>
+      <RootStackNavigator.Group screenOptions={{ presentation: 'transparentModal', headerShown: false }}>
         <RootStackNavigator.Screen
           name={Routes.ALERT}
           component={Dialog}
           options={{
             cardStyleInterpolator: forFade,
-            cardStyle: {backgroundColor: 'rgba(0, 0, 0, 0.7)'},
+            cardStyle: { backgroundColor: 'rgba(0, 0, 0, 0.7)' },
             gestureEnabled: false,
           }}
         />

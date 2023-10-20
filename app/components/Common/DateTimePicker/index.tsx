@@ -1,9 +1,9 @@
-import React, {FC, memo} from 'react';
+import React, { FC, memo } from 'react';
 
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 
-import {useAppSelector} from '@/hooks';
-import {i18next} from '@/lang';
+import { useAppSelector } from '@/hooks';
+import { i18next } from '@/lang';
 
 import useTheme from '../../../hooks/useTheme';
 
@@ -18,7 +18,7 @@ type Props = {
   onClose?: (_date?: Date) => void;
 };
 
-const DateTimePicker: FC<Props> = ({visible, mode = 'date', isDarkModeEnabled, minimumDate, maximumDate, date, onDateChange, onClose}) => {
+const DateTimePicker: FC<Props> = ({ visible, mode = 'date', isDarkModeEnabled, minimumDate, maximumDate, date, onDateChange, onClose }) => {
   const language = useAppSelector(state => state.settings.language);
   const theme = useTheme();
   const handleConfirm = (_date: Date) => {

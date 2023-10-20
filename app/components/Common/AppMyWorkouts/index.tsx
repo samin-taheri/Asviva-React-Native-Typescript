@@ -8,6 +8,7 @@ import { COLORS } from '@/theme';
 import { useNavigation } from '@react-navigation/native';
 import { HomeStackNavigationPropsType } from '@/navigation';
 import Feather from 'react-native-vector-icons/Feather';
+import DateTimePicker from '../DateTimePicker';
 
 LocaleConfig.locales['custom'] = {
     monthNames: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
@@ -24,6 +25,7 @@ const AppMyWorkouts: React.FC = () => {
     const [selectedDate, setSelectedDate] = useState<string | null>(null);
     const [calendarVisible, setCalendarVisible] = useState(false);
     const [currentDate, setCurrentDate] = useState<string>(getCurrentDate());
+    const [dateVisible, setDateVisible] = useState(false);
 
     const dates = ['2023-10-13', '2023-10-14', '2023-10-15', '2023-10-16', '2023-10-17', '2023-10-18', '2023-10-19'];
 
@@ -51,6 +53,11 @@ const AppMyWorkouts: React.FC = () => {
         const day = date.getDate();
         return `${monthName} ${day} ${dayName} `;
     };
+    const handleDateChange = (date: any) => {
+        setSelectedDate(date.dateString);
+        handleDatePress(date)
+        handleCalendarClose();
+    }
 
     return (
         <View style={styles.container}>
@@ -87,9 +94,9 @@ const AppMyWorkouts: React.FC = () => {
                     </TouchableOpacity>
                 </View>
             )}
-            <Modal isVisible={calendarVisible} onBackdropPress={handleCalendarClose}>
-                <View style={styles.modalContainer}>
-                    <Calendar
+            {/* <Modal isVisible={calendarVisible} onBackdropPress={handleCalendarClose}> */}
+            {/* <View style={styles.modalContainer}> */}
+            {/* <Calendar
                         onDayPress={(day) => {
                             setSelectedDate(day.dateString);
                             handleCalendarClose();
@@ -97,9 +104,11 @@ const AppMyWorkouts: React.FC = () => {
                         hideArrows={false}
                         hideExtraDays={true}
                         current={currentDate}
-                    />
-                </View>
-            </Modal>
+                    /> */}
+            <DateTimePicker visible={calendarVisible} onClose={() => setCalendarVisible(false)} onDateChange={handleDateChange} />
+
+            {/* </View>
+            </Modal> */}
             <AppMyModal isVisible={isModalVisible} onClose={toggleModal} />
         </View>
     );

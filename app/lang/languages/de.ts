@@ -119,6 +119,7 @@ const de = {
   sign_in: 'Anmelden',
   sign_up: 'Melden Sie sich an',
   get_verification_code: 'Holen Sie sich den Bestätigungscode',
-
+  logged_out_successfully: 'Erfolgreich abgemeldet',
+  continue_with_the_app: 'Fahren Sie mit der App fort'
 };
 export default de;

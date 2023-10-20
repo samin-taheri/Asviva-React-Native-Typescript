@@ -120,6 +120,7 @@ const en = {
   sign_in: 'Sign In',
   sign_up: 'Sign Up',
   get_verification_code: 'Get Verification Code',
-  
+  logged_out_successfully: 'Logged Out Successfully',
+  continue_with_the_app: 'Continue with the app'
 };
 export default en;

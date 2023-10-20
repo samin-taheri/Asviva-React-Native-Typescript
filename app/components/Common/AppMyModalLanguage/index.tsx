@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { View, StyleSheet, Switch } from "react-native";
+import { View, StyleSheet, Switch, Pressable } from "react-native";
 import Modal from "react-native-modal";
 import Feather from "react-native-vector-icons/Feather";
-import { useAppDispatch, useAppSelector } from "@/hooks";
+import { useAppDispatch, useAppSelector, useDialog } from "@/hooks";
 import { settingsRedux } from "@/store";
 import AppButton from "../AppButton";
 import Text from "../Text";
