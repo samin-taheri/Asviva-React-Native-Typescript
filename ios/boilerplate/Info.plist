@@ -103,5 +103,9 @@
 		<string>SimpleLineIcons.ttf</string>
 		<string>Zocial.ttf</string>
 	</array>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>App would like to use Bluetooth to track your heart rate</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>App would like to use Bluetooth to track your heart rate</string>
 </dict>
 </plist>

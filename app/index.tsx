@@ -1,22 +1,23 @@
-import React, {useEffect} from 'react';
-import {Keyboard} from 'react-native';
+import React, { useEffect } from 'react';
+import { Button, Keyboard, Text } from 'react-native';
 import 'react-native-gesture-handler';
 
-import {DarkTheme, DefaultTheme, NavigationContainer} from '@react-navigation/native';
-import {Host} from 'react-native-portalize';
+import { DarkTheme, DefaultTheme, NavigationContainer } from '@react-navigation/native';
+import { Host } from 'react-native-portalize';
 import Toast from 'react-native-toast-message';
-import {Provider} from 'react-redux';
-import {PersistGate} from 'redux-persist/integration/react';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
 
-import {AppLoader} from '@/components';
-import {linking, locale, toastConfig} from '@/config';
-import {useAppDispatch, useAppSelector} from '@/hooks';
-import {rootNavigationRef, RootStack} from '@/navigation';
-import {persistor, settingsRedux, store} from '@/store';
+import { AppLoader } from '@/components';
+import { linking, locale, toastConfig } from '@/config';
+import { useAppDispatch, useAppSelector } from '@/hooks';
+import { rootNavigationRef, RootStack } from '@/navigation';
+import { persistor, settingsRedux, store } from '@/store';
+import { BleManager, Device } from "react-native-ble-plx";
+import useBLE from './hooks/useBLE';
 
 const MainContainer = () => {
   const dispatch = useAppDispatch();
-
   const language = useAppSelector(state => state.settings.language);
   const theme = useAppSelector(state => state.settings.theme);
 
@@ -44,13 +45,14 @@ const MainContainer = () => {
   );
 };
 
+
 const App = () => {
+
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor}>
         <MainContainer />
       </PersistGate>
-
       <Toast config={toastConfig} />
     </Provider>
   );

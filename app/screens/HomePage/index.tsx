@@ -2,7 +2,7 @@ import React, { useCallback, useLayoutEffect, useState } from 'react';
 
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 
-import { AppScreen, Block, Text } from '@/components';
+import { Alert, AppButton, AppScreen, Block } from '@/components';
 import { useAppDispatch, useAppSelector, useDialog, useStyledTag } from '@/hooks';
 import { HomeStackNavigationPropsType, Routes } from '@/navigation';
 import { settingsRedux } from '@/store';
@@ -14,19 +14,25 @@ import AppWeaklyGoals from '@/components/Common/AppWeaklyGoals';
 import AppWorkoutDetails from '@/components/Common/AppWorkoutDetails';
 import { COLORS } from '@/theme';
 import AppChart from '@/components/Common/AppCharts';
-import { StatusBar } from 'react-native';
+import { StatusBar, Text, TouchableOpacity, View } from 'react-native';
+import useBLE from '@/hooks/useBLE';
+import { Button } from 'react-native-elements';
+import { Device } from 'react-native-ble-plx';
+import DeviceModal from '@/components/Common/AppDeviceModal';
+import PulseIndicator from '@/components/Common/AppPulseIndicator';
 
 const HeaderRight = ({ language }: { language: string }) => (
   <Block row s="pr-20">
-    <Text black>language</Text>
-    <Text black>:</Text>
-    <Text black s="pl-5">
+    <Text>language</Text>
+    <Text>:</Text>
+    <Text>
       {language}
     </Text>
   </Block>
 );
 
 const HomePage = () => {
+
   const dispatch = useAppDispatch();
   const dialog = useDialog();
   const navigation = useNavigation<HomeStackNavigationPropsType>();
@@ -55,6 +61,33 @@ const HomePage = () => {
       isSCameraPermissionsCheck();
     }, []),
   );
+  const {
+    requestPermissions,
+    scanForPeripherals,
+    allDevices,
+    connectToDevice,
+    connectedDevice,
+    heartRate,
+    disconnectFromDevice,
+  } = useBLE();
+  const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
+
+  const scanForDevices = () => {
+    requestPermissions(isGranted => {
+      if (isGranted) {
+        scanForPeripherals();
+      }
+    });
+  };
+
+  const hideModal = () => {
+    setIsModalVisible(false);
+  };
+
+  const openModal = async () => {
+    scanForDevices();
+    setIsModalVisible(true);
+  };
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -75,6 +108,36 @@ const HomePage = () => {
         <AppWeaklyGoals onPress={() => { navigation.navigate(Routes.QUESTIONNAIRE_SCREEN) }} />
         <AppWorkoutDetails onPress={() => navigation.navigate(Routes.WORKOUTDETAILS_SCREEN)} title="record_of_workouts" />
         <AppChart />
+        <View>
+          {connectedDevice ? (
+            <>
+              <PulseIndicator />
+              <Text>Your Heart Rate Is:</Text>
+              <Text>{heartRate} bpm</Text>
+            </>
+          ) : (
+            <Text>
+              Please Connect to a Heart Rate Monitor
+            </Text>
+          )}
+        </View>
+        <TouchableOpacity
+          onPress={connectedDevice ? disconnectFromDevice : openModal}>
+          <Text>
+            {connectedDevice ? 'Disconnect' : 'Connect'}
+          </Text>
+        </TouchableOpacity>
+        <DeviceModal
+          closeModal={hideModal}
+          visible={isModalVisible}
+          connectToPeripheral={connectToDevice}
+          devices={allDevices}
+        />
+        <Button title="jsk" onPress={openModal} />
+        {allDevices.map((device: Device) => (
+          <Text>{device.name}</Text>
+        ))
+        }
         {/* <SegmentedControl currentIndex={activeTab} onChange={(index: number) => setActiveTab(index)} segments={[{ label: '1st' }, { label: '2nd' }, { label: '3nd' }]} mt-10 mb-10 /> */}
       </AppScreen>
     </React.Fragment>
