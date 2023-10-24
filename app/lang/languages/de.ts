@@ -37,7 +37,7 @@ const de = {
   total_workout: 'Gesamttraining',
   total_duration: 'Gesamtdauer',
   exercise_times: 'Übungszeit',
-  total_calories: 'Gesamtkalorien',
+  total_calories: 'Gesamtkalorie',
   distance: 'Distanz',
   energy: 'Energie',
   pulse: 'Impuls',

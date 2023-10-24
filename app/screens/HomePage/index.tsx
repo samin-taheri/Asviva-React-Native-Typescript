@@ -14,30 +14,17 @@ import AppWeaklyGoals from '@/components/Common/AppWeaklyGoals';
 import AppWorkoutDetails from '@/components/Common/AppWorkoutDetails';
 import { COLORS } from '@/theme';
 import AppChart from '@/components/Common/AppCharts';
-import { StatusBar, Text, TouchableOpacity, View } from 'react-native';
+import { Button, PermissionsAndroid, Platform, StatusBar, Text, TouchableOpacity, View } from 'react-native';
 import useBLE from '@/hooks/useBLE';
-import { Button } from 'react-native-elements';
 import { Device } from 'react-native-ble-plx';
 import DeviceModal from '@/components/Common/AppDeviceModal';
 import PulseIndicator from '@/components/Common/AppPulseIndicator';
-
-const HeaderRight = ({ language }: { language: string }) => (
-  <Block row s="pr-20">
-    <Text>language</Text>
-    <Text>:</Text>
-    <Text>
-      {language}
-    </Text>
-  </Block>
-);
 
 const HomePage = () => {
 
   const dispatch = useAppDispatch();
   const dialog = useDialog();
   const navigation = useNavigation<HomeStackNavigationPropsType>();
-
-  const LanguageArea = useStyledTag(Block, 'py-5');
 
   const [isPermission, setIsPermission] = useState(false);
   const language = useAppSelector(state => state.settings.language);
@@ -88,13 +75,6 @@ const HomePage = () => {
     scanForDevices();
     setIsModalVisible(true);
   };
-
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerRight: () => <HeaderRight language={language} />,
-    });
-  }, [navigation, language]);
-
   return (
     <React.Fragment>
       <StatusBar
@@ -102,6 +82,7 @@ const HomePage = () => {
       />
       <AppCustomHeader navigation={navigation} onLogo={true} />
       <AppScreen scroll customStyle={{ backgroundColor: COLORS.backgroundColor }}>
+        <Button title="Request Bluetooth Permission" onPress={scanForDevices} />
         <AppBackgroundCard title="find_your_coach" backgroundImage={require('../../assets/images/bg-3.jpg')} onPress={() => { navigation.navigate(Routes.SPORTS_CENTER_SCREEN) }}
         />
         <AppTotalWorkout />
@@ -117,7 +98,7 @@ const HomePage = () => {
             </>
           ) : (
             <Text>
-              Please Connect to a Heart Rate Monitor
+              Please Connect to a Monitor
             </Text>
           )}
         </View>
@@ -133,7 +114,6 @@ const HomePage = () => {
           connectToPeripheral={connectToDevice}
           devices={allDevices}
         />
-        <Button title="jsk" onPress={openModal} />
         {allDevices.map((device: Device) => (
           <Text>{device.name}</Text>
         ))

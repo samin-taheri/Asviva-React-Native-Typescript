@@ -13,8 +13,6 @@ import { linking, locale, toastConfig } from '@/config';
 import { useAppDispatch, useAppSelector } from '@/hooks';
 import { rootNavigationRef, RootStack } from '@/navigation';
 import { persistor, settingsRedux, store } from '@/store';
-import { BleManager, Device } from "react-native-ble-plx";
-import useBLE from './hooks/useBLE';
 
 const MainContainer = () => {
   const dispatch = useAppDispatch();

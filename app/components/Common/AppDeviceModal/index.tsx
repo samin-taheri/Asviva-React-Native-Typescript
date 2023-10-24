@@ -7,11 +7,13 @@ import {
     Text,
     StyleSheet,
     TouchableOpacity,
+    View,
 } from 'react-native';
 import { Device } from 'react-native-ble-plx';
 import AppCustomHeader from '../AppCustomHeader';
 import { useNavigation } from '@react-navigation/native';
 import { HomeStackNavigationPropsType } from '@/navigation';
+import Feather from 'react-native-vector-icons/Feather';
 
 type DeviceModalListItemProps = {
     item: ListRenderItemInfo<Device>;
@@ -67,8 +69,13 @@ const DeviceModal: FC<DeviceModalProps> = props => {
             animationType="slide"
             transparent={false}
             visible={visible}>
-            <SafeAreaView style={modalStyle.modalTitle}>
-                <AppCustomHeader title="goals" onBack={() => navigation.goBack()} navigation={navigation} onLogo={false} />
+            <View style={modalStyle.modalTitle}>
+                <Feather
+                    name="x"
+                    size={24}
+                    color="black"
+                    onPress={closeModal}
+                />
                 <Text style={modalStyle.modalTitleText}>
                     Tap on a device to connect
                 </Text>
@@ -77,7 +84,7 @@ const DeviceModal: FC<DeviceModalProps> = props => {
                     data={devices}
                     renderItem={renderDeviceModalListItem}
                 />
-            </SafeAreaView>
+            </View>
         </Modal>
     );
 };
@@ -90,6 +97,11 @@ const modalStyle = StyleSheet.create({
     modalFlatlistContiner: {
         flex: 1,
         justifyContent: 'center',
+    },
+    closeIcon: {
+        position: "absolute",
+        top: 10,
+        right: 15,
     },
     modalCellOutline: {
         borderWidth: 1,
