@@ -8,6 +8,7 @@ import {
     StyleSheet,
     TouchableOpacity,
     View,
+    ActivityIndicator,
 } from 'react-native';
 import { Device } from 'react-native-ble-plx';
 import AppCustomHeader from '../AppCustomHeader';
@@ -61,7 +62,6 @@ const DeviceModal: FC<DeviceModalProps> = props => {
         },
         [closeModal, connectToPeripheral],
     );
-
     return (
 
         <Modal
@@ -79,6 +79,9 @@ const DeviceModal: FC<DeviceModalProps> = props => {
                 <Text style={modalStyle.modalTitleText}>
                     Tap on a device to connect
                 </Text>
+                {visible && (
+                    <ActivityIndicator size="large" color="black" />
+                )}
                 <FlatList
                     contentContainerStyle={modalStyle.modalFlatlistContiner}
                     data={devices}

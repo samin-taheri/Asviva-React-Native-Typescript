@@ -1,97 +1,157 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text } from 'react-native';
-import BluetoothSerial from 'react-native-bluetooth-serial-next';
+import React, { Component, useEffect, useState } from 'react';
+import {
+    ActivityIndicator,
+    Dimensions,
+    StyleSheet,
+    Text,
+    Button,
+    View,
+    Platform,
+    PermissionsAndroid,
+} from 'react-native';
+import { BleManager, Device } from 'react-native-ble-plx';
 
-interface BluetoothDevice {
-    id: string;
-    name: string;
-    // You can add other properties that describe a Bluetooth device
+const { width } = Dimensions.get('window');
+
+interface BluetoothScreenProps { }
+
+interface BluetoothScreenState {
+    canScan: boolean;
+    isScanning: boolean;
+    devices: Device[];
+    devicesMeta: { name: string; id: string }[] | null;
 }
-const BluetoothManager: React.FC = () => {
-    const [isEnabled, setIsEnabled] = useState<boolean | null>(null);
-    const [devices, setDevices] = useState<BluetoothDevice[] | null>(null);
 
-    useEffect(() => {
-        const checkBluetoothStatus = async () => {
-            try {
-                const [bluetoothEnabled, deviceList] = await Promise.all([
-                    BluetoothSerial.isEnabled(),
-                    BluetoothSerial.list(),
-                ]);
-                setIsEnabled(bluetoothEnabled);
-                setDevices(deviceList);
-            } catch (error) {
-                console.log('Error:', error);
+class BluetoothScreen extends Component<BluetoothScreenProps, BluetoothScreenState> {
+    manager: BleManager;
+
+    constructor(props: BluetoothScreenProps) {
+        super(props);
+        this.manager = new BleManager();
+        this.state = {
+            canScan: false,
+            isScanning: false,
+            devices: [],
+            devicesMeta: null,
+        };
+    }
+
+    componentDidMount = () => {
+        const subscription = this.manager.onStateChange(state => {
+            if (state === 'PoweredOn') {
+                this.setState({ canScan: true });
+                subscription.remove();
             }
-        };
+        }, true);
+    };
 
-        const handleBluetoothEnabled = () => {
-            console.log('Bluetooth enabled');
-        };
+    componentWillUnmount = () => {
+        this.manager.stopDeviceScan();
+    };
 
-        const handleBluetoothDisabled = () => {
-            console.log('Bluetooth disabled');
-        };
+    requestBluetoothPermission = async () => {
+        // Request Bluetooth permission as needed for Android
+        return true;
+    }
 
-        const handleBluetoothError = (err: any) => {
-            console.log('Error:', err);
-        };
+    connectToDevice = (device: Device) => {
+        device
+            .connect()
+            .then((device) => {
+                return device.discoverAllServicesAndCharacteristics();
+            })
+            .then((device) => {
+                this.setState({ devices: [], devicesMeta: null, isScanning: false });
+                this.manager.stopDeviceScan();
+            })
+            .catch((error) => {
+                console.error('Error connecting to the device:', error);
+            });
+    };
 
-        const handleConnectionLost = () => {
+    // scanAndConnect = () => {
+    //     this.setState({ devices: [], devicesMeta: null, isScanning: false });
+    //     if (this.state.canScan) {
+    //         this.setState({ isScanning: true });
+    //         this.manager.startDeviceScan(null, null, (error, scannedDevice) => {
+    //             if (error) {
+    //                 this.setState({ isScanning: false });
+    //                 return;
+    //             }
+    //             const devicesMeta = this.state.devicesMeta
+    //                 ? this.state.devicesMeta
+    //                 : [];
+    //             const devices = [...this.state.devices];
+    //             devices.push(scannedDevice); 
+    //             this.setState({
+    //                 devicesMeta: [...devicesMeta, { name: scannedDevice.name ?? 'Unknown', id: scannedDevice.id }],
+    //                 devices,
+    //             });
+    //             if (scannedDevice.isConnectable) {
+    //                 this.connectToDevice(scannedDevice); 
+    //             }
+    //         });
+    //     }
+    // };
 
-            // Call your `connect` function here
-            // this.connect(this.state.device)
-            //   .then(res => {})
-            //   .catch(err => {
-            //     console.log('error', err);
-            //   });
-
-        };
-
-        BluetoothSerial.on('bluetoothEnabled', handleBluetoothEnabled);
-        BluetoothSerial.on('bluetoothDisabled', handleBluetoothDisabled);
-        BluetoothSerial.on('error', handleBluetoothError);
-        BluetoothSerial.on('connectionLost', handleConnectionLost);
-
-        // Cleanup event listeners when the component unmounts
-        return () => {
-            BluetoothSerial.removeListener('bluetoothEnabled', handleBluetoothEnabled);
-            BluetoothSerial.removeListener('bluetoothDisabled', handleBluetoothDisabled);
-            BluetoothSerial.removeListener('error', handleBluetoothError);
-            BluetoothSerial.removeListener('connectionLost', handleConnectionLost);
-        };
-
-        // Call the function to check Bluetooth status when the component mounts
-        checkBluetoothStatus();
-    }, []);
-
-    return (
-        <View>
-            <Text>Bluetooth Manager</Text>
-            {isEnabled !== null ? (
-                isEnabled ? (
-                    <Text>Bluetooth is enabled</Text>
-                ) : (
-                    <Text>Bluetooth is disabled</Text>
-                )
-            ) : (
-                <Text>Checking Bluetooth status...</Text>
-            )}
-
-            {devices !== null ? (
-                <View>
-                    <Text>Available Bluetooth Devices:</Text>
-                    {devices.map((device, index) => (
-                        <Text key={index}>
-                            {device.name} - {device.id}
-                        </Text>
-                    ))}
+    render() {
+        return (
+            <View style={styles.outerContainer}>
+                <Text style={styles.textNormal}>BluetoothScreen</Text>
+                {/* <Button title="Scan Devices" onPress={this.scanAndConnect} /> */}
+                <View style={styles.centerContents}>
+                    {this.state.devicesMeta &&
+                        this.state.devicesMeta.map((device, idx) => (
+                            <View key={idx} style={styles.row}>
+                                <Text style={[styles.textNormal, styles.textContent]}>
+                                    name: {device.name ? device.name : 'Unknown'} id: {device.id}
+                                </Text>
+                                <Button
+                                    title="Connect"
+                                    onPress={() => this.connectToDevice(this.state.devices[idx])}
+                                />
+                            </View>
+                        ))}
+                    {this.state.isScanning && (
+                        <ActivityIndicator size="small" color="black" />
+                    )}
                 </View>
-            ) : (
-                <Text>Fetching device list...</Text>
-            )}
-        </View>
-    );
-};
+            </View>
+        );
+    }
+}
 
-export default BluetoothManager;
+const styles = StyleSheet.create({
+    centerContents: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    container: {
+        flexDirection: 'row',
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    textContent: {
+        height: 'auto',
+        flexWrap: 'wrap',
+        marginRight: 10,
+        width: width * 0.6,
+    },
+    row: {
+        alignItems: 'center',
+        marginHorizontal: 10,
+        flexDirection: 'row',
+    },
+    textNormal: {
+        color: 'black',
+        textAlign: 'center',
+    },
+    outerContainer: {
+        flex: 1,
+        backgroundColor: 'white',
+    },
+});
+
+export default BluetoothScreen;
