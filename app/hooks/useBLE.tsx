@@ -14,6 +14,10 @@ import { atob } from 'react-native-quick-base64';
 
 const HEART_RATE_UUID = '0000180d-0000-1000-8000-00805f9b34fb';
 const HEART_RATE_CHARACTERISTIC = '00002a37-0000-1000-8000-00805f9b34fb';
+const BLE_NAME = 'SAMPLE_BLE';
+const BLE_SERVICE_ID = '5476534d-1213-1212-1212-454e544f1212';
+const BLE_READ_CHAR_ID = '00105354-0000-1000-8000-00805f9b34fb';
+const BLE_WRITE_CHAR_ID = '00105352-0000-1000-8000-00805f9b34fb';
 
 const bleManager = new BleManager();
 
@@ -77,7 +81,7 @@ function useBLE(): BluetoothLowEnergyApi {
         if (Platform.OS === 'ios') {
             return true
         }
-        if (Platform.OS === 'android' && PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION) {
+        if (Platform.OS === 'android' && Platform.Version >= 23) {
             const apiLevel = parseInt(Platform.Version.toString(), 10)
 
             if (apiLevel < 34) {
@@ -105,7 +109,7 @@ function useBLE(): BluetoothLowEnergyApi {
         devices.findIndex(device => nextDevice.id === device.id) > -1;
 
     const scanForPeripherals = () =>
-        bleManager.startDeviceScan(null, null, (error, device) => {
+        bleManager.startDeviceScan(null, { allowDuplicates: false }, (error, device) => {
             if (device) {
                 setAllDevices((prevState: Device[]) => {
                     if (!isDuplicteDevice(prevState, device)) {

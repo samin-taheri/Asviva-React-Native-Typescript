@@ -51,6 +51,7 @@
     "react-hook-form": "^7.45.1",
     "react-i18next": "^13.0.1",
     "react-native": "0.72.1",
+    "react-native-base64": "^0.2.1",
     "react-native-ble-manager": "^10.1.5",
     "react-native-ble-plx": "^3.1.0",
     "react-native-bluetooth-serial-next": "^1.2.3",

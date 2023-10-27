@@ -1,8 +1,8 @@
-import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useReducer, createContext, useRef, useState, ReactNode } from 'react';
 
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 
-import { Alert, AppButton, AppScreen, Block } from '@/components';
+import { Alert, AppButton, AppIcon, AppScreen, Block, FloatingButton } from '@/components';
 import { useAppDispatch, useAppSelector, useDialog, useStyledTag } from '@/hooks';
 import { HomeStackNavigationPropsType, Routes } from '@/navigation';
 import { settingsRedux } from '@/store';
@@ -14,7 +14,7 @@ import AppWeaklyGoals from '@/components/Common/AppWeaklyGoals';
 import AppWorkoutDetails from '@/components/Common/AppWorkoutDetails';
 import { COLORS } from '@/theme';
 import AppChart from '@/components/Common/AppCharts';
-import { Button, Dimensions, FlatList, NativeEventEmitter, NativeModules, PermissionsAndroid, Platform, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, Button, Dimensions, FlatList, NativeEventEmitter, NativeModules, PermissionsAndroid, Platform, Pressable, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import useBLE from '@/hooks/useBLE';
 import { BleManager, Device, State } from 'react-native-ble-plx';
 import DeviceModal from '@/components/Common/AppDeviceModal';
@@ -23,14 +23,72 @@ import BluetoothScreen from '@/components/Common/AppBluetoothManager';
 import Bluetooth from '@/components/Common/AppBluetooth';
 import DeviceList from '@/components/Common/AppDeviceList';
 import { title } from 'process';
+
 // import BleManager from 'react-native-ble-manager';
-
-
+const _BleManager = new BleManager();
 
 // const BleManagerModule = NativeModules.BleManager;
 // const BleManagerEmitter = new NativeEventEmitter(BleManagerModule);
+const manager = new BleManager();
+
+const scanAndConnect = async () => {
+  try {
+    // Start scanning for devices
+    manager.startDeviceScan(null, null, (error, device) => {
+      if (error) {
+        console.error('Scan error:', error);
+        return;
+      }
+
+      if (device) {
+        // Handle discovered device here
+        console.log('Discovered device:', device.name || device.id);
+
+        // Optionally, you can filter devices by name or other criteria
+        if (device.name === 'Philips') {
+          // Stop scanning
+          manager.stopDeviceScan();
+
+          // Connect to the device
+          device.connect()
+            .then((device: Device) => {
+              console.log('Connected to device:', device.name || device.id);
+
+              // Discover services and characteristics and perform further actions
+              device.discoverAllServicesAndCharacteristics()
+                .then((device: Device) => {
+                  // Handle discovered services and characteristics here
+                })
+                .catch((error) => {
+                  console.error('Service discovery error:', error);
+                });
+            })
+            .catch((error) => {
+              console.error('Connection error:', error);
+            });
+        }
+      }
+    });
+  } catch (error) {
+    console.error('Scan and connect error:', error);
+  }
+};
+
 
 const HomePage = () => {
+
+
+  useEffect(() => {
+    const subscription = manager.onStateChange((state: string) => {
+      if (state === 'PoweredOn') {
+        scanAndConnect();
+        subscription.remove();
+      }
+    }, true);
+
+    return () => subscription.remove();
+  }, []);
+
   // const peripherals = new Map();
   // const [isScanning, setIsScanning] = useState<boolean>(false);
   // const [connectedDevices, setConnectedDevices] = useState<Peripheral[]>([]);
@@ -170,6 +228,7 @@ const HomePage = () => {
   const dispatch = useAppDispatch();
   const dialog = useDialog();
   const navigation = useNavigation<HomeStackNavigationPropsType>();
+  const [floatMenu, setFloatMenu] = useState<boolean>(false);
 
   const [isPermission, setIsPermission] = useState(false);
   const language = useAppSelector(state => state.settings.language);
@@ -386,6 +445,32 @@ export const styles = StyleSheet.create({
     borderRadius: 5,
     marginBottom: 20,
     paddingHorizontal: 20,
+  },
+  listHeader: {
+    padding: 8,
+    color: 'black',
+  },
+  emptyList: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  emptyListText: {
+    padding: 8,
+    textAlign: 'center',
+    color: 'black',
+  },
+  btnContainer: {
+    marginTop: 10,
+    marginHorizontal: 16,
+    bottom: 10,
+    alignItems: 'flex-end',
+  },
+  divider: {
+    height: 1,
+    width: '100%',
+    marginHorizontal: 8,
+    backgroundColor: '#1A1A1A',
   },
 });
 
