@@ -45,7 +45,7 @@ const AppSignUp: React.FC<SignUpProps> = ({ navigate, signUp, back }) => {
                     <Text style={styles.title}>sign_up</Text>
                 </View>
                 <Form schema={schema} form={form} />
-                <AppButton mt-10 type="primary" onPress={form.handleSubmit(onSubmit)} title="sign_up" />
+                <AppButton mt-20 type="primary" onPress={form.handleSubmit(onSubmit)} title="sign_up" />
                 <AppButton mt-10 type="secondary" onPress={() => navigation.navigate(Routes.LOGIN_SCREEN)} title="sign_in" />
                 <View style={styles.container3}>
                     <View style={styles.divider} />

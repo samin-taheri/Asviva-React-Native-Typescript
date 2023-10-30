@@ -339,7 +339,7 @@ const HomePage = () => {
             <>
               <PulseIndicator />
               <Text>Your Heart Rate Is:</Text>
-              <Text>{heartRate} bpm</Text>
+              <Text> bpm</Text>
             </>
           ) : (
             <Text>
@@ -363,7 +363,6 @@ const HomePage = () => {
           <Text>{device.name}</Text>
         ))
         }
-        {/* <SegmentedControl currentIndex={activeTab} onChange={(index: number) => setActiveTab(index)} segments={[{ label: '1st' }, { label: '2nd' }, { label: '3nd' }]} mt-10 mb-10 /> */}
       </AppScreen>
     </React.Fragment>
   );

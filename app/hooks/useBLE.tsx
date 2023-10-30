@@ -1,6 +1,6 @@
 /* eslint-disable no-bitwise */
 import { useState } from 'react';
-import { PermissionsAndroid, Platform } from 'react-native';
+import { Alert, PermissionsAndroid, Platform } from 'react-native';
 import {
     BleError,
     BleManager,
@@ -109,7 +109,7 @@ function useBLE(): BluetoothLowEnergyApi {
         devices.findIndex(device => nextDevice.id === device.id) > -1;
 
     const scanForPeripherals = () =>
-        bleManager.startDeviceScan(null, { allowDuplicates: false }, (error, device) => {
+        bleManager.startDeviceScan(null, null, (error, device) => {
             if (device) {
                 setAllDevices((prevState: Device[]) => {
                     if (!isDuplicteDevice(prevState, device)) {
@@ -119,8 +119,13 @@ function useBLE(): BluetoothLowEnergyApi {
                 });
             }
             if (error) {
-                console.log('Scanning error')
                 console.log(error);
+                Alert.alert(
+                    'Error',
+                    'Bluetooth error',
+                    [{ text: 'OK', onPress: () => console.log('OK Pressed') }],
+                    { cancelable: false },
+                );
                 return;
             }
         });

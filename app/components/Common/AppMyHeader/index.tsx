@@ -103,6 +103,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.2,
         shadowRadius: 7,
         width: '90%',
+        elevation: 2,
         maxHeight: height - (Platform.OS == 'ios' ? 230 : 200),
         paddingTop: '8%',
         paddingBottom: Platform.OS == 'ios' ? '4%' : '4%'
