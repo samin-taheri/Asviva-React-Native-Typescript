@@ -79,9 +79,9 @@ const DeviceModal: FC<DeviceModalProps> = props => {
                 <Text style={modalStyle.modalTitleText}>
                     Tap on a device to connect
                 </Text>
-                {visible && (
+                {devices ? (
                     <ActivityIndicator size="large" color="black" />
-                )}
+                ) : null}
                 <FlatList
                     contentContainerStyle={modalStyle.modalFlatlistContiner}
                     data={devices}
@@ -137,7 +137,7 @@ const modalStyle = StyleSheet.create({
     ctaButtonText: {
         fontSize: 18,
         fontWeight: 'bold',
-        color: 'white',
+        color: 'black',
     },
 });
 

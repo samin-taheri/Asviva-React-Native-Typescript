@@ -19,75 +19,12 @@ import useBLE from '@/hooks/useBLE';
 import { BleManager, Device, State } from 'react-native-ble-plx';
 import DeviceModal from '@/components/Common/AppDeviceModal';
 import PulseIndicator from '@/components/Common/AppPulseIndicator';
-import BluetoothScreen from '@/components/Common/AppBluetoothManager';
-import Bluetooth from '@/components/Common/AppBluetooth';
-import DeviceList from '@/components/Common/AppDeviceList';
-import { title } from 'process';
-
-// import BleManager from 'react-native-ble-manager';
-const _BleManager = new BleManager();
+import BLEManager from '@/components/Common/AppBluetoothTransport';
 
 // const BleManagerModule = NativeModules.BleManager;
 // const BleManagerEmitter = new NativeEventEmitter(BleManagerModule);
-const manager = new BleManager();
-
-const scanAndConnect = async () => {
-  try {
-    // Start scanning for devices
-    manager.startDeviceScan(null, null, (error, device) => {
-      if (error) {
-        console.error('Scan error:', error);
-        return;
-      }
-
-      if (device) {
-        // Handle discovered device here
-        console.log('Discovered device:', device.name || device.id);
-
-        // Optionally, you can filter devices by name or other criteria
-        if (device.name === 'Philips') {
-          // Stop scanning
-          manager.stopDeviceScan();
-
-          // Connect to the device
-          device.connect()
-            .then((device: Device) => {
-              console.log('Connected to device:', device.name || device.id);
-
-              // Discover services and characteristics and perform further actions
-              device.discoverAllServicesAndCharacteristics()
-                .then((device: Device) => {
-                  // Handle discovered services and characteristics here
-                })
-                .catch((error) => {
-                  console.error('Service discovery error:', error);
-                });
-            })
-            .catch((error) => {
-              console.error('Connection error:', error);
-            });
-        }
-      }
-    });
-  } catch (error) {
-    console.error('Scan and connect error:', error);
-  }
-};
-
-
 const HomePage = () => {
 
-
-  useEffect(() => {
-    const subscription = manager.onStateChange((state: string) => {
-      if (state === 'PoweredOn') {
-        scanAndConnect();
-        subscription.remove();
-      }
-    }, true);
-
-    return () => subscription.remove();
-  }, []);
 
   // const peripherals = new Map();
   // const [isScanning, setIsScanning] = useState<boolean>(false);
@@ -326,7 +263,8 @@ const HomePage = () => {
         ) : (
           <Text style={styles.noDevicesText}>No connected devices</Text>
         )} */}
-        <Button title="Request Bluetooth Permission" onPress={() => scanForPeripherals()} />
+        {/* <BLEManager /> */}
+        <Button title="Request Bluetooth Permission" onPress={scanForPeripherals} />
         {/* <BluetoothScreen /> */}
         <AppBackgroundCard title="find_your_coach" backgroundImage={require('../../assets/images/bg-3.jpg')} onPress={() => { navigation.navigate(Routes.SPORTS_CENTER_SCREEN) }}
         />

@@ -3147,7 +3147,7 @@ buffer-from@^1.0.0:
   resolved "https://registry.yarnpkg.com/buffer-from/-/buffer-from-1.1.2.tgz#2b146a6fd72e80b4f55d255f35ed59a3a9a41bd5"
   integrity sha512-E+XQCRwSbaaiChtv6k6Dwgc+bx+Bs6vuKJHHl5kox/BaKbhiXzqQOwK4cO22yElGp2OCmjwVhT3HmxgyPGnJfQ==
 
-buffer@^5.2.1, buffer@^5.5.0:
+buffer@^5.2.1, buffer@^5.4.3, buffer@^5.5.0:
   version "5.7.1"
   resolved "https://registry.yarnpkg.com/buffer/-/buffer-5.7.1.tgz#ba62e7c13133053582197160851a8f648e99eed0"
   integrity sha512-EHcyIPBQ4BSGlvjB16k5KgAJ27CIsHY/2JBmCRReo48y9rQ3MaUzWX3KVlBa4U7MyX02HdVj0K7C3WaB3ju7FQ==
@@ -7318,6 +7318,11 @@ react-native-base64@^0.2.1:
   resolved "https://registry.yarnpkg.com/react-native-base64/-/react-native-base64-0.2.1.tgz#3d0e73a649c4c0129f7b7695d3912456aebae847"
   integrity sha512-eHgt/MA8y5ZF0aHfZ1aTPcIkDWxza9AaEk4GcpIX+ZYfZ04RcaNahO+527KR7J44/mD3efYfM23O2C1N44ByWA==
 
+react-native-ble-connect@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/react-native-ble-connect/-/react-native-ble-connect-1.0.6.tgz#0b2a0ad539d994f90daf889901fcaa6b3fa81552"
+  integrity sha512-HEsluVqWJ5eG1OmMS4GFkG/EjoMO5eSd8QETyt6YCY2YfFAiDbVz6puP5A92UmeCW4URIYflY6y7S9Kp1jNOaA==
+
 react-native-ble-manager@^10.1.5:
   version "10.1.5"
   resolved "https://registry.yarnpkg.com/react-native-ble-manager/-/react-native-ble-manager-10.1.5.tgz#c7b156db336fd554f6fb5100b70771cdb2114569"
@@ -7329,6 +7334,23 @@ react-native-ble-plx@^3.1.0:
   integrity sha512-9CGoQZkEZNv2CT+wUtAbUEE9PorcR/xJBeL7/ZlpVCNKVS/WbmzeNaxV3NuYFEYRkOJBpTCTHFwxLv/tG5JkTw==
   dependencies:
     "@expo/config-plugins" "^7.2.5"
+
+react-native-bluetooth-classic@^1.60.0-rc.29:
+  version "1.60.0-rc.29"
+  resolved "https://registry.yarnpkg.com/react-native-bluetooth-classic/-/react-native-bluetooth-classic-1.60.0-rc.29.tgz#1a3fd8ae8dc5ac79d338c0b3b4cd42b759b0300f"
+  integrity sha512-oMJsegm2XgDqpj35kXWExeCI1kK1yWQql7dUFq0d9PT4zE1U6ov6xLy39pqA0Oso6AXezGax0l0t6+nIhBu3Qg==
+  dependencies:
+    buffer "^5.4.3"
+
+react-native-bluetooth-devices@^0.1.7:
+  version "0.1.7"
+  resolved "https://registry.yarnpkg.com/react-native-bluetooth-devices/-/react-native-bluetooth-devices-0.1.7.tgz#0255f3dc2afe73e6ceeac5ca35d5a10e458c69f8"
+  integrity sha512-y/fOpBKOLILCUBA6ba6izKe36OPc+fWBx/xUSB37ck1UGyZwDRyjyqg40BnseWM1RstaHI3i2qhoxef4IAahpQ==
+
+react-native-bluetooth-headset-detect@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-bluetooth-headset-detect/-/react-native-bluetooth-headset-detect-2.0.0.tgz#7db49a4a37ed1fb77df3b56fa67780dbbcd1772c"
+  integrity sha512-uV93DOwZG88a5SaYIU9Vrn5Q75EBLd153wuYY6UhcYgnrrvkYpL2SBVVKQSmYIvTicLOK32myrhl5POfP/xCFg==
 
 react-native-bluetooth-serial-next@^1.2.3:
   version "1.2.3"
