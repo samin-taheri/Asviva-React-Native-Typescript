@@ -237,21 +237,6 @@ const HomePage = () => {
     dispatch(settingsRedux.changeLanguage(_language));
   };
 
-  const cameraPermissions = async () => {
-    const cameraPermissionsStatus = await Permission.checkPermission(PERMISSION_TYPE.camera);
-    setIsPermission(cameraPermissionsStatus);
-  };
-
-  const isSCameraPermissionsCheck = async () => {
-    const isCheckPermission = await Permission.checkPermission(PERMISSION_TYPE.camera);
-    setIsPermission(isCheckPermission);
-  };
-
-  useFocusEffect(
-    useCallback(() => {
-      isSCameraPermissionsCheck();
-    }, []),
-  );
   const {
     requestPermissions,
     scanForPeripherals,
