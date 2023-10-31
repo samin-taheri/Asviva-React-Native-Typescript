@@ -7,8 +7,8 @@ type DeviceListProps = {
         rssi: number;
         connected: boolean;
     };
-    connect: (peripheral: any) => void; // Replace 'any' with the actual type if necessary
-    disconnect: (peripheral: any) => void; // Replace 'any' with the actual type if necessary
+    connect: (peripheral: any) => void;
+    disconnect: (peripheral: any) => void;
 };
 
 const DeviceList: React.FC<DeviceListProps> = ({ peripheral, connect, disconnect }) => {

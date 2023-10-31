@@ -11,7 +11,7 @@ const AppHelpAndFeedback: React.FC = ({ }) => {
 
     return (
         <View style={styles.container}>
-            <AppCustomHeader title="Help and Feedback" onBack={() => navigation.goBack()} navigation={navigation} onLogo={false} />
+            <AppCustomHeader title="help_and_feedback" onBack={() => navigation.goBack()} navigation={navigation} onLogo={false} />
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.contentContainer}>
                     <AppDetailsSection

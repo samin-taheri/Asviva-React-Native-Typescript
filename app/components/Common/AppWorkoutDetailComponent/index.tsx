@@ -1,14 +1,14 @@
-import { View, StyleSheet, Text, ImageSourcePropType, Image, ScrollView, TouchableOpacity, Pressable, SafeAreaView, FlatList, ImageBackground } from "react-native";
+import { View, StyleSheet, ImageSourcePropType, Image, ScrollView, TouchableOpacity, Pressable, SafeAreaView, FlatList, ImageBackground } from "react-native";
 import { useNavigation, useRoute } from '@react-navigation/native';
 import React from "react";
 import AppGraph from "../AppGraph";
 import { HomeStackNavigationPropsType, Routes } from "@/navigation";
 import LinearGradient from 'react-native-linear-gradient';
 import { COLORS } from "@/theme";
-import AppButton from "../AppButton";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import Feather from "react-native-vector-icons/Feather";
+import Text from "../Text";
 
 interface DataItem {
     id: string;
@@ -213,6 +213,7 @@ const styles = StyleSheet.create({
     cardContainer: {
         overflow: 'hidden',
         borderRadius: 12,
+        backgroundColor: '#fff'
     },
     iconContainer: {
         alignItems: 'center',

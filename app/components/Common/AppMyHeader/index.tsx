@@ -2,7 +2,6 @@ import React from 'react';
 import { View, StyleSheet, TouchableOpacity, Dimensions, Platform, Image } from 'react-native'
 import * as Animatable from 'react-native-animatable';
 import { COLORS } from '@/theme';
-import AppButton from '../AppButton';
 import { useNavigation } from '@react-navigation/native';
 import { HomeStackNavigationPropsType } from '@/navigation';
 import Feather from 'react-native-vector-icons/Feather';

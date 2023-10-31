@@ -3,8 +3,6 @@ import { View, StyleSheet, Platform, Image, Pressable, TouchableOpacity } from '
 import { Routes } from '@/navigation';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import Feather from 'react-native-vector-icons/Feather'
-import { StatusBar } from 'react-native';
-import { COLORS } from '@/theme';
 import Text from '../Text';
 
 interface CustomHeaderProps {
@@ -20,7 +18,7 @@ const AppCustomHeader: React.FC<CustomHeaderProps> = ({ title, onBack, onLogo, n
         <View style={styles.container}>
             {onBack && (
                 <TouchableOpacity onPress={onBack} style={{ paddingTop: '9%', paddingLeft: '5%' }}>
-                    <Feather name="arrow-left" size={30} />
+                    <Feather name="arrow-left" size={30} color={'black'} />
                 </TouchableOpacity>
             )}
             <View style={styles.titleContainer}>

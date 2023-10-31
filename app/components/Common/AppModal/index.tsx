@@ -1,10 +1,8 @@
-import React, {memo} from 'react';
-
+import React, { memo } from 'react';
 import Modal from 'react-native-modal';
+import { COLORS } from '@/theme';
 
-import {COLORS} from '@/theme';
-
-const AppModal = ({isVisible = false, onClose = () => {}, animationTime = 400, backdropColor = COLORS.black, backdropOpacity = 0.8, style = {}, children = <></>, ...props}) => (
+const AppModal = ({ isVisible = false, onClose = () => { }, animationTime = 400, backdropColor = COLORS.black, backdropOpacity = 0.8, style = {}, children = <></>, ...props }) => (
   <Modal
     isVisible={isVisible}
     useNativeDriver
@@ -13,7 +11,7 @@ const AppModal = ({isVisible = false, onClose = () => {}, animationTime = 400, b
     avoidKeyboard
     backdropColor={backdropColor}
     backdropOpacity={backdropOpacity}
-    style={[{margin: 0}, {...style}]}
+    style={[{ margin: 0 }, { ...style }]}
     animationInTiming={animationTime}
     animationOutTiming={animationTime}
     backdropTransitionInTiming={animationTime}

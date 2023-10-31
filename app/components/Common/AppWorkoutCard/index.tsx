@@ -1,8 +1,9 @@
 import { COLORS } from "@/theme";
 import React from "react";
-import { View, Text, StyleSheet, Image, Pressable } from "react-native";
+import { View, StyleSheet, Image, Pressable } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
+import Text from "../Text";
 
 interface SimpleCardProps {
     backgroundColor: string;

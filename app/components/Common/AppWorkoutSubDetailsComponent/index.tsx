@@ -1,4 +1,4 @@
-import { View, StyleSheet, Text, ImageSourcePropType, ScrollView, TouchableOpacity } from "react-native";
+import { View, StyleSheet, ImageSourcePropType, ScrollView, TouchableOpacity } from "react-native";
 import { useNavigation, useRoute } from '@react-navigation/native';
 import React from "react";
 import LinearGradient from 'react-native-linear-gradient';
@@ -9,6 +9,7 @@ import AppBoxWithItems from "../AppBoxWithItems";
 import { COLORS } from "@/theme";
 import { HomeStackNavigationPropsType } from "@/navigation";
 import Feather from "react-native-vector-icons/Feather";
+import Text from "../Text";
 
 interface DataItem {
     id: string;

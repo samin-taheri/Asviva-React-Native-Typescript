@@ -261,7 +261,8 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         paddingLeft: 10,
         borderRadius: 12,
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+        color: '#000'
     },
     brandsContainer: {
         flexDirection: "row",

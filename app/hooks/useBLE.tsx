@@ -116,12 +116,7 @@ function useBLE(): BluetoothLowEnergyApi {
             }
             if (error) {
                 console.log(error);
-                Alert.alert(
-                    'Error',
-                    'Bluetooth error',
-                    [{ text: 'OK', onPress: () => console.log('OK Pressed') }],
-                    { cancelable: false },
-                );
+                console.log('Bluetooth error');
                 return;
             }
         });

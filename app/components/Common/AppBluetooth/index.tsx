@@ -1,9 +1,7 @@
 import { useEffect, useReducer, useRef } from 'react';
-import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { FlatList, Text, View } from 'react-native';
 import { BleManager, Device } from 'react-native-ble-plx';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import React from 'react';
-import { window } from '@/theme';
 
 interface State {
     isScanning: boolean;

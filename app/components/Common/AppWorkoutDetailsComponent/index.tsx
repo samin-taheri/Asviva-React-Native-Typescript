@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, Image } from 'react-native';
+import { View, StyleSheet, ScrollView, Image } from 'react-native';
 import AppCustomHeader from '../AppCustomHeader';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import AppColoredCards2 from '../AppColoredCards2';
@@ -7,6 +7,7 @@ import { COLORS } from '@/theme';
 import AppBarChart from '../AppBarChart';
 import { useNavigation } from '@react-navigation/native';
 import { HomeStackNavigationPropsType, Routes } from '@/navigation';
+import Text from '../Text';
 
 const AppWorkoutDetailsComponent: React.FC = ({ }) => {
     const navigation = useNavigation<HomeStackNavigationPropsType>();

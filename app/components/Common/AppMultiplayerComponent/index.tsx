@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, StyleSheet, ImageBackground, SafeAreaView, ImageSourcePropType, Pressable, ActivityIndicator } from 'react-native';
+import { View, FlatList, StyleSheet, ImageBackground, SafeAreaView, ImageSourcePropType, Pressable, ActivityIndicator } from 'react-native';
 import AppMyloader from '../AppMyLoader';
 import { COLORS } from '@/theme';
 import Feather from 'react-native-vector-icons/Feather';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Text from '../Text';
 
 interface DataItem {
     id: string;
@@ -166,7 +167,7 @@ const styles = StyleSheet.create({
         padding: 14,
         width: '93%',
         marginLeft: '3.5%',
-        marginTop: '12%',
+        marginTop: '10%',
         borderRadius: 12,
         flexDirection: 'row',
         justifyContent: 'space-between',

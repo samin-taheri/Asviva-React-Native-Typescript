@@ -3,18 +3,16 @@ import {
     FlatList,
     ListRenderItemInfo,
     Modal,
-    SafeAreaView,
-    Text,
     StyleSheet,
     TouchableOpacity,
     View,
     ActivityIndicator,
 } from 'react-native';
 import { Device } from 'react-native-ble-plx';
-import AppCustomHeader from '../AppCustomHeader';
 import { useNavigation } from '@react-navigation/native';
 import { HomeStackNavigationPropsType } from '@/navigation';
 import Feather from 'react-native-vector-icons/Feather';
+import Text from '../Text';
 
 type DeviceModalListItemProps = {
     item: ListRenderItemInfo<Device>;
@@ -41,7 +39,7 @@ const DeviceModalListItem: FC<DeviceModalListItemProps> = props => {
         <TouchableOpacity
             onPress={connectAndCloseModal}
             style={modalStyle.ctaButton}>
-            <Text style={modalStyle.ctaButtonText}>{item.item.name}</Text>
+            <Text style={modalStyle.ctaButtonText}>{item.item.id}</Text>
         </TouchableOpacity>
     );
 };
@@ -83,9 +81,11 @@ const DeviceModal: FC<DeviceModalProps> = props => {
                     <ActivityIndicator size="large" color="black" />
                 ) : null}
                 <FlatList
+                    scrollEnabled={true}
                     contentContainerStyle={modalStyle.modalFlatlistContiner}
                     data={devices}
                     renderItem={renderDeviceModalListItem}
+                    keyExtractor={(item) => item.id.toString()}
                 />
             </View>
         </Modal>
@@ -124,6 +124,7 @@ const modalStyle = StyleSheet.create({
         fontWeight: 'bold',
         marginHorizontal: 20,
         textAlign: 'center',
+        color: 'black'
     },
     ctaButton: {
         backgroundColor: 'purple',

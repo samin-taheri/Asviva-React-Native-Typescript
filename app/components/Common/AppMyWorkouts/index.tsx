@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, ScrollView, Text, TouchableOpacity, Pressable, StyleSheet } from 'react-native';
+import { View, ScrollView, TouchableOpacity, Pressable, StyleSheet } from 'react-native';
 import { Calendar, LocaleConfig } from 'react-native-calendars';
 import Modal from 'react-native-modal';
 import AppCustomHeader from '../AppCustomHeader';
@@ -10,6 +10,7 @@ import { HomeStackNavigationPropsType } from '@/navigation';
 import Feather from 'react-native-vector-icons/Feather';
 import DateTimePicker from '../DateTimePicker';
 import AppButton from '../AppButton';
+import Text from '../Text';
 
 LocaleConfig.locales['custom'] = {
     monthNames: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
@@ -193,7 +194,7 @@ const styles = StyleSheet.create({
     dateScrollView: {
         borderTopWidth: 1,
         borderColor: 'gray',
-        bottom: '59%',
+        bottom: '55%',
         marginBottom: 10,
     },
 });

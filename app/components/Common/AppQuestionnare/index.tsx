@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import AppCustomHeader from '../AppCustomHeader';
 import { COLORS } from '@/theme';
 import { useNavigation } from '@react-navigation/native';
 import { HomeStackNavigationPropsType, Routes } from '@/navigation';
+import Text from '../Text';
 
 interface Question {
     text: string;
@@ -114,9 +115,7 @@ const AppQuestionnare: React.FC<AppQuestionnaireProps> = ({ onPress }) => {
                     </View>
                 </View>
                 <View style={styles.progressTextContainer}>
-                    <Text style={styles.progressText}>
-                        {currentQuestion + 1}/{questions.length}
-                    </Text>
+                    <Text style={styles.progressText}>{`${currentQuestion + 1}/${questions.length}`}</Text>
                 </View>
             </View>
         </View>

@@ -19,7 +19,6 @@ import useBLE from '@/hooks/useBLE';
 import { BleManager, Device, State } from 'react-native-ble-plx';
 import DeviceModal from '@/components/Common/AppDeviceModal';
 import PulseIndicator from '@/components/Common/AppPulseIndicator';
-import BLEManager from '@/components/Common/AppBluetoothTransport';
 
 // const BleManagerModule = NativeModules.BleManager;
 // const BleManagerEmitter = new NativeEventEmitter(BleManagerModule);
@@ -264,7 +263,7 @@ const HomePage = () => {
           <Text style={styles.noDevicesText}>No connected devices</Text>
         )} */}
         {/* <BLEManager /> */}
-        <Button title="Request Bluetooth Permission" onPress={scanForPeripherals} />
+        {/* <Button title="Request Bluetooth Permission" onPress={scanForPeripherals} /> */}
         {/* <BluetoothScreen /> */}
         <AppBackgroundCard title="find_your_coach" backgroundImage={require('../../assets/images/bg-3.jpg')} onPress={() => { navigation.navigate(Routes.SPORTS_CENTER_SCREEN) }}
         />
@@ -276,18 +275,18 @@ const HomePage = () => {
           {connectedDevice ? (
             <>
               <PulseIndicator />
-              <Text>Your Heart Rate Is:</Text>
-              <Text> bpm</Text>
+              <Text style={{ color: 'black' }}>Your Heart Rate Is:</Text>
+              <Text style={{ color: 'black' }}> bpm</Text>
             </>
           ) : (
-            <Text>
+            <Text style={{ color: 'black' }}>
               Please Connect to a Monitor
             </Text>
           )}
         </View>
         <TouchableOpacity
           onPress={connectedDevice ? disconnectFromDevice : openModal}>
-          <Text>
+          <Text style={{ color: 'black' }}>
             {connectedDevice ? 'Disconnect' : 'Connect'}
           </Text>
         </TouchableOpacity>

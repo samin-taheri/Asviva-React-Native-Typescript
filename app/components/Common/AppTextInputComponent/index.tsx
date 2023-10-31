@@ -1,10 +1,12 @@
 import { COLORS } from '@/theme';
 import React, { useState } from 'react';
-import { View, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import Modal from 'react-native-modal';
 import Text from '../Text';
 import AppButton from '../AppButton';
 import Feather from 'react-native-vector-icons/Feather';
+import AppInput from '../AppInput';
+import { TextInput } from 'react-native-gesture-handler';
 
 interface TextInputComponentProps {
     isVisible: boolean;
@@ -88,7 +90,8 @@ const styles = StyleSheet.create({
         borderColor: '#ccc',
         padding: 10,
         marginBottom: 10,
-        borderRadius: 12
+        borderRadius: 12,
+        color: '#000'
     },
     loginButton: {
         width: '100%',

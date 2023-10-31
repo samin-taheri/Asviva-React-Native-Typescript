@@ -1,6 +1,7 @@
 import { COLORS } from '@/theme';
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import Text from '../Text';
 
 const AppLearningPath: React.FC = ({ }) => {
     return (
@@ -10,27 +11,36 @@ const AppLearningPath: React.FC = ({ }) => {
                     <View style={styles.hollowDot}>
                         <View style={styles.innerDot} />
                     </View>
-                    <Text style={styles.stepText}>
-                        This week's goal: <Text style={{ color: COLORS.primary, fontWeight: '600', fontSize: 20 }}>4 days</Text>
-                    </Text>
+                    <View style={{ flexDirection: 'row' }}>
+                        <Text style={styles.stepText}>
+                            This week's goal:
+                        </Text>
+                        <Text style={{ color: COLORS.primary, fontWeight: '600', fontSize: 20, bottom: 3.5, left: 10 }}>4 days</Text>
+                    </View>
                 </View>
                 <View style={styles.dottedLine} />
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                     <View style={styles.hollowDot}>
                         <View style={styles.innerDot} />
                     </View>
-                    <Text style={styles.stepText}>
-                        Weekly exercise time: <Text style={{ color: COLORS.primary, fontWeight: '600', fontSize: 20 }}>90 min</Text>
-                    </Text>
+                    <View style={{ flexDirection: 'row' }}>
+                        <Text style={styles.stepText}>
+                            Weekly exercise time:
+                        </Text>
+                        <Text style={{ color: COLORS.primary, fontWeight: '600', fontSize: 20, bottom: 3.5, left: 10 }}>90 min</Text>
+                    </View>
                 </View>
                 <View style={styles.dottedLine} />
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                     <View style={styles.hollowDot}>
                         <View style={styles.innerDot} />
                     </View>
-                    <Text style={styles.stepText}>
-                        Calories to burn: <Text style={{ color: COLORS.primary, fontWeight: '600', fontSize: 20 }}>450 kcal</Text>
-                    </Text>
+                    <View style={{ flexDirection: 'row' }}>
+                        <Text style={styles.stepText}>
+                            Calories to burn:
+                        </Text>
+                        <Text style={{ color: COLORS.primary, fontWeight: '600', fontSize: 20, bottom: 3.5, left: 10 }}>450 kcal</Text>
+                    </View>
                 </View>
             </View>
         </View>

@@ -1,4 +1,4 @@
-import { View, StyleSheet, Text, ImageSourcePropType, ImageBackground, ScrollView, TouchableOpacity } from "react-native";
+import { View, StyleSheet, ImageSourcePropType, ImageBackground, ScrollView, TouchableOpacity } from "react-native";
 import { useRoute } from '@react-navigation/native';
 import React from "react";
 import AppColoredCards2 from "../AppColoredCards2";
@@ -8,8 +8,8 @@ import { useNavigation } from '@react-navigation/native';
 import { HomeStackNavigationPropsType, Routes } from '@/navigation';
 import AppProgressBar from "../AppProgressBar";
 import AppGraphDetails from "../AppGraphDetails";
-import AppButton from "../AppButton";
 import Feather from "react-native-vector-icons/Feather";
+import Text from "../Text";
 
 interface DataItem {
     id: string;

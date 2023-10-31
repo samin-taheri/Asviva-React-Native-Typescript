@@ -1,6 +1,6 @@
 import { COLORS } from '@/theme';
 import React, { useState } from 'react';
-import { View, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, TextInput } from 'react-native';
 import Modal from 'react-native-modal';
 import Text from '../Text';
 import AppButton from '../AppButton';
@@ -83,7 +83,8 @@ const styles = StyleSheet.create({
         borderColor: '#ccc',
         padding: 10,
         marginBottom: 10,
-        borderRadius: 12
+        borderRadius: 12,
+        color: '#000'
     },
     loginButton: {
         width: '100%',

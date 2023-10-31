@@ -1,5 +1,5 @@
-import React, {FC, memo, useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import React, { FC, memo, useState } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 
 import Accordion from 'react-native-collapsible/Accordion';
 
@@ -13,7 +13,7 @@ type Props = {
 };
 
 const AccordionList: FC<Props> = props => {
-  const {sections: SECTIONS} = props;
+  const { sections: SECTIONS } = props;
   const [activeSections, setActiveSections] = useState<Array<number>>([]);
 
   const _renderSectionTitle = (section: ISection) => {

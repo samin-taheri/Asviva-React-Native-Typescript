@@ -1,4 +1,4 @@
-import { View, StyleSheet, Text, ImageSourcePropType, ImageBackground, ScrollView, TouchableOpacity } from "react-native";
+import { View, StyleSheet, ImageSourcePropType, ImageBackground, ScrollView, TouchableOpacity } from "react-native";
 import { useNavigation, useRoute } from '@react-navigation/native';
 import React from "react";
 import { HomeStackNavigationPropsType } from "@/navigation";
@@ -8,6 +8,7 @@ import AppGraphDetails from "../AppGraphDetails";
 import AppBoxWithItems from "../AppBoxWithItems";
 import AppButton from "../AppButton";
 import Feather from "react-native-vector-icons/Feather";
+import Text from "../Text";
 
 interface DataItem {
     id: string;
@@ -153,7 +154,7 @@ const styles = StyleSheet.create({
         padding: 10,
         width: '93%',
         marginLeft: '3.5%',
-        marginTop: '34%',
+        marginTop: '31%',
         borderRadius: 12,
         flexDirection: 'column',
     },

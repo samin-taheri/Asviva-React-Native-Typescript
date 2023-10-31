@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, StyleSheet, Switch, Pressable } from "react-native";
+import { View, StyleSheet, Switch, Pressable, Platform } from "react-native";
 import Modal from "react-native-modal";
 import Feather from "react-native-vector-icons/Feather";
 import { useAppDispatch, useAppSelector, useDialog } from "@/hooks";
@@ -62,16 +62,21 @@ const AppMyModalLanguage: React.FC<MyModalProps> = ({ isVisible, onClose }) => {
                     />
                     <View style={styles.container2}>
                         <HeaderRight language={language} />
-                        <Switch
-                            trackColor={{ false: "#D6D6D6", true: COLORS.primary }}
-                            thumbColor={isEnabled ? "#fff" : "#fff"}
-                            ios_backgroundColor="#D6D6D6"
-                            onValueChange={toggleSwitch}
-                            value={isEnabled}
-                            style={{ marginLeft: 'auto' }}
-                        />
-                        {/* <AppButton type="primary" title={'Deutsch'} onPress={toggleSwitch} mb-10 />
-                        <AppButton type="primary" title={'English'} onPress={toggleSwitch} /> */}
+                        {Platform.OS === 'ios' ? (
+                            <Switch
+                                trackColor={{ false: "#D6D6D6", true: COLORS.primary }}
+                                thumbColor={isEnabled ? "#fff" : "#fff"}
+                                ios_backgroundColor="#D6D6D6"
+                                onValueChange={toggleSwitch}
+                                value={isEnabled}
+                                style={{ marginLeft: 'auto', width: '100%', height: '100%' }}
+                            />
+                        ) : (
+                            <View style={{ flexDirection: 'row', alignContent: 'flex-end', alignSelf: 'flex-end', bottom: 8 }}>
+                                <AppButton type="primary" title={'Deutsch'} onPress={toggleSwitch} w-80 />
+                                <AppButton type="primary" title={'English'} onPress={toggleSwitch} w-80 ml-10 />
+                            </View>
+                        )}
                     </View>
                 </View>
             </View>
@@ -91,7 +96,8 @@ const styles = StyleSheet.create({
     container2: {
         width: '100%',
         flexDirection: 'row',
-        top: '15%'
+        top: '15%',
+        justifyContent: 'space-between'
     },
     closeIcon: {
         position: "absolute",

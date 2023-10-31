@@ -1,7 +1,8 @@
 import React from "react";
-import { View, Text, StyleSheet, ImageBackground, Pressable } from "react-native";
+import { View, StyleSheet, ImageBackground, Pressable } from "react-native";
 import Entypo from "react-native-vector-icons/Entypo";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import Text from "../Text";
 
 interface MultiplayerCardProps {
     imageSource: { uri: string };

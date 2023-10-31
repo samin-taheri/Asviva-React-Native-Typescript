@@ -1,8 +1,9 @@
 import React, { ReactNode } from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { BarChart } from "react-native-chart-kit";
 import AppCard from "../AppCard";
 import { COLORS } from "@/theme";
+import Text from "../Text";
 
 interface GraphProps {
     children?: ReactNode;

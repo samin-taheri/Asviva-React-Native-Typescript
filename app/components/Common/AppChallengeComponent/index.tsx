@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, StyleSheet, ImageBackground, SafeAreaView, ImageSourcePropType, Pressable, ActivityIndicator } from 'react-native';
+import { View, FlatList, StyleSheet, ImageBackground, SafeAreaView, ImageSourcePropType, Pressable, ActivityIndicator } from 'react-native';
 import { COLORS } from '@/theme';
 import AppMyloader from '../AppMyLoader';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Text from '../Text';
 
 interface DataItem {
     id: string;
@@ -186,7 +187,7 @@ const styles = StyleSheet.create({
         fontSize: 14,
         fontWeight: "bold",
         paddingRight: 30,
-        textAlign: 'left'
+        textAlign: 'left',
     },
     buttonContainer: {
         backgroundColor: COLORS.primary,

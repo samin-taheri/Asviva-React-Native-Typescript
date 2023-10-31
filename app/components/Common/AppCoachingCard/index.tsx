@@ -1,8 +1,9 @@
 import { COLORS } from "@/theme";
 import React from "react";
-import { View, Text, StyleSheet, Image, Pressable } from "react-native";
+import { View, StyleSheet, Image, Pressable } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
+import Text from "../Text";
 
 interface CoouchingCardProps {
     imageSource: { uri: string };

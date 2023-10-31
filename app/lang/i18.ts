@@ -18,7 +18,7 @@ const initLocale = async (langauge = 'en') => {
     .init({
       compatibilityJSON: 'v3',
       resources,
-      fallbackLng: 'de',
+      fallbackLng: 'en',
       react: {useSuspense: false},
       initImmediate: false,
       interpolation: {
