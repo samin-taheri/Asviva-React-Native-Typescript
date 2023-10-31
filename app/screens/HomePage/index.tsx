@@ -6,7 +6,6 @@ import { Alert, AppButton, AppIcon, AppScreen, Block, FloatingButton } from '@/c
 import { useAppDispatch, useAppSelector, useDialog, useStyledTag } from '@/hooks';
 import { HomeStackNavigationPropsType, Routes } from '@/navigation';
 import { settingsRedux } from '@/store';
-import { Permission, PERMISSION_TYPE } from '@/utils';
 import AppBackgroundCard from '@/components/Common/AppBackgroundCard';
 import AppCustomHeader from '@/components/Common/AppCustomHeader';
 import AppTotalWorkout from '@/components/Common/AppTotalWorkout';
@@ -275,8 +274,7 @@ const HomePage = () => {
           {connectedDevice ? (
             <>
               <PulseIndicator />
-              <Text style={{ color: 'black' }}>Your Heart Rate Is:</Text>
-              <Text style={{ color: 'black' }}> bpm</Text>
+              <Text style={{ color: 'black' }}>Your Heart Rate Is: {heartRate} bpm</Text>
             </>
           ) : (
             <Text style={{ color: 'black' }}>
@@ -296,10 +294,10 @@ const HomePage = () => {
           connectToPeripheral={connectToDevice}
           devices={allDevices}
         />
-        {allDevices.map((device: Device) => (
-          <Text>{device.name}</Text>
-        ))
+        {connectedDevice &&
+          <Text style={{ color: '#000' }}>{connectedDevice.id}</Text>
         }
+
       </AppScreen>
     </React.Fragment>
   );

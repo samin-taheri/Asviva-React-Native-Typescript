@@ -7,6 +7,7 @@ import {
     TouchableOpacity,
     View,
     ActivityIndicator,
+    ScrollView,
 } from 'react-native';
 import { Device } from 'react-native-ble-plx';
 import { useNavigation } from '@react-navigation/native';
@@ -81,7 +82,6 @@ const DeviceModal: FC<DeviceModalProps> = props => {
                     <ActivityIndicator size="large" color="black" />
                 ) : null}
                 <FlatList
-                    scrollEnabled={true}
                     contentContainerStyle={modalStyle.modalFlatlistContiner}
                     data={devices}
                     renderItem={renderDeviceModalListItem}

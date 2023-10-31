@@ -18,14 +18,14 @@ const AppCustomHeader: React.FC<CustomHeaderProps> = ({ title, onBack, onLogo, n
         <View style={styles.container}>
             {onBack && (
                 <TouchableOpacity onPress={onBack} style={{ paddingTop: '9%', paddingLeft: '5%' }}>
-                    <Feather name="arrow-left" size={30} color={'black'} />
+                    <Feather name="arrow-left" size={30} color={'#000'} />
                 </TouchableOpacity>
             )}
             <View style={styles.titleContainer}>
                 <Text style={[styles.title, onBack ? styles.withPadding : null]}>{title}</Text>
             </View>
             {onLogo && (
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingTop: '10%' }}>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingTop: '1%' }}>
                     <View style={styles.leftContainer}>
                         <Image
                             source={require('../../../assets/images/logo.png')}
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         flexDirection: 'row',
         alignItems: 'center',
-        height: Platform.OS === 'ios' ? 90 : 86,
+        height: Platform.OS === 'ios' ? 90 : 70,
     },
     leftContainer: {
         flex: 1,
