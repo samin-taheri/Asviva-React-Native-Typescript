@@ -1,5 +1,5 @@
-import React from "react";
-import { View, StyleSheet, ScrollView, Pressable, Platform } from "react-native";
+import React, { useEffect, useState } from "react";
+import { View, StyleSheet, ScrollView, Pressable, Platform, TouchableOpacity } from "react-native";
 import AppCustomHeader from "../AppCustomHeader";
 import AppLable from "../AppLable";
 import AppDeviceCard from "../AppDeviceCard";
@@ -9,13 +9,16 @@ import { useNavigation } from '@react-navigation/native';
 import { HomeStackNavigationPropsType, Routes } from '@/navigation';
 import Feather from "react-native-vector-icons/Feather";
 import Text from "../Text";
+import { BleManager, State } from "react-native-ble-plx";
+import useBLE from "@/hooks/useBLE";
+import PulseIndicator from "../AppPulseIndicator";
+import DeviceModal from "../AppDeviceModal";
 
 
 interface ConnectDevicesProps {
-    onPress: () => void;
     brandsNavigate: () => void;
 }
-const AppConnectDevices: React.FC<ConnectDevicesProps> = ({ onPress, brandsNavigate }) => {
+const AppConnectDevices: React.FC<ConnectDevicesProps> = ({ brandsNavigate }) => {
 
     const brands = [
         { name: 'asviva', uri: 'https://static.kinomap.com/manufacturer/asviva.png' },
@@ -27,13 +30,63 @@ const AppConnectDevices: React.FC<ConnectDevicesProps> = ({ onPress, brandsNavig
     ];
     const navigation = useNavigation<HomeStackNavigationPropsType>();
 
+    const {
+        requestPermissions,
+        scanForPeripherals,
+        allDevices,
+        connectToDevice,
+        connectedDevice,
+        heartRate,
+        disconnectFromDevice,
+    } = useBLE();
+    const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
+
+    const scanForDevices = () => {
+        requestPermissions(isGranted => {
+            if (isGranted) {
+                scanForPeripherals();
+            }
+        });
+    };
+
+    const hideModal = () => {
+        setIsModalVisible(false);
+    };
+
+    const openModal = async () => {
+        scanForDevices();
+        setIsModalVisible(true);
+    };
+    const manager = new BleManager()
+
+    useEffect(() => {
+        const subscription = manager.onStateChange((state: State) => {
+            if (state === 'PoweredOn') {
+                scanForPeripherals();
+                subscription.remove();
+            }
+        }, true);
+
+        return () => {
+            subscription.remove();
+        };
+    }, [manager]);
+
+    const onPress = () => {
+        connectedDevice ? disconnectFromDevice() : openModal()
+    };
+
+    const onPress2 = () => {
+        navigation.navigate(Routes.LOADING_SCREEN)
+    };
+
     return (
         <View style={styles.container}>
             <AppCustomHeader title="connect_the_devices" onBack={() => { navigation.goBack() }} navigation={navigation} onLogo={false} />
             <ScrollView showsVerticalScrollIndicator={false} style={styles.contentContainer}>
                 <AppLable title="Devices" />
                 <AppDeviceCard
-                    title="cycling"
+                    title={connectedDevice ? `Disconnect:${connectedDevice.id}` : "Cycling"}
                     cardColor={COLORS.cardBackground}
                     imageSource={require('../../../assets/images/exercise.png')}
                     onPress={onPress}
@@ -42,13 +95,13 @@ const AppConnectDevices: React.FC<ConnectDevicesProps> = ({ onPress, brandsNavig
                     title="apple_watch"
                     cardColor={COLORS.cardBackground}
                     imageSource={require('../../../assets/images/connect-4.png')}
-                    onPress={onPress}
+                    onPress={onPress2}
                 />
                 <AppDeviceCard
                     title="standard_heart_rate_device"
                     cardColor={COLORS.cardBackground}
                     imageSource={require('../../../assets/images/connect-5.png')}
-                    onPress={onPress}
+                    onPress={onPress2}
                 />
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 10 }}>
                     <AppLable title="brands" />
@@ -62,6 +115,31 @@ const AppConnectDevices: React.FC<ConnectDevicesProps> = ({ onPress, brandsNavig
                         <AppBrandCard key={index} imageSource={{ uri: brand.uri }} />
                     ))}
                 </View>
+                {/* <View>
+                    {connectedDevice ? (
+                        <>
+                            <PulseIndicator />
+                            <Text style={{ color: 'black' }}>Your Heart Rate Is: 0 bpm</Text>
+                        </>
+                    ) : (
+                        <Text style={{ color: 'black' }}>
+                            Please Connect to a Monitor
+                        </Text>
+                    )}
+                </View> */}
+
+                {/* <TouchableOpacity
+                    onPress={connectedDevice ? disconnectFromDevice : openModal}>
+                    <Text style={{ color: 'black' }}>
+                        {connectedDevice ? 'Disconnect' : 'Connect'}
+                    </Text>
+                </TouchableOpacity> */}
+                <DeviceModal
+                    closeModal={hideModal}
+                    visible={isModalVisible}
+                    connectToPeripheral={connectToDevice}
+                    devices={allDevices}
+                />
             </ScrollView>
         </View>
     )

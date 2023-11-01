@@ -1,3 +1,4 @@
+import { COLORS } from '@/theme';
 import {
     Canvas,
     Path,
@@ -40,7 +41,7 @@ const PulseIndicator = () => {
         <Canvas style={styles.animationContainer}>
             <Path
                 path={path}
-                color="purple"
+                color={COLORS.primary}
                 style="stroke"
                 strokeWidth={5}
                 strokeCap="round"

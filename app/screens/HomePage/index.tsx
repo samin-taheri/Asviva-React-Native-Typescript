@@ -1,11 +1,7 @@
-import React, { useCallback, useContext, useEffect, useReducer, createContext, useRef, useState, ReactNode } from 'react';
-
-import { useFocusEffect, useNavigation } from '@react-navigation/native';
-
-import { Alert, AppButton, AppIcon, AppScreen, Block, FloatingButton } from '@/components';
-import { useAppDispatch, useAppSelector, useDialog, useStyledTag } from '@/hooks';
+import React, { useEffect, useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
+import { AppScreen } from '@/components';
 import { HomeStackNavigationPropsType, Routes } from '@/navigation';
-import { settingsRedux } from '@/store';
 import AppBackgroundCard from '@/components/Common/AppBackgroundCard';
 import AppCustomHeader from '@/components/Common/AppCustomHeader';
 import AppTotalWorkout from '@/components/Common/AppTotalWorkout';
@@ -13,264 +9,72 @@ import AppWeaklyGoals from '@/components/Common/AppWeaklyGoals';
 import AppWorkoutDetails from '@/components/Common/AppWorkoutDetails';
 import { COLORS } from '@/theme';
 import AppChart from '@/components/Common/AppCharts';
-import { ActivityIndicator, Button, Dimensions, FlatList, NativeEventEmitter, NativeModules, PermissionsAndroid, Platform, Pressable, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Dimensions, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import useBLE from '@/hooks/useBLE';
-import { BleManager, Device, State } from 'react-native-ble-plx';
+import { BleManager, State } from 'react-native-ble-plx';
 import DeviceModal from '@/components/Common/AppDeviceModal';
 import PulseIndicator from '@/components/Common/AppPulseIndicator';
 
-// const BleManagerModule = NativeModules.BleManager;
-// const BleManagerEmitter = new NativeEventEmitter(BleManagerModule);
 const HomePage = () => {
 
+  const navigation = useNavigation<HomeStackNavigationPropsType>();
 
-  // const peripherals = new Map();
-  // const [isScanning, setIsScanning] = useState<boolean>(false);
-  // const [connectedDevices, setConnectedDevices] = useState<Peripheral[]>([]);
-  // const [discoveredDevices, setDiscoveredDevices] = useState<Peripheral[]>([]);
+  // const {
+  //   requestPermissions,
+  //   scanForPeripherals,
+  //   allDevices,
+  //   connectToDevice,
+  //   connectedDevice,
+  //   heartRate,
+  //   disconnectFromDevice,
+  // } = useBLE();
+  // const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
 
-
-  // type Peripheral = {
-  //   id: string;
-  //   name: string;
-  //   rssi: number;
-  //   connected: boolean;
-  // };
-
-  // const handleGetConnectedDevices = () => {
-  //   BleManager.getBondedPeripherals().then(results => {
-  //     for (let i = 0; i < results.length; i++) {
-  //       let peripheral = results[i];
-  //       const updatedPeripheral = { ...peripheral, connected: true };
-  //       peripherals.set(peripheral.id, updatedPeripheral);
-  //       setConnectedDevices(Array.from(peripherals.values()));
+  // const scanForDevices = () => {
+  //   requestPermissions(isGranted => {
+  //     if (isGranted) {
+  //       scanForPeripherals();
   //     }
   //   });
   // };
 
+  // const hideModal = () => {
+  //   setIsModalVisible(false);
+  // };
+
+  // const openModal = async () => {
+  //   scanForDevices();
+  //   setIsModalVisible(true);
+  // };
+  // const manager = new BleManager()
+
   // useEffect(() => {
-  //   BleManager.enableBluetooth()
-  //     .then(() => {
-  //       console.log('Bluetooth is turned on!');
-  //       return BleManager.start({ showAlert: false });
-  //     })
-  //     .then(() => {
-  //       console.log('BleManager initialized');
-  //       handleGetConnectedDevices();
-  //     })
-  //     .catch(error => {
-  //       console.error(error);
-  //     });
-  //   BleManager.start({ showAlert: false }).then(() => {
-  //     console.log('BleManager initialized');
-  //     handleGetConnectedDevices();
-  //   });
-  //   const stopDiscoverListener = BleManagerEmitter.addListener(
-  //     'BleManagerDiscoverPeripheral',
-  //     peripheral => {
-  //       peripherals.set(peripheral.id, peripheral);
-  //       setDiscoveredDevices(Array.from(peripherals.values()));
-  //     },
-  //   );
-  //   const stopConnectListener = BleManagerEmitter.addListener(
-  //     'BleManagerConnectPeripheral',
-  //     peripheral => {
-  //       console.log('BleManagerConnectPeripheral:', peripheral);
-  //     },
-  //   );
-  //   const stopScanListener = BleManagerEmitter.addListener(
-  //     'BleManagerStopScan',
-  //     () => {
-  //       setIsScanning(false);
-  //       console.log('scan stopped');
-  //     },
-  //   );
-  //   if (Platform.OS === 'android' && Platform.Version >= 23) {
-  //     PermissionsAndroid.check(
-  //       PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-  //     ).then(result => {
-  //       if (result) {
-  //         console.log('Permission is OK');
-  //       } else {
-  //         PermissionsAndroid.request(
-  //           PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-  //         ).then(result => {
-  //           if (result) {
-  //             console.log('User accepted');
-  //           } else {
-  //             console.log('User refused');
-  //           }
-  //         });
-  //       }
-  //     });
-  //   }
+  //   const subscription = manager.onStateChange((state: State) => {
+  //     if (state === 'PoweredOn') {
+  //       scanForPeripherals();
+  //       subscription.remove();
+  //     }
+  //   }, true);
+
   //   return () => {
-  //     stopDiscoverListener.remove();
-  //     stopConnectListener.remove();
-  //     stopScanListener.remove();
+  //     subscription.remove();
   //   };
-  // }, []);
-
-  // const startScan = () => {
-  //   if (!isScanning) {
-  //     BleManager.scan([], 5, true)
-  //       .then(() => {
-  //         console.log('Scanning...');
-  //         setIsScanning(true);
-  //       })
-  //       .catch(error => {
-  //         console.error('Error while scanning:', error);
-  //       });
-  //   }
-  // };
-  // const connectToPeripheral = (peripheral: Peripheral) => {
-  //   BleManager.createBond(peripheral.id)
-  //     .then(() => {
-  //       // Instead of modifying the peripheral object, manage the connection status in state.
-  //       const updatedDevices = connectedDevices.map((device) =>
-  //         device.id === peripheral.id ? { ...device, connected: true } : device
-  //       );
-  //       setConnectedDevices(updatedDevices);
-  //       peripherals.set(peripheral.id, peripheral);
-  //       setDiscoveredDevices(Array.from(peripherals.values()));
-  //       console.log('BLE device paired successfully');
-  //     })
-  //     .catch(() => {
-  //       console.log('failed to bond');
-  //     });
-  // };
-  // const disconnectFromPeripheral = (peripheral: Peripheral) => {
-  //   BleManager.removeBond(peripheral.id)
-  //     .then(() => {
-  //       // Update the connection status in your state
-  //       const updatedDevices = connectedDevices.map((device) =>
-  //         device.id === peripheral.id ? { ...device, connected: false } : device
-  //       );
-  //       setConnectedDevices(updatedDevices);
-
-  //       peripherals.set(peripheral.id, peripheral);
-  //       setDiscoveredDevices(Array.from(peripherals.values()));
-  //       // alert(`Disconnected from ${peripheral.name}`);
-  //       console.log("Disconnected from: ");
-  //     })
-  //     .catch(() => {
-  //       console.log('fail to remove the bond');
-  //     });
-  // };
-
-
-
-  const dispatch = useAppDispatch();
-  const dialog = useDialog();
-  const navigation = useNavigation<HomeStackNavigationPropsType>();
-  const [floatMenu, setFloatMenu] = useState<boolean>(false);
-
-  const [isPermission, setIsPermission] = useState(false);
-  const language = useAppSelector(state => state.settings.language);
-
-  const onChangeLang = (_language: string) => {
-    dispatch(settingsRedux.changeLanguage(_language));
-  };
-
-  const {
-    requestPermissions,
-    scanForPeripherals,
-    allDevices,
-    requestBluetoothPermission,
-    connectToDevice,
-    connectedDevice,
-    heartRate,
-    disconnectFromDevice,
-  } = useBLE();
-  const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
-
-  const scanForDevices = () => {
-    requestPermissions(isGranted => {
-      if (isGranted) {
-        scanForPeripherals();
-      }
-    });
-  };
-
-  const hideModal = () => {
-    setIsModalVisible(false);
-  };
-
-  const openModal = async () => {
-    scanForDevices();
-    setIsModalVisible(true);
-  };
-  const manager = new BleManager()
-
-  useEffect(() => {
-    const subscription = manager.onStateChange((state: State) => {
-      if (state === 'PoweredOn') {
-        scanForPeripherals();
-        subscription.remove();
-      }
-    }, true);
-
-    return () => {
-      subscription.remove();
-    };
-  }, [manager]);
+  // }, [manager]);
 
   return (
     <React.Fragment>
-      {/* <Bluetooth /> */}
       <StatusBar
         hidden={true}
       />
       <AppCustomHeader navigation={navigation} onLogo={true} />
       <AppScreen scroll customStyle={{ backgroundColor: COLORS.backgroundColor }}>
-        {/* <TouchableOpacity
-          activeOpacity={0.5}
-          style={styles.scanButton}
-          onPress={startScan}>
-          <Text style={styles.scanButtonText}>
-            {isScanning ? 'Scanning...' : 'Scan Bluetooth Devices'}
-          </Text>
-        </TouchableOpacity>
-        {discoveredDevices.length > 0 ? (
-          <FlatList
-            data={discoveredDevices}
-            renderItem={({ item }) => (
-              <DeviceList
-                peripheral={item}
-                connect={connectToPeripheral}
-                disconnect={disconnectFromPeripheral}
-              />
-            )}
-            keyExtractor={item => item.id}
-          />
-        ) : (
-          <Text style={styles.noDevicesText}>No Bluetooth devices found</Text>
-        )} */}
-        {/* {connectedDevices.length > 0 ? (
-          <FlatList
-            data={connectedDevices}
-            renderItem={({ item }) => (
-              <DeviceList
-                peripheral={item}
-                connect={connectToPeripheral}
-                disconnect={disconnectFromPeripheral}
-              />
-            )}
-            keyExtractor={item => item.id}
-          />
-        ) : (
-          <Text style={styles.noDevicesText}>No connected devices</Text>
-        )} */}
-        {/* <BLEManager /> */}
-        {/* <Button title="Request Bluetooth Permission" onPress={scanForPeripherals} /> */}
-        {/* <BluetoothScreen /> */}
         <AppBackgroundCard title="find_your_coach" backgroundImage={require('../../assets/images/bg-3.jpg')} onPress={() => { navigation.navigate(Routes.SPORTS_CENTER_SCREEN) }}
         />
         <AppTotalWorkout />
         <AppWeaklyGoals onPress={() => { navigation.navigate(Routes.QUESTIONNAIRE_SCREEN) }} />
         <AppWorkoutDetails onPress={() => navigation.navigate(Routes.WORKOUTDETAILS_SCREEN)} title="record_of_workouts" />
         <AppChart />
-        <View>
+        {/* <View>
           {connectedDevice ? (
             <>
               <PulseIndicator />
@@ -296,8 +100,7 @@ const HomePage = () => {
         />
         {connectedDevice &&
           <Text style={{ color: '#000' }}>{connectedDevice.id}</Text>
-        }
-
+        } */}
       </AppScreen>
     </React.Fragment>
   );

@@ -8,7 +8,7 @@ const ConnectDevices = () => {
 
     return (
         <React.Fragment>
-            <AppConnectDevices onPress={() => { navigation.navigate(Routes.LOADING_SCREEN) }} brandsNavigate={() => { navigation.navigate(Routes.BRANDS_SCREEN) }} />
+            <AppConnectDevices brandsNavigate={() => { navigation.navigate(Routes.BRANDS_SCREEN) }} />
         </React.Fragment>
     );
 };

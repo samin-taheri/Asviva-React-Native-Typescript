@@ -17,7 +17,7 @@ const AppCustomHeader: React.FC<CustomHeaderProps> = ({ title, onBack, onLogo, n
     return (
         <View style={styles.container}>
             {onBack && (
-                <TouchableOpacity onPress={onBack} style={{ paddingTop: '9%', paddingLeft: '5%' }}>
+                <TouchableOpacity onPress={onBack} style={{ paddingTop: '2%', paddingLeft: '5%' }}>
                     <Feather name="arrow-left" size={30} color={'#000'} />
                 </TouchableOpacity>
             )}
@@ -25,7 +25,7 @@ const AppCustomHeader: React.FC<CustomHeaderProps> = ({ title, onBack, onLogo, n
                 <Text style={[styles.title, onBack ? styles.withPadding : null]}>{title}</Text>
             </View>
             {onLogo && (
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingTop: '1%' }}>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingTop: Platform.OS === 'ios' ? '10%' : '1%' }}>
                     <View style={styles.leftContainer}>
                         <Image
                             source={require('../../../assets/images/logo.png')}
@@ -66,6 +66,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignSelf: 'center',
+        bottom: Platform.OS === 'ios' ? '0%' : '2.5%'
     },
     container: {
         backgroundColor: 'white',
@@ -81,7 +82,4 @@ const styles = StyleSheet.create({
 });
 
 export default AppCustomHeader;
-function dispatch(arg0: any) {
-    throw new Error('Function not implemented.');
-}
 
