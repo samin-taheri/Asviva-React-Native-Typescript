@@ -119,6 +119,7 @@ const en = {
   sign_in_with: 'Sign in with',
   sign_in: 'Sign In',
   sign_up: 'Sign Up',
+  sign_up_with: 'Sign up with',
   get_verification_code: 'Get Verification Code',
   logged_out_successfully: 'Logged Out Successfully',
   continue_with_the_app: 'Continue with the app',

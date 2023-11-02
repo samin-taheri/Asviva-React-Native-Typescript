@@ -76,7 +76,7 @@ const DeviceModal: FC<DeviceModalProps> = props => {
                         name="x"
                         size={30}
                         color="black"
-                        style={{ paddingRight: 20, paddingTop: 15 }}
+                        style={{ paddingTop: 15 }}
                         onPress={closeModal}
                     />
                     <Text style={modalStyle.modalTitleText}>
@@ -164,10 +164,10 @@ const modalStyle = StyleSheet.create({
         marginTop: 15,
         fontSize: 20,
         fontWeight: 'bold',
-        marginHorizontal: 25,
+        marginHorizontal: 40,
         textAlign: 'center',
         color: 'black',
-        alignSelf: 'center'
+        alignSelf: 'center',
     },
     ctaButton: {
         backgroundColor: COLORS.primary,

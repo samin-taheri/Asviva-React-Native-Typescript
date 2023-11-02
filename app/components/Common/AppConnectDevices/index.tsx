@@ -13,6 +13,7 @@ import { BleManager, State } from "react-native-ble-plx";
 import useBLE from "@/hooks/useBLE";
 import PulseIndicator from "../AppPulseIndicator";
 import DeviceModal from "../AppDeviceModal";
+import { useDialog } from "@/hooks";
 
 
 interface ConnectDevicesProps {
@@ -36,7 +37,6 @@ const AppConnectDevices: React.FC<ConnectDevicesProps> = ({ brandsNavigate }) =>
         allDevices,
         connectToDevice,
         connectedDevice,
-        heartRate,
         disconnectFromDevice,
     } = useBLE();
     const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
@@ -79,6 +79,24 @@ const AppConnectDevices: React.FC<ConnectDevicesProps> = ({ brandsNavigate }) =>
     const onPress2 = () => {
         navigation.navigate(Routes.LOADING_SCREEN)
     };
+    const dialog = useDialog();
+
+    useEffect(() => {
+        if (connectedDevice) {
+            dialog.show({
+                type: 'success',
+                position: 'left',
+                title: 'Connection Successfull',
+                message: `Device ID: ${connectedDevice.id}`,
+                action: [
+                    {
+                        text: 'Ok',
+                        style: 'cancel',
+                    },
+                ],
+            });
+        }
+    });
 
     return (
         <View style={styles.container}>
