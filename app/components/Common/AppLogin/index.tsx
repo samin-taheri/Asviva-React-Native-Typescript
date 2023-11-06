@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, TouchableOpacity, StyleSheet, Pressable } from 'react-native';
 import { COLORS } from '@/theme';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -27,6 +27,10 @@ interface LoginProps {
 const AppLogin: React.FC<LoginProps> = ({ onLogin, onRegister, navigate, forgotPassword, signUp, NavigateHome }) => {
 
     const [rememberMe, setRememberMe] = useState(false);
+    const navigateToOtherPage = () => {
+        // Replace 'YourOtherScreen' with the actual name of the screen you want to navigate to
+        navigation.navigate(Routes.HOME_ROOT);
+    };
 
     const schema = Yup.object({
         username: fields.text.label('Username').required('Bu alan zorunludur'),
@@ -71,7 +75,7 @@ const AppLogin: React.FC<LoginProps> = ({ onLogin, onRegister, navigate, forgotP
                     <TouchableOpacity style={styles.googleButton}>
                         <FontAwesome name="google" size={30} color={COLORS.primary} />
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.appleButton} >
+                    <TouchableOpacity style={styles.appleButton}>
                         <FontAwesome name="apple" size={30} color={COLORS.primary} />
                     </TouchableOpacity>
                 </View>
@@ -240,3 +244,4 @@ const styles = StyleSheet.create({
 });
 
 export default AppLogin;
+

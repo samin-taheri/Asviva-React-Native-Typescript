@@ -6,12 +6,12 @@ import {
     BleManager,
     Characteristic,
     Device,
+    ScanMode,
 } from 'react-native-ble-plx';
 import { PERMISSIONS, requestMultiple } from 'react-native-permissions';
 import DeviceInfo from 'react-native-device-info';
 
 import { atob } from 'react-native-quick-base64';
-import useDialog from './useDialog';
 
 const HEART_RATE_UUID = '0000180d-0000-1000-8000-00805f9b34fb';
 const HEART_RATE_CHARACTERISTIC = '00002a37-0000-1000-8000-00805f9b34fb';
@@ -29,12 +29,17 @@ interface BluetoothLowEnergyApi {
     connectedDevice: Device | null;
     allDevices: Device[];
     heartRate: number;
+    distance: number;
 }
+
+const distanceBuffer: [number, number, number] = [-1, -1, -1];
+let numOfSamples = 0;
 
 function useBLE(): BluetoothLowEnergyApi {
     const [allDevices, setAllDevices] = useState<Device[]>([]);
     const [connectedDevice, setConnectedDevice] = useState<Device | null>(null);
     const [heartRate, setHeartRate] = useState<number>(0);
+    const [distance, setDistance] = useState<number>(-1);
 
     const requestPermissions = async (cb: VoidCallback) => {
         if (Platform.OS === 'android') {
@@ -106,7 +111,20 @@ function useBLE(): BluetoothLowEnergyApi {
         devices.findIndex(device => nextDevice.id === device.id) > -1;
 
     const scanForPeripherals = () =>
-        bleManager.startDeviceScan(null, null, (error, device) => {
+        bleManager.startDeviceScan(null, {
+            allowDuplicates: true,
+            scanMode: ScanMode.LowLatency,
+        }, (error, device) => {
+            const currentDistance = Math.pow(10, (-75 - device?.rssi!) / (10 * 3));
+            distanceBuffer[numOfSamples % 3] = currentDistance;
+            if (distanceBuffer.includes(-1)) {
+                setDistance(-1);
+            } else {
+                const sum = distanceBuffer.reduce((a, b) => a + b);
+                setDistance(Math.round(sum / distanceBuffer.length));
+            }
+
+            numOfSamples++;
             if (device) {
                 setAllDevices((prevState: Device[]) => {
                     if (!isDuplicteDevice(prevState, device)) {
@@ -114,6 +132,7 @@ function useBLE(): BluetoothLowEnergyApi {
                     }
                     return prevState;
                 });
+                console.log("device name: ", device.name)
             }
             if (error) {
                 console.log(error);
@@ -177,10 +196,13 @@ function useBLE(): BluetoothLowEnergyApi {
                 HEART_RATE_CHARACTERISTIC,
                 (error, characteristic) => onHeartRateUpdate(error, characteristic),
             );
+            console.log(device.name)
         } else {
             console.log('No Device Connected');
         }
     };
+
+
 
     return {
         scanForPeripherals,
@@ -191,6 +213,7 @@ function useBLE(): BluetoothLowEnergyApi {
         connectedDevice,
         disconnectFromDevice,
         heartRate,
+        distance,
     };
 }
 

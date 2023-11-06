@@ -96,7 +96,7 @@ const AppConnectDevices: React.FC<ConnectDevicesProps> = ({ brandsNavigate }) =>
                 ],
             });
         }
-    });
+    }, []);
 
     return (
         <View style={styles.container}>

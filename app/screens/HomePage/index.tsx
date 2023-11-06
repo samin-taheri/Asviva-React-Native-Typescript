@@ -16,50 +16,52 @@ import DeviceModal from '@/components/Common/AppDeviceModal';
 import PulseIndicator from '@/components/Common/AppPulseIndicator';
 
 const HomePage = () => {
-
   const navigation = useNavigation<HomeStackNavigationPropsType>();
 
-  // const {
-  //   requestPermissions,
-  //   scanForPeripherals,
-  //   allDevices,
-  //   connectToDevice,
-  //   connectedDevice,
-  //   heartRate,
-  //   disconnectFromDevice,
-  // } = useBLE();
-  // const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
+  const {
+    requestPermissions,
+    scanForPeripherals,
+    allDevices,
+    connectToDevice,
+    connectedDevice,
+    heartRate,
+    distance,
+    disconnectFromDevice,
+  } = useBLE();
+  const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
 
-  // const scanForDevices = () => {
-  //   requestPermissions(isGranted => {
-  //     if (isGranted) {
-  //       scanForPeripherals();
-  //     }
-  //   });
-  // };
+  const scanForDevices = () => {
+    requestPermissions(isGranted => {
+      if (isGranted) {
+        scanForPeripherals();
+      }
+    });
+  };
 
-  // const hideModal = () => {
-  //   setIsModalVisible(false);
-  // };
+  const hideModal = () => {
+    setIsModalVisible(false);
+  };
 
-  // const openModal = async () => {
-  //   scanForDevices();
-  //   setIsModalVisible(true);
-  // };
-  // const manager = new BleManager()
+  const openModal = async () => {
+    scanForDevices();
+    setIsModalVisible(true);
+  };
+  const manager = new BleManager()
 
-  // useEffect(() => {
-  //   const subscription = manager.onStateChange((state: State) => {
-  //     if (state === 'PoweredOn') {
-  //       scanForPeripherals();
-  //       subscription.remove();
-  //     }
-  //   }, true);
+  useEffect(() => {
+    const subscription = manager.onStateChange((state: State) => {
+      if (state === 'PoweredOn') {
+        scanForPeripherals();
+        subscription.remove();
+      }
+    }, true);
 
-  //   return () => {
-  //     subscription.remove();
-  //   };
-  // }, [manager]);
+    return () => {
+      subscription.remove();
+    };
+  }, [manager]);
+
+
 
   return (
     <React.Fragment>
@@ -74,10 +76,11 @@ const HomePage = () => {
         <AppWeaklyGoals onPress={() => { navigation.navigate(Routes.QUESTIONNAIRE_SCREEN) }} />
         <AppWorkoutDetails onPress={() => navigation.navigate(Routes.WORKOUTDETAILS_SCREEN)} title="record_of_workouts" />
         <AppChart />
-        {/* <View>
+        <View>
           {connectedDevice ? (
             <>
               <PulseIndicator />
+              <Text style={{ color: 'black' }}>Your Distance Is: {distance} m</Text>
               <Text style={{ color: 'black' }}>Your Heart Rate Is: {heartRate} bpm</Text>
             </>
           ) : (
@@ -100,7 +103,7 @@ const HomePage = () => {
         />
         {connectedDevice &&
           <Text style={{ color: '#000' }}>{connectedDevice.id}</Text>
-        } */}
+        }
       </AppScreen>
     </React.Fragment>
   );
