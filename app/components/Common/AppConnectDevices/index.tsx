@@ -11,7 +11,6 @@ import Feather from "react-native-vector-icons/Feather";
 import Text from "../Text";
 import { BleManager, State } from "react-native-ble-plx";
 import useBLE from "@/hooks/useBLE";
-import PulseIndicator from "../AppPulseIndicator";
 import DeviceModal from "../AppDeviceModal";
 import { useDialog } from "@/hooks";
 

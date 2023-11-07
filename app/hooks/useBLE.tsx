@@ -13,6 +13,8 @@ import DeviceInfo from 'react-native-device-info';
 
 import { atob } from 'react-native-quick-base64';
 
+//serviceData
+const FTMS_SERVICE_UUID = '00001826-0000-1000-8000-00805f9b34fb';
 const HEART_RATE_UUID = '0000180d-0000-1000-8000-00805f9b34fb';
 const HEART_RATE_CHARACTERISTIC = '00002a37-0000-1000-8000-00805f9b34fb';
 
@@ -132,7 +134,6 @@ function useBLE(): BluetoothLowEnergyApi {
                     }
                     return prevState;
                 });
-                console.log("device name: ", device.name)
             }
             if (error) {
                 console.log(error);
@@ -196,13 +197,10 @@ function useBLE(): BluetoothLowEnergyApi {
                 HEART_RATE_CHARACTERISTIC,
                 (error, characteristic) => onHeartRateUpdate(error, characteristic),
             );
-            console.log(device.name)
         } else {
             console.log('No Device Connected');
         }
     };
-
-
 
     return {
         scanForPeripherals,

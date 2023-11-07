@@ -1,22 +1,27 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigation } from '@react-navigation/native';
-import { AppScreen } from '@/components';
+import { useNavigation, useTheme } from '@react-navigation/native';
+import { AppScreen, AppSwitch } from '@/components';
 import { HomeStackNavigationPropsType, Routes } from '@/navigation';
 import AppBackgroundCard from '@/components/Common/AppBackgroundCard';
 import AppCustomHeader from '@/components/Common/AppCustomHeader';
 import AppTotalWorkout from '@/components/Common/AppTotalWorkout';
 import AppWeaklyGoals from '@/components/Common/AppWeaklyGoals';
 import AppWorkoutDetails from '@/components/Common/AppWorkoutDetails';
-import { COLORS } from '@/theme';
 import AppChart from '@/components/Common/AppCharts';
 import { Dimensions, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import useBLE from '@/hooks/useBLE';
 import { BleManager, State } from 'react-native-ble-plx';
 import DeviceModal from '@/components/Common/AppDeviceModal';
 import PulseIndicator from '@/components/Common/AppPulseIndicator';
+import { COLORS } from '@/theme';
+import { settingsRedux } from '@/store';
+import { useAppDispatch, useAppSelector } from '@/hooks';
 
 const HomePage = () => {
   const navigation = useNavigation<HomeStackNavigationPropsType>();
+  const theme = useAppSelector(state => state.settings.theme);
+  const dispatch = useAppDispatch();
+  const theme2 = useTheme();
 
   const {
     requestPermissions,
@@ -69,9 +74,10 @@ const HomePage = () => {
         hidden={true}
       />
       <AppCustomHeader navigation={navigation} onLogo={true} />
-      <AppScreen scroll customStyle={{ backgroundColor: COLORS.backgroundColor }}>
+      <AppScreen scroll customStyle={{ backgroundColor: theme2.colors.background }}>
         <AppBackgroundCard title="find_your_coach" backgroundImage={require('../../assets/images/bg-3.jpg')} onPress={() => { navigation.navigate(Routes.SPORTS_CENTER_SCREEN) }}
         />
+        {/* <AppSwitch value={theme === 'dark'} onChange={() => dispatch(settingsRedux.setTheme(theme === 'light' ? 'dark' : 'light'))} /> */}
         <AppTotalWorkout />
         <AppWeaklyGoals onPress={() => { navigation.navigate(Routes.QUESTIONNAIRE_SCREEN) }} />
         <AppWorkoutDetails onPress={() => navigation.navigate(Routes.WORKOUTDETAILS_SCREEN)} title="record_of_workouts" />
