@@ -7,37 +7,25 @@ const platform = Platform.OS;
 export const themeColors = {
   light: {
     //#region Backgrounds colors
-    backgroundPrimary: '#a11c18',
+    backgroundPrimary: '#EE6C4D',
     cardBg: '#fff',
     //#endregion
 
     bottomTabColor: '#fff',
     tabItem: '#212121',
-    cardBackgroundCOlor: "rgba(153, 92, 88, 0.1)",
-    tabItemFocused: '#a11c18',
+    tabItemFocused: '#EE6C4D',
     defaultTextColor: 'black',
     inputBg: '#fff',
     inputText: '#000',
-    cardBackground: '#f3f3f5',
-    backgroundColor: '#f5f5f5',
-    buttonBackground: 'rgba(198,60,56,0.5)',
-    workoutBackground1: 'rgba(126,79,129,0.2)',
-    workoutBackground2: 'rgba(83,79,129,0.2)',
-    workoutBackground3: 'rgba(114,129,79,0.2)',
-    workoutBackground4: 'rgba(90,124,95,0.2)',
-    workoutBackground5: 'rgba(124,118,90,0.2)',
-    workoutBackground6: 'rgba(124,107,90,0.2)',
-    workoutBackground7: 'rgba(129,98,79,0.2)',
-    workoutBackground8: 'rgba(129,79,126,0.2)',
     // default font color
     font: '#000000',
     screenBgColor: '#ebebeb',
-    headerBackgroundColor: '#a11c18',
+    headerBackgroundColor: '#EE6C4D',
     headerColor: '#fff',
 
     // base colors
-    primary: '#a11c18',
-    secondary: '#e1bdbc',
+    primary: '#EE6C4D',
+    secondary: '#3D405B',
     tertiary: '#FFE358',
 
     // non-colors
@@ -45,15 +33,15 @@ export const themeColors = {
     white: '#FFFFFF',
 
     // radio button
-    radioButtonBorder: '#a11c18',
-    radioButtonChecked: '#a11c18',
+    radioButtonBorder: '#EE6C4D',
+    radioButtonChecked: '#EE6C4D',
 
     // segment control
     segmentBar: '#F2F5F6',
     activeSegment: '#fff',
 
     // color variations
-    gray: '#6c6c6c',
+    gray: '#535453',
     lightGray: '#EFF1F3',
     error: '#DC3545',
     errorBg: '#f9d7da',

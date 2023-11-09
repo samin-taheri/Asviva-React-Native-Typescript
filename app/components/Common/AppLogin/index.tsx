@@ -1,42 +1,31 @@
-import React, { useEffect, useState } from 'react';
-import { View, TouchableOpacity, StyleSheet, Pressable } from 'react-native';
-import { COLORS } from '@/theme';
+import React, { useState } from 'react';
+
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
-import { AppButton, Form, Text, fields } from '@/components';
-import AppMyHeader from '../AppMyHeader';
+
+import { AppButton, AppScreen, fields, Form, password } from '@/components';
+import { Image, StyleSheet, TouchableOpacity, View, Text } from 'react-native';
+import { TextInput } from 'react-native-gesture-handler';
+import { COLORS } from '@/theme';
+import { RootStackNavigationProps, Routes } from '@/navigation';
+import { StackNavigationProp } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
-import { HomeStackNavigationPropsType, Routes } from '@/navigation';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 const initial = {
     username: '',
     password: '',
 };
 
-interface LoginProps {
-    onLogin: (username: string, password: string) => void;
-    onRegister: () => void;
-    navigate: () => void;
-    forgotPassword: () => void;
-    signUp: () => void;
-    NavigateHome: () => void;
-}
-
-const AppLogin: React.FC<LoginProps> = ({ onLogin, onRegister, navigate, forgotPassword, signUp, NavigateHome }) => {
-
-    const [rememberMe, setRememberMe] = useState(false);
-    const navigateToOtherPage = () => {
-        // Replace 'YourOtherScreen' with the actual name of the screen you want to navigate to
-        navigation.navigate(Routes.HOME_ROOT);
-    };
+const AppLogin = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const navigation: StackNavigationProp<RootStackNavigationProps> = useNavigation();
 
     const schema = Yup.object({
         username: fields.text.label('Username').required('Bu alan zorunludur'),
         password: fields.password.label('Password').min(6, 'En az 6 karakter olmalı').required('Lütfen parola giriniz'),
     });
-    const navigation = useNavigation<HomeStackNavigationPropsType>();
 
     const form = useForm({
         defaultValues: initial,
@@ -48,200 +37,171 @@ const AppLogin: React.FC<LoginProps> = ({ onLogin, onRegister, navigate, forgotP
     };
 
     return (
-        <View>
-            <AppMyHeader showLogoWithoutBack>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-                        <Text style={styles.title}>login</Text>
+        <React.Fragment>
+            <AppScreen customStyle={{ justifyContent: 'center', backgroundColor: 'white', padding: 20 }}>
+                <Text style={styles.title2}>Hello Again!</Text>
+                <Text style={styles.text}>Welcome back to the real estate. Advertise your property with us.</Text>
+                <View style={{ marginTop: '15%' }}>
+                    <Text style={styles.label}>Email</Text>
+                    <TextInput
+                        style={styles.input}
+                        secureTextEntry={true}
+                        placeholder="sjjdhj@gmail.com"
+                        value={email}
+                        onChangeText={setEmail}
+                    />
+                    <View style={{ marginTop: 20 }}>
+                        <Text style={styles.label}>Password</Text>
+                        <TextInput
+                            style={styles.input}
+                            secureTextEntry={true}
+                            placeholder="Password"
+                            value={password}
+                            onChangeText={setPassword}
+                        />
                     </View>
-                    <Pressable style={{ borderRadius: 8, backgroundColor: COLORS.white, padding: 8, flexDirection: 'row', height: 33, alignItems: 'center' }} onPress={NavigateHome}>
-                        <Text style={{ fontSize: 13 }}>guest_mode</Text>
-                    </Pressable>
                 </View>
-                <Form schema={schema} form={form} />
-                <View style={styles.rememberMeContainer}>
-                    <Pressable onPress={forgotPassword}>
-                        <Text style={styles.forgotPasswordText}>forgot_password</Text>
-                    </Pressable>
+                <TouchableOpacity style={styles.signInButton} onPress={() => navigation.navigate(Routes.MAIN_TABS_ROOT)}>
+                    <Text style={styles.text2}>Sign In</Text>
+                </TouchableOpacity>
+                <Text style={styles.text3}>OR</Text>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-around', top: '25%', width: '70%', alignSelf: 'center' }}>
+                    <Image
+                        source={require('../../../assets/images/Google.png')}
+                        style={styles.image}
+                    />
+                    <Image
+                        source={require('../../../assets/images/Facebook.png')}
+                        style={styles.image2}
+                    />
+                    <Image
+                        source={require('../../../assets/images/Apple.png')}
+                        style={styles.image}
+                    />
                 </View>
-                <AppButton mt-10 type="primary" onPress={form.handleSubmit(onSubmit)} title="sign_in" />
-                <AppButton mt-10 type="secondary" onPress={() => navigation.navigate(Routes.SIGNUP_SCREEN)} title="sign_up" />
-                <View style={styles.container3}>
-                    <View style={styles.divider} />
-                    <Text style={styles.text}>sign_in_with</Text>
-                    <View style={styles.divider} />
-                </View>
-                <View style={styles.container2}>
-                    <TouchableOpacity style={styles.googleButton}>
-                        <FontAwesome name="google" size={30} color={COLORS.primary} />
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.appleButton}>
-                        <FontAwesome name="apple" size={30} color={COLORS.primary} />
-                    </TouchableOpacity>
-                </View>
-            </AppMyHeader>
-        </View>
+                <TouchableOpacity onPress={() => navigation.navigate(Routes.SIGNUP_SCREEN)}>
+                    <Text style={styles.text4}>Don't Have An Account? <Text style={{ color: COLORS.primary }}>Sign Up</Text></Text>
+                </TouchableOpacity>
+            </AppScreen>
+        </React.Fragment>
     );
 };
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: 'white'
-    },
-    title: {
-        fontSize: 24,
-        fontWeight: '600',
-        marginBottom: 20,
-        paddingLeft: 5
-    },
-    action: {
-        flexDirection: 'row',
-    },
-    image: {
-        width: 160,
-        height: 160,
-        resizeMode: 'cover',
-        borderRadius: 12,
-    },
-    input: {
-        width: '100%',
-        height: 50,
-        borderColor: 'white',
-        borderWidth: 1,
-        borderRadius: 12,
-        paddingLeft: 10,
-        marginBottom: 15,
-        backgroundColor: COLORS.backgroundColor
-    },
-    buttonContainer: {
-        flexDirection: 'row',
-        flex: 1,
-        paddingTop: 10
-    },
-    loginButton: {
-        width: '100%',
-        height: 45,
-        backgroundColor: COLORS.primary,
-        borderRadius: 12,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginBottom: 10,
-        flexDirection: 'row',
-        marginTop: 10
-    },
-    buttonText: {
-        color: 'white',
-        fontWeight: 'bold',
-    },
-    buttonText3: {
-        color: COLORS.primary,
-        fontWeight: '600',
-        fontSize: 22,
-    },
-    buttonText2: {
-        color: COLORS.primary,
-        fontWeight: 'bold',
-        textAlign: 'center',
-    },
-    container2: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        width: '35%',
-        alignItems: 'center',
-        alignSelf: 'center',
-    },
-    SignUpButton: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: COLORS.backgroundColor,
-        borderRadius: 12,
-        height: 50,
-        width: '100%',
-        marginBottom: 20,
-        marginTop: 10
-    },
-    googleButton: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: COLORS.white,
-        borderRadius: 30,
-        height: 62,
-        width: 62,
-        right: 7
-    },
-    appleButton: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: COLORS.white,
-        borderRadius: 30,
-        height: 62,
-        width: 62,
-        left: 7
-    },
-
-    dividerContainer: {
-        width: 30,
-        alignItems: 'center',
-    },
-    divider: {
-        flex: 1,
-        height: 1,
-        backgroundColor: '#c0c1c3',
-    },
-    text: {
-        color: '#c0c1c3',
-        paddingHorizontal: 10,
-        fontSize: 16,
-    },
-    container3: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingTop: 20,
-        paddingBottom: 20
-    },
-    checkBoxContainer: {
-        backgroundColor: 'transparent',
-        borderWidth: 0,
-        padding: 0,
-        marginLeft: 0,
-    },
-    checkBoxText: {
-        color: '#c0c1c3',
-        fontSize: 16,
-        fontWeight: 'normal',
-        marginLeft: 5,
-    },
-    forgotPasswordText: {
-        color: COLORS.primary,
-        textDecorationLine: 'underline',
-        textAlign: 'right',
-        paddingRight: 10,
-        paddingTop: 0,
-    },
-    rememberMeContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingLeft: 10,
-        paddingBottom: 10,
-        paddingTop: 10,
-        justifyContent: 'flex-end'
-    },
-    SigninButton: {
-        width: 100,
-        height: 40,
-        backgroundColor: COLORS.cardBackground,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 12,
-        marginLeft: 10,
-        marginTop: -3
-    }
-});
-
 export default AppLogin;
 
+const styles = StyleSheet.create({
+    container: {
+        alignItems: 'center',
+        flex: 1,
+        justifyContent: 'center'
+    },
+    image: {
+        width: 60,
+        height: 60,
+    },
+    image2: {
+        width: 30,
+        height: 30,
+        top: 15
+    },
+    label: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        marginBottom: 8,
+        color: COLORS.secondary
+    },
+    signInButton: {
+        width: 103,
+        height: 34,
+        backgroundColor: COLORS.secondary,
+        borderRadius: 5,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+        top: '5%'
+
+    },
+    input: {
+        borderWidth: 1,
+        borderBottomColor: COLORS.primary,
+        borderTopColor: 'white',
+        borderLeftColor: 'white',
+        borderRightColor: 'white',
+        borderRadius: 4,
+        padding: 1,
+        fontSize: 16,
+        color: 'black'
+    },
+    backContainer: {
+        flex: 1,
+        justifyContent: 'flex-end',
+        alignSelf: 'flex-end',
+        marginRight: 50,
+        marginBottom: 50
+
+    },
+    backButton: {
+        backgroundColor: 'transparent',
+    },
+    backText: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        color: COLORS.secondary,
+    },
+    boxText: {
+        color: 'white',
+        fontSize: 26,
+        fontWeight: 'bold',
+        textAlign: 'left',
+        paddingLeft: 20,
+        paddingBottom: 20,
+    },
+    box1: {
+        width: 156,
+        height: 150,
+        backgroundColor: COLORS.secondary,
+        borderRadius: 10,
+        justifyContent: 'flex-end'
+    },
+    box2: {
+        width: 156,
+        height: 150,
+        backgroundColor: '#EE6C4D',
+        borderRadius: 10,
+        justifyContent: 'flex-end',
+        marginLeft: 20
+    },
+    title: {
+        fontSize: 40,
+        color: COLORS.secondary,
+        textAlign: 'center',
+        fontWeight: '700'
+    },
+    title2: {
+        fontSize: 36,
+        color: '#EE6C4D',
+        textAlign: 'left',
+        fontWeight: '700'
+    },
+    text: {
+        fontSize: 20,
+        color: COLORS.secondary,
+        paddingTop: 10
+    },
+    text2: {
+        fontSize: 16,
+        color: '#fff',
+    },
+    text3: {
+        fontSize: 16,
+        color: COLORS.secondary,
+        top: '10%',
+        textAlign: 'center'
+    },
+    text4: {
+        fontSize: 14,
+        color: COLORS.secondary,
+        top: 120,
+        textAlign: 'center'
+    },
+});

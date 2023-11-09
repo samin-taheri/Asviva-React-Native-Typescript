@@ -29,65 +29,31 @@ const AppSplash: React.FC<SplashIconsProps> = ({ onPress }) => {
     }, [zoomAnim]);
 
     return (
-        <View style={styles.contentContainer}>
-            <Swiper
-                style={styles.wrapper}
-                showsButtons={false}
-                loop={false}
-                activeDotColor={COLORS.primary}
-                dotColor='#a7a5a5'
-            >
-                <View style={[styles.slide]}>
-                    <Animated.View style={[styles.logoContainer, { transform: [{ scale: zoomAnim.interpolate({ inputRange: [0, 0.5, 1], outputRange: [1, 1.1, 1] }) }] }]}>
-                        <Animated.View style={[styles.outerCircle, { transform: [{ scale: zoomAnim.interpolate({ inputRange: [0, 0.5, 1], outputRange: [1, 1.1, 1] }) }] }]}></Animated.View>
-                        <Animated.View style={[styles.innerCircle, { transform: [{ scale: zoomAnim.interpolate({ inputRange: [0, 0.5, 1], outputRange: [1, 1.1, 1] }) }] }]}></Animated.View>
-                        <Animated.View style={[styles.innerCircle2, { transform: [{ scale: zoomAnim.interpolate({ inputRange: [0, 0.5, 1], outputRange: [1, 1.1, 1] }) }] }]}></Animated.View>
-                        <Image
-                            style={styles.logoContainer}
-                            source={require('../../../assets/images/logo.png')}
-                        />
-                    </Animated.View>
-                    <View style={{ paddingTop: '135%' }}>
-                        <AppSplashIcons />
-                        <Text style={styles.title}>welcome_to_asviva</Text>
-                        <Text style={styles.title2}>track_your_fitness_health_data</Text>
-                    </View>
-                </View>
-                <View style={styles.slide}>
-                    <Image
-                        source={require('../../../assets/images/splash-15.jpeg')}
-                        style={styles.image3}
-                        resizeMode="cover"
-                    />
-                    <Text style={styles.title3}>buy_fitness_equipment</Text>
-                </View>
-                <View style={styles.slide}>
-                    <Image
-                        source={require('../../../assets/images/splash-17.jpeg')}
-                        style={styles.image3}
-                        resizeMode="cover"
-                    />
-                    <Text style={styles.title3}>quality_service_and_expert_advice</Text>
-                </View>
-                <View style={styles.slide}>
-                    <Image
-                        source={require('../../../assets/images/splash-19.jpeg')}
-                        style={styles.image3}
-                        resizeMode="cover"
-                    />
-                    <Text style={styles.title3}>fitness_with_asviva</Text>
-                </View>
-            </Swiper>
-            <TouchableOpacity style={styles.buttonContainer} onPress={onPress}>
-                <Text style={styles.buttonText}>get_started</Text>
-                <Feather name="chevron-right" size={24} color='white' style={{ paddingLeft: '2%', right: -5 }} />
-            </TouchableOpacity>
+        <View style={styles.container}>
+            <Text style={styles.title}>Welcome to</Text>
+            <Text style={styles.title2}>Real Estate App</Text>
+            <Text style={styles.text}>Choose an account to login</Text>
+            <View style={{ flexDirection: 'row', marginTop: 60 }}>
+                <TouchableOpacity style={styles.box1} onPress={() => navigation.navigate(Routes.MAIN_TABS_ROOT)}>
+                    <Text style={{ color: 'white', fontSize: 26, fontWeight: 'bold', textAlign: 'left', paddingLeft: 20, paddingBottom: 20 }}>User Account</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.box2} onPress={() => navigation.navigate(Routes.MAIN_TABS_ROOT)}>
+                    <Text style={{ color: 'white', fontSize: 26, fontWeight: 'bold', textAlign: 'left', paddingLeft: 20, paddingBottom: 20 }}>Agent Account</Text>
+                </TouchableOpacity>
+            </View>
+            <View style={styles.backContainer}>
+                <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate(Routes.LOGIN_SCREEN)}>
+                    <Text style={styles.backText}>Back</Text>
+                </TouchableOpacity>
+            </View>
         </View>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
+        alignItems: 'center',
+        marginTop: '50%',
         flex: 1,
         backgroundColor: 'white',
     },
@@ -163,35 +129,67 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '65%',
     },
-    text: {
-        color: '#fff',
-        fontSize: 30,
-        fontWeight: 'bold',
-        marginBottom: 20,
-    },
-    title: {
-        fontSize: 22,
-        fontWeight: 'bold',
-        textAlign: 'center',
-        paddingTop: 20,
-    },
-    title3: {
-        fontSize: 17,
-        fontWeight: '600',
-        textAlign: 'center',
-        padding: 20
-    },
-    title2: {
-        fontSize: 16,
-        fontWeight: '500',
-        textAlign: 'center',
-        padding: 10
-    },
     button: {
     },
     buttonText: {
         color: 'white',
         paddingLeft: 0,
         fontWeight: 'bold',
+    },
+    backContainer: {
+        flex: 1,
+        justifyContent: 'flex-end',
+        alignSelf: 'flex-end',
+        marginRight: 15,
+        marginBottom: 40
+
+    },
+    backButton: {
+        backgroundColor: 'transparent',
+    },
+    backText: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        color: '#3D405B',
+    },
+    boxText: {
+        color: 'white',
+        fontSize: 26,
+        fontWeight: 'bold',
+        textAlign: 'left',
+        paddingLeft: 20,
+        paddingBottom: 20,
+    },
+    box1: {
+        width: 156,
+        height: 150,
+        backgroundColor: '#3D405B',
+        borderRadius: 10,
+        justifyContent: 'flex-end'
+    },
+    box2: {
+        width: 156,
+        height: 150,
+        backgroundColor: '#EE6C4D',
+        borderRadius: 10,
+        justifyContent: 'flex-end',
+        marginLeft: 20
+    },
+    title: {
+        fontSize: 40,
+        color: '#3D405B',
+        textAlign: 'center',
+        fontWeight: '700'
+    },
+    title2: {
+        fontSize: 40,
+        color: '#EE6C4D',
+        textAlign: 'center',
+        fontWeight: '700'
+    },
+    text: {
+        fontSize: 16,
+        color: '#3D405B',
+        paddingTop: 10
     },
 }); export default AppSplash;

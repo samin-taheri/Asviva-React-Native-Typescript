@@ -57,7 +57,7 @@ const LoginPage = () => {
 
   return (
     <React.Fragment>
-      <AppLogin onLogin={handleLogin} onRegister={handleRegister} navigate={() => navigation.navigate(Routes.HOME_ROOT)} forgotPassword={() => navigation.navigate(Routes.FORGOTPASSWORD_SCREEN)} signUp={() => navigation.navigate(Routes.SIGNUP_SCREEN)} NavigateHome={() => navigateHome()} />
+      <AppLogin />
     </React.Fragment>
   );
 };

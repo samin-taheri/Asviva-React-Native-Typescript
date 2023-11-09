@@ -8,7 +8,7 @@ const SignUp = () => {
 
     return (
         <React.Fragment>
-            <AppSignUp navigate={() => navigation.navigate(Routes.HOME_ROOT)} signUp={() => navigation.navigate(Routes.SIGNUP_SCREEN)} back={() => navigation.goBack()} />
+            <AppSignUp />
         </React.Fragment>
     );
 };

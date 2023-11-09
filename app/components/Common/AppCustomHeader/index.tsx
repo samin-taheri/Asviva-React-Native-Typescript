@@ -4,6 +4,7 @@ import { Routes } from '@/navigation';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import Feather from 'react-native-vector-icons/Feather'
 import Text from '../Text';
+import { COLORS } from '@/theme';
 
 interface CustomHeaderProps {
     title?: string;
@@ -27,19 +28,11 @@ const AppCustomHeader: React.FC<CustomHeaderProps> = ({ title, onBack, onLogo, n
             {onLogo && (
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingTop: Platform.OS === 'ios' ? '10%' : '1%' }}>
                     <View style={styles.leftContainer}>
-                        <Image
-                            source={require('../../../assets/images/logo.png')}
-                            style={{ width: 110, height: 25 }}
-                        />
+                        <Text style={{ fontSize: 21, fontWeight: 'bold', color: COLORS.primary }}>Location</Text>
                     </View>
                     <View style={{ flexDirection: 'row', alignItems: 'center', paddingLeft: Platform.OS === 'ios' ? '35%' : '40%' }}>
-                        <Pressable style={{ borderRadius: 8, backgroundColor: '#e8e8e8', padding: 6, flexDirection: 'row', height: 29 }} onPress={() => navigation.navigate(Routes.CONNECTDEVICES_SCREEN)}>
-                            <Feather name="radio" size={18} color='#000' style={{ paddingRight: 4 }} />
-                            <Text style={{ fontSize: 12, paddingRight: 3 }}>tap_to_connect</Text>
-                        </Pressable>
-                        <Pressable onPress={() => navigation.navigate(Routes.PROFILE_SCREEN)} style={{ marginLeft: 8, marginRight: 20 }}>
-                            <MaterialIcons name="account-circle" size={37} color="#dadada" />
-                        </Pressable>
+                        <Feather name="map-pin" size={20} color={COLORS.primary} style={{ paddingRight: 20 }} />
+                        <Feather name="bell" size={20} color={COLORS.primary} style={{ paddingRight: 20 }} />
                     </View>
                 </View>
             )}

@@ -1,34 +1,34 @@
-import { COLORS } from '@/theme';
 import React, { useState } from 'react';
-import { View, TouchableOpacity, StyleSheet, Pressable } from 'react-native';
-import AppMyHeader from '../AppMyHeader';
+
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
-import { AppButton, Form, Text, fields } from '@/components';
+
+import { AppButton, AppScreen, fields, Form, password } from '@/components';
+import { Image, StyleSheet, TouchableOpacity, View, Text, ScrollView } from 'react-native';
+import { TextInput } from 'react-native-gesture-handler';
+import { COLORS } from '@/theme';
+import { RootStackNavigationProps, Routes } from '@/navigation';
+import { StackNavigationProp } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
-import { HomeStackNavigationPropsType, Routes } from '@/navigation';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 const initial = {
     username: '',
     password: '',
 };
 
-interface SignUpProps {
-    navigate: () => void;
-    signUp: () => void;
-    back: () => void;
-}
-
-const AppSignUp: React.FC<SignUpProps> = ({ navigate, signUp, back }) => {
-    const [rememberMe, setRememberMe] = useState(false);
+const AppSignUp = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [businessName, setBusinessName] = useState('');
+    const [businessType, setBusinessType] = useState('');
+    const navigation: StackNavigationProp<RootStackNavigationProps> = useNavigation();
 
     const schema = Yup.object({
         username: fields.text.label('Username').required('Bu alan zorunludur'),
         password: fields.password.label('Password').min(6, 'En az 6 karakter olmalı').required('Lütfen parola giriniz'),
     });
-    const navigation = useNavigation<HomeStackNavigationPropsType>();
 
     const form = useForm({
         defaultValues: initial,
@@ -38,165 +38,205 @@ const AppSignUp: React.FC<SignUpProps> = ({ navigate, signUp, back }) => {
     const onSubmit = (values: typeof initial) => {
         console.log(values);
     };
+
     return (
-        <View>
-            <AppMyHeader onPress={back}>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                    <Text style={styles.title}>sign_up</Text>
+        <React.Fragment>
+            <AppScreen customStyle={{ justifyContent: 'center', backgroundColor: 'white', padding: 20 }}>
+                <Text style={styles.title2}>Welcome!</Text>
+                <Text style={styles.text}>Welcome back to the real estate. Advertise your property with us.</Text>
+                <View style={{ marginTop: '10%' }}>
+                    <Text style={styles.label}>Business Name</Text>
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Golden City"
+                        placeholderTextColor="#A1A1A1"
+                        value={businessName}
+                        onChangeText={setBusinessName}
+                    />
+                    <View style={{ marginTop: 20 }}>
+                        <Text style={styles.label}>Type of Business</Text>
+                        <TextInput
+                            style={styles.input}
+                            placeholder="Property Company"
+                            placeholderTextColor="#A1A1A1"
+                            value={businessType}
+                            onChangeText={setBusinessType}
+                        />
+                    </View>
+                    <View style={{ marginTop: 20 }}>
+                        <Text style={styles.label}>Email</Text>
+                        <TextInput
+                            style={styles.input}
+                            placeholder="kdjcbk@gmail.com"
+                            placeholderTextColor="#A1A1A1"
+                            value={email}
+                            onChangeText={setEmail}
+                        />
+                    </View>
+                    <View style={{ marginTop: 20 }}>
+                        <Text style={styles.label}>Password</Text>
+                        <TextInput
+                            style={styles.input}
+                            placeholder="Password"
+                            placeholderTextColor="#A1A1A1"
+                            value={password}
+                            secureTextEntry={true}
+                            onChangeText={setPassword}
+                        />
+                    </View>
+                    <View style={{ marginTop: 20 }}>
+                        <Text style={styles.label}>Confirm Password</Text>
+                        <TextInput
+                            style={styles.input}
+                            placeholder="Confirm Password"
+                            placeholderTextColor="#A1A1A1"
+                            value={confirmPassword}
+                            secureTextEntry={true}
+                            onChangeText={setConfirmPassword}
+                        />
+                    </View>
                 </View>
-                <Form schema={schema} form={form} />
-                <AppButton mt-20 type="primary" onPress={form.handleSubmit(onSubmit)} title="sign_up" />
-                <AppButton mt-10 type="secondary" onPress={() => navigation.navigate(Routes.LOGIN_SCREEN)} title="sign_in" />
-                <View style={styles.container3}>
-                    <View style={styles.divider} />
-                    <Text style={styles.text}>sign_up_with</Text>
-                    <View style={styles.divider} />
+                <TouchableOpacity style={styles.signInButton} onPress={() => navigation.navigate(Routes.MAIN_TABS_ROOT)}>
+                    <Text style={styles.text2}>Sign Up</Text>
+                </TouchableOpacity>
+                <Text style={styles.text3}>OR</Text>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-around', top: '20%', width: '70%', alignSelf: 'center' }}>
+                    <Image
+                        source={require('../../../assets/images/Google.png')}
+                        style={styles.image}
+                    />
+                    <Image
+                        source={require('../../../assets/images/Facebook.png')}
+                        style={styles.image2}
+                    />
+                    <Image
+                        source={require('../../../assets/images/Apple.png')}
+                        style={styles.image}
+                    />
                 </View>
-                <View style={styles.container2}>
-                    <TouchableOpacity style={styles.googleButton}>
-                        <FontAwesome name="google" size={30} color={COLORS.primary} />
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.appleButton} >
-                        <FontAwesome name="apple" size={30} color={COLORS.primary} />
-                    </TouchableOpacity>
-                </View>
-            </AppMyHeader>
-        </View>
+                <TouchableOpacity onPress={() => navigation.navigate(Routes.MAIN_TABS_ROOT)}>
+                    <Text style={styles.text4}>Already Have An Account? <Text style={{ color: COLORS.primary }}>Sign In</Text></Text>
+                </TouchableOpacity>
+            </AppScreen>
+        </React.Fragment>
     );
 };
 
+export default AppSignUp;
+
 const styles = StyleSheet.create({
     container: {
+        alignItems: 'center',
         flex: 1,
-    },
-    title: {
-        fontSize: 24,
-        fontWeight: '600',
-        marginBottom: 20,
-        paddingLeft: 5
+        justifyContent: 'center'
     },
     image: {
-        width: 160,
-        height: 160,
-        resizeMode: 'cover',
-        borderRadius: 12,
+        width: 60,
+        height: 60,
     },
-    SignUpButton: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'center',
+    image2: {
+        width: 30,
+        height: 30,
+        top: 15
+    },
+    label: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        marginBottom: 8,
+        color: COLORS.secondary
+    },
+    signInButton: {
+        width: 103,
+        height: 34,
+        backgroundColor: COLORS.secondary,
+        borderRadius: 5,
+        alignSelf: 'center',
         alignItems: 'center',
-        backgroundColor: COLORS.backgroundColor,
-        borderRadius: 12,
-        height: 50,
-        width: '100%',
-        marginBottom: 20,
-        marginTop: 10
+        justifyContent: 'center',
+        top: '5%'
+
     },
     input: {
-        width: '100%',
-        height: 50,
-        borderColor: 'white',
         borderWidth: 1,
-        borderRadius: 12,
-        paddingLeft: 10,
-        marginBottom: 15,
-        backgroundColor: COLORS.backgroundColor
+        borderBottomColor: COLORS.primary,
+        borderTopColor: 'white',
+        borderLeftColor: 'white',
+        borderRightColor: 'white',
+        borderRadius: 4,
+        padding: 1,
+        fontSize: 16,
+        color: 'black'
     },
-    buttonContainer: {
-        flexDirection: 'row',
+    backContainer: {
         flex: 1,
-        paddingTop: 10
-    },
-    loginButton: {
-        width: '100%',
-        height: 45,
-        backgroundColor: COLORS.primary,
-        borderRadius: 12,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginBottom: 10,
-        flexDirection: 'row',
-        marginTop: 10
-    },
-    buttonText: {
-        color: 'white',
-        fontWeight: 'bold',
-    },
-    action: {
-        flexDirection: 'row',
-    },
-    buttonText3: {
-        color: COLORS.primary,
-        fontWeight: '600',
-        fontSize: 22,
-    },
-    buttonText2: {
-        color: COLORS.primary,
-        fontWeight: 'bold',
-        textAlign: 'center'
-    },
-    container2: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        width: '35%',
-        alignItems: 'center',
-        alignSelf: 'center',
-    },
-    googleButton: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: COLORS.white,
-        borderRadius: 30,
-        height: 62,
-        width: 62,
-        right: 7
-    },
-    appleButton: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: COLORS.white,
-        borderRadius: 30,
-        height: 62,
-        width: 62,
-        left: 7
-    },
+        justifyContent: 'flex-end',
+        alignSelf: 'flex-end',
+        marginRight: 50,
+        marginBottom: 50
 
-    dividerContainer: {
-        width: 30,
-        alignItems: 'center',
     },
-    divider: {
-        flex: 1,
-        height: 1,
-        backgroundColor: '#c0c1c3',
+    backButton: {
+        backgroundColor: 'transparent',
+    },
+    backText: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        color: COLORS.secondary,
+    },
+    boxText: {
+        color: 'white',
+        fontSize: 26,
+        fontWeight: 'bold',
+        textAlign: 'left',
+        paddingLeft: 20,
+        paddingBottom: 20,
+    },
+    box1: {
+        width: 156,
+        height: 150,
+        backgroundColor: COLORS.secondary,
+        borderRadius: 10,
+        justifyContent: 'flex-end'
+    },
+    box2: {
+        width: 156,
+        height: 150,
+        backgroundColor: '#EE6C4D',
+        borderRadius: 10,
+        justifyContent: 'flex-end',
+        marginLeft: 20
+    },
+    title: {
+        fontSize: 40,
+        color: COLORS.secondary,
+        textAlign: 'center',
+        fontWeight: '700'
+    },
+    title2: {
+        fontSize: 36,
+        color: '#EE6C4D',
+        textAlign: 'left',
+        fontWeight: '700'
     },
     text: {
-        color: '#c0c1c3',
-        paddingHorizontal: 10,
+        fontSize: 20,
+        color: COLORS.secondary,
+        paddingTop: 10
+    },
+    text2: {
         fontSize: 16,
+        color: '#fff',
     },
-    container3: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingTop: 30,
-        paddingBottom: 20
-    },
-    checkBoxContainer: {
-        backgroundColor: 'transparent',
-        borderWidth: 0,
-        padding: 0,
-        marginLeft: 0,
-    },
-    checkBoxText: {
-        color: '#c0c1c3',
+    text3: {
         fontSize: 16,
-        fontWeight: 'normal',
-        marginLeft: 5,
+        color: COLORS.secondary,
+        top: '8%',
+        textAlign: 'center'
     },
-
+    text4: {
+        fontSize: 14,
+        color: COLORS.secondary,
+        top: 85,
+        textAlign: 'center'
+    },
 });
-
-export default AppSignUp;

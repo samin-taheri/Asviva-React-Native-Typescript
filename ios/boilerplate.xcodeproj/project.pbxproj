@@ -17,15 +17,15 @@
 		196DFB551C7D4F739F52A61B /* Poppins-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D511FDF06FE4CBEAE4424D7 /* Poppins-SemiBoldItalic.ttf */; };
 		1A64A5059C5F41E2875363EA /* Poppins-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 055783A514294E40A6B11673 /* Poppins-BoldItalic.ttf */; };
 		29133AF8E04A4EA1BE58486B /* Poppins-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B34CB3D6796F4982BBA8564F /* Poppins-MediumItalic.ttf */; };
-		45EF3EF4A50E9C07EDA3B130 /* libPods-boilerplate.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 56C0F77E61E068674DCA8985 /* libPods-boilerplate.a */; };
+		38959C0F4D8F35432D0A6BF6 /* libPods-boilerplate-boilerplateTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75AB84B833B2CBC9462D86EE /* libPods-boilerplate-boilerplateTests.a */; };
 		4A034CCF197E400CB46D7EAD /* Poppins-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F8A1776CF7CC45A18DBDDAD6 /* Poppins-ExtraBoldItalic.ttf */; };
 		597096AE6D47455D826BAEF7 /* Poppins-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF136DD7ED8B4BC488905E41 /* Poppins-ExtraBold.ttf */; };
 		5F51F612C678417C9603562F /* Poppins-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C910484973F341FBBD0EA1CA /* Poppins-Thin.ttf */; };
 		77ACB94CACE1423796D52C6D /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F459C14AAFB848BCABDDC549 /* Poppins-Regular.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		9182AE06F85C965883D429CF /* libPods-boilerplate.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25AB2D75E8ADD7D65BC0B925 /* libPods-boilerplate.a */; };
 		AA1486C84EF74CEFABF3A619 /* Poppins-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3BE2759F852C4B22AD0A7C4A /* Poppins-ThinItalic.ttf */; };
 		ACC1B5218DC548EBA1A628BE /* Poppins-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BA48A06C86C64417B43B42AB /* Poppins-Italic.ttf */; };
-		C6657EC40DE6699F6784D853 /* libPods-boilerplate-boilerplateTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92AF9C48A1092E4EB654AB2C /* libPods-boilerplate-boilerplateTests.a */; };
 		C7EEB4B58FD14EBDABE73525 /* Poppins-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 31689882E97144DB96492570 /* Poppins-BlackItalic.ttf */; };
 		D4C949697CCE463A930608BF /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9BE0836E3A4440B4BB7507EA /* Poppins-Bold.ttf */; };
 		DF58B20314DD402A92062BE5 /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E4CA5C64459643478ADDCBC4 /* Poppins-Light.ttf */; };
@@ -57,26 +57,26 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = boilerplate/main.m; sourceTree = "<group>"; };
 		18E7197822EC48D58C3C5C7F /* Poppins-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Black.ttf"; path = "../app/assets/fonts/Poppins-Black.ttf"; sourceTree = "<group>"; };
 		1F882F0D355F44738387C17F /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-SemiBold.ttf"; path = "../app/assets/fonts/Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
+		25AB2D75E8ADD7D65BC0B925 /* libPods-boilerplate.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-boilerplate.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		31689882E97144DB96492570 /* Poppins-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-BlackItalic.ttf"; path = "../app/assets/fonts/Poppins-BlackItalic.ttf"; sourceTree = "<group>"; };
 		3BE2759F852C4B22AD0A7C4A /* Poppins-ThinItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-ThinItalic.ttf"; path = "../app/assets/fonts/Poppins-ThinItalic.ttf"; sourceTree = "<group>"; };
-		4493CFFA7D830A6E45C723A7 /* Pods-boilerplate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-boilerplate.release.xcconfig"; path = "Target Support Files/Pods-boilerplate/Pods-boilerplate.release.xcconfig"; sourceTree = "<group>"; };
 		4D511FDF06FE4CBEAE4424D7 /* Poppins-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-SemiBoldItalic.ttf"; path = "../app/assets/fonts/Poppins-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
-		56C0F77E61E068674DCA8985 /* libPods-boilerplate.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-boilerplate.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6AA245D3E6B28C55D3EF329D /* Pods-boilerplate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-boilerplate.debug.xcconfig"; path = "Target Support Files/Pods-boilerplate/Pods-boilerplate.debug.xcconfig"; sourceTree = "<group>"; };
-		6C0197D0DC49C1C75A0644C7 /* Pods-boilerplate-boilerplateTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-boilerplate-boilerplateTests.debug.xcconfig"; path = "Target Support Files/Pods-boilerplate-boilerplateTests/Pods-boilerplate-boilerplateTests.debug.xcconfig"; sourceTree = "<group>"; };
+		53AA10985C4D29AE5CD73D5B /* Pods-boilerplate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-boilerplate.release.xcconfig"; path = "Target Support Files/Pods-boilerplate/Pods-boilerplate.release.xcconfig"; sourceTree = "<group>"; };
+		75AB84B833B2CBC9462D86EE /* libPods-boilerplate-boilerplateTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-boilerplate-boilerplateTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = boilerplate/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		92AF9C48A1092E4EB654AB2C /* libPods-boilerplate-boilerplateTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-boilerplate-boilerplateTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8CD14E9B7CA779451FDE94D3 /* Pods-boilerplate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-boilerplate.debug.xcconfig"; path = "Target Support Files/Pods-boilerplate/Pods-boilerplate.debug.xcconfig"; sourceTree = "<group>"; };
 		9BE0836E3A4440B4BB7507EA /* Poppins-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Bold.ttf"; path = "../app/assets/fonts/Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		AEE3C6AAEBDB4442B94195D3 /* Poppins-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-LightItalic.ttf"; path = "../app/assets/fonts/Poppins-LightItalic.ttf"; sourceTree = "<group>"; };
 		AF0B679D7AF34573B3DCD5E5 /* Poppins-ExtraLightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-ExtraLightItalic.ttf"; path = "../app/assets/fonts/Poppins-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
 		B34CB3D6796F4982BBA8564F /* Poppins-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-MediumItalic.ttf"; path = "../app/assets/fonts/Poppins-MediumItalic.ttf"; sourceTree = "<group>"; };
+		B5EA899966C31AFC32BBF6D4 /* Pods-boilerplate-boilerplateTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-boilerplate-boilerplateTests.release.xcconfig"; path = "Target Support Files/Pods-boilerplate-boilerplateTests/Pods-boilerplate-boilerplateTests.release.xcconfig"; sourceTree = "<group>"; };
 		BA48A06C86C64417B43B42AB /* Poppins-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Italic.ttf"; path = "../app/assets/fonts/Poppins-Italic.ttf"; sourceTree = "<group>"; };
 		BD2790CA1B0E4220ABF10231 /* Poppins-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-ExtraLight.ttf"; path = "../app/assets/fonts/Poppins-ExtraLight.ttf"; sourceTree = "<group>"; };
 		C910484973F341FBBD0EA1CA /* Poppins-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Thin.ttf"; path = "../app/assets/fonts/Poppins-Thin.ttf"; sourceTree = "<group>"; };
+		CE467B152C70C64EADE33A64 /* Pods-boilerplate-boilerplateTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-boilerplate-boilerplateTests.debug.xcconfig"; path = "Target Support Files/Pods-boilerplate-boilerplateTests/Pods-boilerplate-boilerplateTests.debug.xcconfig"; sourceTree = "<group>"; };
 		CF136DD7ED8B4BC488905E41 /* Poppins-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-ExtraBold.ttf"; path = "../app/assets/fonts/Poppins-ExtraBold.ttf"; sourceTree = "<group>"; };
 		E4CA5C64459643478ADDCBC4 /* Poppins-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Light.ttf"; path = "../app/assets/fonts/Poppins-Light.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		EDC0CA8ED699557C724B8C34 /* Pods-boilerplate-boilerplateTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-boilerplate-boilerplateTests.release.xcconfig"; path = "Target Support Files/Pods-boilerplate-boilerplateTests/Pods-boilerplate-boilerplateTests.release.xcconfig"; sourceTree = "<group>"; };
 		F459C14AAFB848BCABDDC549 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Regular.ttf"; path = "../app/assets/fonts/Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		F8A1776CF7CC45A18DBDDAD6 /* Poppins-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-ExtraBoldItalic.ttf"; path = "../app/assets/fonts/Poppins-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
 		FB751C7FD15849A3A744FD3A /* Poppins-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Medium.ttf"; path = "../app/assets/fonts/Poppins-Medium.ttf"; sourceTree = "<group>"; };
@@ -87,7 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C6657EC40DE6699F6784D853 /* libPods-boilerplate-boilerplateTests.a in Frameworks */,
+				38959C0F4D8F35432D0A6BF6 /* libPods-boilerplate-boilerplateTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,7 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45EF3EF4A50E9C07EDA3B130 /* libPods-boilerplate.a in Frameworks */,
+				9182AE06F85C965883D429CF /* libPods-boilerplate.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,8 +136,8 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				56C0F77E61E068674DCA8985 /* libPods-boilerplate.a */,
-				92AF9C48A1092E4EB654AB2C /* libPods-boilerplate-boilerplateTests.a */,
+				25AB2D75E8ADD7D65BC0B925 /* libPods-boilerplate.a */,
+				75AB84B833B2CBC9462D86EE /* libPods-boilerplate-boilerplateTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -177,10 +177,10 @@
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				6AA245D3E6B28C55D3EF329D /* Pods-boilerplate.debug.xcconfig */,
-				4493CFFA7D830A6E45C723A7 /* Pods-boilerplate.release.xcconfig */,
-				6C0197D0DC49C1C75A0644C7 /* Pods-boilerplate-boilerplateTests.debug.xcconfig */,
-				EDC0CA8ED699557C724B8C34 /* Pods-boilerplate-boilerplateTests.release.xcconfig */,
+				8CD14E9B7CA779451FDE94D3 /* Pods-boilerplate.debug.xcconfig */,
+				53AA10985C4D29AE5CD73D5B /* Pods-boilerplate.release.xcconfig */,
+				CE467B152C70C64EADE33A64 /* Pods-boilerplate-boilerplateTests.debug.xcconfig */,
+				B5EA899966C31AFC32BBF6D4 /* Pods-boilerplate-boilerplateTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -217,12 +217,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "boilerplateTests" */;
 			buildPhases = (
-				DFA3DAC940139FDD2FA7360B /* [CP] Check Pods Manifest.lock */,
+				135D6321006AEBAB39ED0414 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				4C35AEB28D87F19ACE9C6089 /* [CP] Embed Pods Frameworks */,
-				D07AC55E23411959B81C3861 /* [CP] Copy Pods Resources */,
+				850D7E1D4533A1B0C72DCA1A /* [CP] Embed Pods Frameworks */,
+				32027F8D8D561D7CC4A00F79 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -238,14 +238,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "boilerplate" */;
 			buildPhases = (
-				2B64730295B988500E7511EB /* [CP] Check Pods Manifest.lock */,
+				E8286563A7DC4C4F31FD7A58 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				1DF34A47F6228C0B13836C65 /* [CP] Embed Pods Frameworks */,
-				400FC485E118F28C48A005C4 /* [CP] Copy Pods Resources */,
+				C5E612D26615BD12E8E41697 /* [CP] Embed Pods Frameworks */,
+				145D6EF94C2106732463DB40 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -347,24 +347,7 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"../node_modules/react-native/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"../node_modules/react-native/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
 		};
-		1DF34A47F6228C0B13836C65 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-boilerplate/Pods-boilerplate-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-boilerplate/Pods-boilerplate-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-boilerplate/Pods-boilerplate-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		2B64730295B988500E7511EB /* [CP] Check Pods Manifest.lock */ = {
+		135D6321006AEBAB39ED0414 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -379,14 +362,14 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-boilerplate-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-boilerplate-boilerplateTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		400FC485E118F28C48A005C4 /* [CP] Copy Pods Resources */ = {
+		145D6EF94C2106732463DB40 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -403,24 +386,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-boilerplate/Pods-boilerplate-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		4C35AEB28D87F19ACE9C6089 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-boilerplate-boilerplateTests/Pods-boilerplate-boilerplateTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-boilerplate-boilerplateTests/Pods-boilerplate-boilerplateTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-boilerplate-boilerplateTests/Pods-boilerplate-boilerplateTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D07AC55E23411959B81C3861 /* [CP] Copy Pods Resources */ = {
+		32027F8D8D561D7CC4A00F79 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -437,7 +403,41 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-boilerplate-boilerplateTests/Pods-boilerplate-boilerplateTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		DFA3DAC940139FDD2FA7360B /* [CP] Check Pods Manifest.lock */ = {
+		850D7E1D4533A1B0C72DCA1A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-boilerplate-boilerplateTests/Pods-boilerplate-boilerplateTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-boilerplate-boilerplateTests/Pods-boilerplate-boilerplateTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-boilerplate-boilerplateTests/Pods-boilerplate-boilerplateTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C5E612D26615BD12E8E41697 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-boilerplate/Pods-boilerplate-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-boilerplate/Pods-boilerplate-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-boilerplate/Pods-boilerplate-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E8286563A7DC4C4F31FD7A58 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -452,7 +452,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-boilerplate-boilerplateTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-boilerplate-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -511,7 +511,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6C0197D0DC49C1C75A0644C7 /* Pods-boilerplate-boilerplateTests.debug.xcconfig */;
+			baseConfigurationReference = CE467B152C70C64EADE33A64 /* Pods-boilerplate-boilerplateTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -539,7 +539,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EDC0CA8ED699557C724B8C34 /* Pods-boilerplate-boilerplateTests.release.xcconfig */;
+			baseConfigurationReference = B5EA899966C31AFC32BBF6D4 /* Pods-boilerplate-boilerplateTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -564,7 +564,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6AA245D3E6B28C55D3EF329D /* Pods-boilerplate.debug.xcconfig */;
+			baseConfigurationReference = 8CD14E9B7CA779451FDE94D3 /* Pods-boilerplate.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -593,7 +593,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4493CFFA7D830A6E45C723A7 /* Pods-boilerplate.release.xcconfig */;
+			baseConfigurationReference = 53AA10985C4D29AE5CD73D5B /* Pods-boilerplate.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

@@ -2,71 +2,34 @@ import React, { useEffect, useState } from 'react';
 import { useNavigation, useTheme } from '@react-navigation/native';
 import { AppScreen, AppSwitch } from '@/components';
 import { HomeStackNavigationPropsType, Routes } from '@/navigation';
-import AppBackgroundCard from '@/components/Common/AppBackgroundCard';
+import { Dimensions, Linking, Platform, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import AppCustomHeader from '@/components/Common/AppCustomHeader';
-import AppTotalWorkout from '@/components/Common/AppTotalWorkout';
-import AppWeaklyGoals from '@/components/Common/AppWeaklyGoals';
-import AppWorkoutDetails from '@/components/Common/AppWorkoutDetails';
-import AppChart from '@/components/Common/AppCharts';
-import { Dimensions, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import useBLE from '@/hooks/useBLE';
-import { BleManager, State } from 'react-native-ble-plx';
-import DeviceModal from '@/components/Common/AppDeviceModal';
-import PulseIndicator from '@/components/Common/AppPulseIndicator';
-import { COLORS } from '@/theme';
-import { settingsRedux } from '@/store';
-import { useAppDispatch, useAppSelector } from '@/hooks';
+import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+import Geolocation from '@react-native-community/geolocation';
+
+interface Location {
+  latitude: number;
+  longitude: number;
+}
 
 const HomePage = () => {
   const navigation = useNavigation<HomeStackNavigationPropsType>();
-  const theme = useAppSelector(state => state.settings.theme);
-  const dispatch = useAppDispatch();
-  const theme2 = useTheme();
-
-  const {
-    requestPermissions,
-    scanForPeripherals,
-    allDevices,
-    connectToDevice,
-    connectedDevice,
-    heartRate,
-    distance,
-    disconnectFromDevice,
-  } = useBLE();
-  const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
-
-  const scanForDevices = () => {
-    requestPermissions(isGranted => {
-      if (isGranted) {
-        scanForPeripherals();
-      }
-    });
-  };
-
-  const hideModal = () => {
-    setIsModalVisible(false);
-  };
-
-  const openModal = async () => {
-    scanForDevices();
-    setIsModalVisible(true);
-  };
-  const manager = new BleManager()
+  const [currentLocation, setCurrentLocation] = useState<Location | null>(null);
+  const getCurrentLocation = () => {
+    Geolocation.getCurrentPosition(position => {
+      const { latitude, longitude } = position.coords
+      setCurrentLocation({ latitude, longitude })
+    },
+      error => {
+        console.log(error.message);
+      },
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+    )
+  }
 
   useEffect(() => {
-    const subscription = manager.onStateChange((state: State) => {
-      if (state === 'PoweredOn') {
-        scanForPeripherals();
-        subscription.remove();
-      }
-    }, true);
-
-    return () => {
-      subscription.remove();
-    };
-  }, [manager]);
-
-
+    getCurrentLocation();
+  }, [])
 
   return (
     <React.Fragment>
@@ -74,43 +37,40 @@ const HomePage = () => {
         hidden={true}
       />
       <AppCustomHeader navigation={navigation} onLogo={true} />
-      <AppScreen scroll customStyle={{ backgroundColor: theme2.colors.background }}>
-        <AppBackgroundCard title="find_your_coach" backgroundImage={require('../../assets/images/bg-3.jpg')} onPress={() => { navigation.navigate(Routes.SPORTS_CENTER_SCREEN) }}
-        />
-        {/* <AppSwitch value={theme === 'dark'} onChange={() => dispatch(settingsRedux.setTheme(theme === 'light' ? 'dark' : 'light'))} /> */}
-        <AppTotalWorkout />
-        <AppWeaklyGoals onPress={() => { navigation.navigate(Routes.QUESTIONNAIRE_SCREEN) }} />
-        <AppWorkoutDetails onPress={() => navigation.navigate(Routes.WORKOUTDETAILS_SCREEN)} title="record_of_workouts" />
-        <AppChart />
-        <View>
-          {connectedDevice ? (
-            <>
-              <PulseIndicator />
-              <Text style={{ color: 'black' }}>Your Distance Is: {distance} m</Text>
-              <Text style={{ color: 'black' }}>Your Heart Rate Is: {heartRate} bpm</Text>
-            </>
-          ) : (
-            <Text style={{ color: 'black' }}>
-              Please Connect to a Monitor
-            </Text>
-          )}
-        </View>
-        <TouchableOpacity
-          onPress={connectedDevice ? disconnectFromDevice : openModal}>
-          <Text style={{ color: 'black' }}>
-            {connectedDevice ? 'Disconnect' : 'Connect'}
-          </Text>
-        </TouchableOpacity>
-        <DeviceModal
-          closeModal={hideModal}
-          visible={isModalVisible}
-          connectToPeripheral={connectToDevice}
-          devices={allDevices}
-        />
-        {connectedDevice &&
-          <Text style={{ color: '#000' }}>{connectedDevice.id}</Text>
-        }
-      </AppScreen>
+      <SafeAreaView style={styles.mapContainer}>
+        <MapView
+          provider={PROVIDER_GOOGLE}
+          style={styles.map}
+          initialRegion={{
+            latitude: 36.54375,
+            longitude: 31.99982,
+            latitudeDelta: 1,
+            longitudeDelta: 1,
+          }}
+          showsUserLocation={true}
+          zoomEnabled={true}
+          zoomControlEnabled={true}
+        >
+          <Marker
+            description='Delivery'
+            coordinate={{ latitude: 36.54375, longitude: 31.99982 }} />
+        </MapView>
+      </SafeAreaView>
+      <TouchableOpacity style={{
+        position: 'absolute',
+        top: '29%',
+        left: '7%',
+        alignSelf: 'flex-start',
+        width: '25%',
+        height: '3%',
+        borderRadius: 2,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(255, 255, 255, 0.75)',
+      }}
+        onPress={() => Linking.openURL('google.navigation:q=36.54375+31.99982')}>
+        <Text style={{ color: '#656565', fontSize: 13, fontWeight: 'bold' }}>Open on Maps</Text>
+      </TouchableOpacity>
     </React.Fragment>
   );
 };
@@ -123,11 +83,31 @@ const windowHeight = Dimensions.get('window').height;
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    height: windowHeight,
     paddingHorizontal: 10,
+    marginBottom: 16,
+  },
+  mapContainer: {
+    height: 230,
+    zIndex: -1,
+    borderRadius: 10,
+    overflow: 'hidden',
+    alignItems: 'center',
+    justifyContent: 'center',
+    elevation: 4,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+    margin: 15
   },
   scrollContainer: {
     padding: 16,
+  },
+  map: {
+    flex: 1,
+    height: '100%',
+    width: '100%',
+    borderRadius: 10,
   },
   title: {
     fontSize: 30,

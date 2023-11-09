@@ -1,11 +1,8 @@
-import { HomePage} from '@/screens';
+import { FetchDataPage, FormPage, HomePage, LoginPage, SignUp} from '@/screens';
 import {IScreen} from '@/utils';
 import {BottomTabStackNavigationProps} from './types';
 import {ICONS} from '../../utils/icon-enums';
 import Routes from '../Routes';
-import SportsCenter from '@/screens/SportsCenter';
-import Cycle from '@/screens/Cycle';
-import MorePage from '@/screens/MorePage';
 
 export const Screens = [
   {
@@ -16,24 +13,24 @@ export const Screens = [
     headerShown: false,
   },
   {
-    title: 'sports_center',
-    name: Routes.SPORTS_CENTER_SCREEN,
-    component: SportsCenter,
+    title: 'Fetch data',
+    name: Routes.FETCH_DATA_SCREEN,
+    component: FetchDataPage,
     icon: ICONS.network,
     headerShown: false,
   },
   {
-    title: 'Cycle',
-    name: Routes.CYCLE_SCREEN,
-    component: Cycle,
+    title: 'Form',
+    name: Routes.SIGNUP_SCREEN,
+    component: SignUp,
     icon: ICONS.cycle,
     headerShown: false,
   },
   {
-    title: 'More',
-    name: Routes.MORE_SCREEN,
-    component: MorePage,
+    title: 'Login',
+    name: Routes.LOGIN_SCREEN,
+    component: LoginPage,
     icon: ICONS.grid,
     headerShown: false,
   },
-] as IScreen<BottomTabStackNavigationProps>[];
+] as unknown as IScreen<BottomTabStackNavigationProps>[];
