@@ -1,26 +1,26 @@
-import React, {memo, useEffect} from 'react';
-import {StyleSheet, ViewStyle} from 'react-native';
+import React, { memo, useEffect } from 'react';
+import { StyleSheet, ViewStyle } from 'react-native';
 
 import LinearGradient from 'react-native-linear-gradient';
-import Animated, {AnimatedStyleProp, useAnimatedStyle, useSharedValue, withSpring} from 'react-native-reanimated';
+import Animated, { AnimatedStyleProp, useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
 
-import {Block, Text} from '@/components';
-import {useAppSelector} from '@/hooks';
-import {COLORS} from '@/theme';
+import { Block, Text } from '@/components';
+import { useAppSelector } from '@/hooks';
+import { COLORS } from '@/theme';
 
-import {Props} from './floating-button';
+import { Props } from './floating-button';
 
-function FloatingButton({isVisible = false, buttonText = 'approve', onPress = () => {}, closeButtonText = 'not_now', onClose = () => {}}: Props) {
+function FloatingButton({ isVisible = false, buttonText = 'approve', onPress = () => { }, closeButtonText = 'not_now', onClose = () => { } }: Props) {
   //#region Animation
   const bottomTranslateValue = useSharedValue(0);
   const animatedStyles = useAnimatedStyle(() => {
     return {
-      transform: [{translateY: bottomTranslateValue.value}],
+      transform: [{ translateY: bottomTranslateValue.value }],
     } as AnimatedStyleProp<ViewStyle>;
   });
 
   useEffect(() => {
-    bottomTranslateValue.value = withSpring(isVisible ? 5 : 175);
+    bottomTranslateValue.value = withSpring(isVisible ? 5 : 175, { duration: 1500 });
   }, [isVisible]);
   //#endregion
 
@@ -32,7 +32,7 @@ function FloatingButton({isVisible = false, buttonText = 'approve', onPress = ()
       <LinearGradient colors={shadowColors} style={styles.menuGradient}>
         <Block center mt-10>
           <Block pressable onPress={onPress}>
-            <Block p-10 px-20 rounded-50 style={{backgroundColor: COLORS.primary}}>
+            <Block p-10 px-20 rounded-50 style={{ backgroundColor: COLORS.primary }}>
               <Text white>{buttonText}</Text>
             </Block>
           </Block>

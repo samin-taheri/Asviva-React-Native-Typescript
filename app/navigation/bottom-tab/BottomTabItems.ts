@@ -19,14 +19,14 @@ export const Screens = [
     title: 'sports_center',
     name: Routes.SPORTS_CENTER_SCREEN,
     component: SportsCenter,
-    icon: ICONS.network,
+    icon: ICONS.cycle,
     headerShown: false,
   },
   {
     title: 'Cycle',
     name: Routes.CYCLE_SCREEN,
     component: Cycle,
-    icon: ICONS.cycle,
+    icon: ICONS.network,
     headerShown: false,
   },
   {

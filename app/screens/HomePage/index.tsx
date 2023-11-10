@@ -17,6 +17,7 @@ import { COLORS } from '@/theme';
 import { settingsRedux } from '@/store';
 import { useAppDispatch, useAppSelector } from '@/hooks';
 
+
 const HomePage = () => {
   const navigation = useNavigation<HomeStackNavigationPropsType>();
   const theme = useAppSelector(state => state.settings.theme);

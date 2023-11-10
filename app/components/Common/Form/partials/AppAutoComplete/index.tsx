@@ -1,14 +1,14 @@
-import React, {useEffect, useState} from 'react';
-import {Modal, Pressable, SafeAreaView, StyleSheet} from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Modal, Pressable, SafeAreaView, StyleSheet } from 'react-native';
 
-import {debounce, get} from 'lodash';
-import {Controller, UseFormReturn} from 'react-hook-form';
+import { debounce, get } from 'lodash';
+import { Controller, UseFormReturn } from 'react-hook-form';
+
+import { AppButton, AppFlatList, Block, Text } from '@/components';
+import { useTheme } from '@/hooks';
 
 import AppInput from '../../../AppInput';
-import {SelectOptions} from '../../types';
-
-import {AppButton, AppFlatList, Block, Text} from '@/components';
-import {useTheme} from '@/hooks';
+import { SelectOptions } from '../../types';
 
 interface AppAutoCompleteProps {
   placeholder?: string;
@@ -21,7 +21,7 @@ interface AppAutoCompleteProps {
 }
 
 function AppAutoComplete(props: AppAutoCompleteProps) {
-  const {options = [], valueProp = 'value', displayProp = 'label', label, name, form} = props;
+  const { options = [], valueProp = 'value', displayProp = 'label', label, name, form } = props;
   const [open, setOpen] = useState(false);
   const [current, setCurrent] = useState<object | never>();
   const [filteredOptions, setFilteredOptions] = useState(options);
@@ -40,13 +40,13 @@ function AppAutoComplete(props: AppAutoCompleteProps) {
     <Controller
       name={name}
       control={form.control}
-      render={({field: {onChange}, fieldState: {error}}) => (
+      render={({ field: { onChange }, fieldState: { error } }) => (
         <>
           <AppInput
             onPress={() => {
               setOpen(true);
             }}
-            onChangeText={() => {}}
+            onChangeText={() => { }}
             editable={false}
             animatedPlaceholder={label}
             disabled
@@ -68,9 +68,9 @@ function AppAutoComplete(props: AppAutoCompleteProps) {
             onRequestClose={() => {
               setOpen(!open);
             }}>
-            <Block style={{flex: 1}}>
-              <SafeAreaView style={{flex: 1, backgroundColor: theme.colors.screenBgColor}}>
-                <Block py-20 style={{flex: 1}}>
+            <Block style={{ flex: 1 }}>
+              <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.screenBgColor }}>
+                <Block py-20 style={{ flex: 1 }}>
                   <Block row center px-12 w-full>
                     <Block w-40>
                       <AppButton
@@ -93,7 +93,7 @@ function AppAutoComplete(props: AppAutoCompleteProps) {
                   <AppFlatList
                     preloader={false}
                     data={filteredOptions as never[]}
-                    renderItem={({item}) => (
+                    renderItem={({ item }) => (
                       <Pressable
                         onPress={() => {
                           setCurrent(item);

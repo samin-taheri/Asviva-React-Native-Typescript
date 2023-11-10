@@ -1,25 +1,28 @@
-import React, {memo} from 'react';
-import {Dimensions, Linking, Platform} from 'react-native';
+import React, { memo } from 'react';
+import { Dimensions, Linking, Platform } from 'react-native';
 
 import MultipleImagePicker from '@baronha/react-native-multiple-image-picker';
-import notifee, {Notification, TimestampTrigger, TriggerType} from '@notifee/react-native';
-import {fetch} from '@react-native-community/netinfo';
-import {Buffer} from 'buffer';
+import notifee, { Notification, TimestampTrigger, TriggerType } from '@notifee/react-native';
+import { fetch } from '@react-native-community/netinfo';
+import { CommonActions } from '@react-navigation/native';
+import { Buffer } from 'buffer';
 import md5Encrypt from 'md5';
-import {launchImageLibrary} from 'react-native-image-picker';
+import { launchImageLibrary } from 'react-native-image-picker';
 import ImageResizer from 'react-native-image-resizer';
-import RenderHtml, {defaultSystemFonts, HTMLContentModel, HTMLElementModel} from 'react-native-render-html';
+import RenderHtml, { defaultSystemFonts, HTMLContentModel, HTMLElementModel } from 'react-native-render-html';
 import Toast from 'react-native-toast-message';
 
-import {i18next} from '@/lang';
-import {FONTS as THEME_FONTS} from '@/theme';
+import { i18next } from '@/lang';
+import { rootNavigationRef } from '@/navigation';
+import { FONTS as THEME_FONTS } from '@/theme';
 
-import {LocalNotificationType, ToastType} from './infrastructure/enums';
-import {Coordinates, ImagePickerResultType, ImageResizeResultType, ImageType, LocalNotificationParams, ToastParams} from './infrastructure/types';
-import {Permission, PERMISSION_TYPE} from './permission';
+import { LocalNotificationType, ToastType } from './infrastructure/enums';
+import { ResetRouteParams, ResetRoutesParams } from './infrastructure/interfaces';
+import { Coordinates, ImagePickerResultType, ImageResizeResultType, ImageType, LocalNotificationParams, ToastParams } from './infrastructure/types';
+import { Permission, PERMISSION_TYPE } from './permission';
 
-const {width} = Dimensions.get('screen');
-const {t} = i18next;
+const { width } = Dimensions.get('screen');
+const { t } = i18next;
 
 const systemFonts = [...defaultSystemFonts, THEME_FONTS.fontFamily];
 
@@ -30,7 +33,7 @@ const customHTMLElementModels = {
   }),
 };
 
-const RenderHtmlComponent = ({html = '', styles = {}}) => {
+const RenderHtmlComponent = ({ html = '', styles = {} }) => {
   return (
     <RenderHtml
       systemFonts={systemFonts}
@@ -39,7 +42,7 @@ const RenderHtmlComponent = ({html = '', styles = {}}) => {
         ...styles,
       }}
       contentWidth={width}
-      source={{html}}
+      source={{ html }}
       customHTMLElementModels={customHTMLElementModels}
       enableExperimentalMarginCollapsing
     />
@@ -192,7 +195,7 @@ const resizeImageSingle = async (image: ImageType): Promise<ImageResizeResultTyp
       uri: newImage.uri,
     };
 
-    return Platform.OS === 'android' ? returnData : ({...image, ...newImage} as ImageResizeResultType);
+    return Platform.OS === 'android' ? returnData : ({ ...image, ...newImage } as ImageResizeResultType);
   } catch (error) {
     return {
       name: '',
@@ -214,14 +217,14 @@ const resizeImageMultiple = async (response: Array<ImageType>): Promise<Array<Im
 const launchMultipleImages = async () => {
   await Permission.checkPermission(PERMISSION_TYPE.photo);
   const response = await MultipleImagePicker.openPicker({});
-  const customImages = response.map(image => ({width: image.width, height: image.height, filename: image.fileName, path: image.path, type: image.type} as ImageType));
+  const customImages = response.map(image => ({ width: image.width, height: image.height, filename: image.fileName, path: image.path, type: image.type } as ImageType));
   const resizedImagesArr = await resizeImageMultiple(customImages);
   return resizedImagesArr;
 };
 
 const launchSingleImage = async (): Promise<ImagePickerResultType> => {
   return new Promise(resolve => {
-    launchImageLibrary({mediaType: 'photo'}, async res => {
+    launchImageLibrary({ mediaType: 'photo' }, async res => {
       if (!res.didCancel) {
         const selectedImage = res.assets?.[0];
         if (selectedImage) {
@@ -233,12 +236,12 @@ const launchSingleImage = async (): Promise<ImagePickerResultType> => {
             type: selectedImage.type || '',
           };
           const resizedImage = await resizeImageSingle(customImage);
-          resolve({image: resizedImage, status: true});
+          resolve({ image: resizedImage, status: true });
         } else {
-          resolve({image: null, status: false});
+          resolve({ image: null, status: false });
         }
       } else {
-        resolve({image: null, status: false});
+        resolve({ image: null, status: false });
       }
     });
   });
@@ -291,6 +294,24 @@ const cancelLocalNotification = async (localNotificationId: string) => {
 
 const convertToCurrency = (amount: number | string, currency = '₺') => `${Number.parseFloat(amount.toString()).toFixed(2)} ${currency}`;
 
+const navigatePage = (route: ResetRoutesParams) => {
+  rootNavigationRef?.current?.dispatch(
+    CommonActions.navigate({
+      name: route.name,
+      params: route.params,
+    }),
+  );
+};
+
+const resetPage = (route: ResetRouteParams) => {
+  rootNavigationRef?.current?.dispatch(
+    CommonActions.reset({
+      index: route.index ?? 0,
+      routes: route.routes,
+    }),
+  );
+};
+
 export {
   HtmlRender,
   base64,
@@ -309,4 +330,6 @@ export {
   createLocalNotification,
   cancelLocalNotification,
   convertToCurrency,
+  navigatePage,
+  resetPage,
 };

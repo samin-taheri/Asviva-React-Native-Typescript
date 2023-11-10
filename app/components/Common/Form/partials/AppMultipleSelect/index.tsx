@@ -1,14 +1,14 @@
-import React, {FC, useEffect, useState} from 'react';
-import {Keyboard, Modal} from 'react-native';
+import React, { FC, useEffect, useState } from 'react';
+import { Keyboard, Modal } from 'react-native';
 
-import {debounce, get} from 'lodash';
-import {Controller, UseFormReturn} from 'react-hook-form';
+import { debounce, get } from 'lodash';
+import { Controller, UseFormReturn } from 'react-hook-form';
+
+import { AppButton, AppFlatList, Block, Text } from '@/components';
 
 import RenderItem from './RenderItem';
 import AppInput from '../../../AppInput';
-import {SelectOptionItemType, SelectOptions} from '../../types';
-
-import {AppButton, AppFlatList, Block, Text} from '@/components';
+import { SelectOptionItemType, SelectOptions } from '../../types';
 
 interface AppMultipleSelectProps {
   placeholder?: string;
@@ -23,7 +23,7 @@ interface AppMultipleSelectProps {
 let selections: Array<object> = [];
 
 const AppMultipleSelect: FC<AppMultipleSelectProps | never> = props => {
-  const {options = [], valueProp, displayProp, label, name = '', form} = props;
+  const { options = [], valueProp, displayProp, label, name = '', form } = props;
   const [open, setOpen] = useState<boolean>(false);
   const [filteredOptions, setFilteredOptions] = useState(options);
   const [inputSelections, setInputSelections] = useState<Array<string>>([]);
@@ -47,7 +47,7 @@ const AppMultipleSelect: FC<AppMultipleSelectProps | never> = props => {
     <Controller
       name={name}
       control={form?.control}
-      render={({field: {onChange}, fieldState: {error}}) => (
+      render={({ field: { onChange }, fieldState: { error } }) => (
         <>
           <AppInput
             onPress={() => {
@@ -105,7 +105,7 @@ const AppMultipleSelect: FC<AppMultipleSelectProps | never> = props => {
                       </Block>
                     </Block>
                   }
-                  renderItem={({item}: {item: SelectOptionItemType}) => (
+                  renderItem={({ item }: { item: SelectOptionItemType }) => (
                     <RenderItem
                       name={name}
                       item={item}

@@ -21,8 +21,6 @@ import Alert from './Dialog';
 import EmptyList from './EmptyList';
 import FloatingButton from './FloatingButton';
 import Form from './Form/Form';
-import Col from './Grid/Col';
-import Row from './Grid/Row';
 import LoadingCard from './LoadingCard';
 import LoadingScreen from './LoadingScreen';
 import RadioButton from './RadioButton';
@@ -41,8 +39,6 @@ export {
   AppCheckbox,
   AppCollapsible,
   Form,
-  Col,
-  Row,
   AppImage,
   AppButton,
   AppInput,

@@ -1,28 +1,27 @@
-import React, {FC, memo} from 'react';
+import React, { FC, memo } from 'react';
 
-import {Controller} from 'react-hook-form';
+import { Controller } from 'react-hook-form';
 
-import {Props} from './app-radio-button';
+import { Props } from './app-radio-button';
 import Block from '../../../Block';
-import RadioButton, {RadioButtonItem} from '../../../RadioButton';
+import RadioButton from '../../../RadioButton';
 import Text from '../../../Text';
 
-const AppRadioButton: FC<Props | any> = props => {
-  const {form, name, options} = props; // prettier-ignore
+const AppRadioButton: FC<Props | never> = props => {
+  const { options = [], name = '', form } = props;
 
   return (
     <Controller
       name={name}
       control={form?.control}
-      render={({field: {onChange, value}, fieldState: {error}}) => (
+      render={({ field: { onChange, value }, fieldState: { error } }) => (
         <React.Fragment>
-          {options?.map((item: RadioButtonItem, index: number) => (
+          {options?.map((item, index: number) => (
             <RadioButton
               key={index}
               item={item}
               checked={value === item.value}
               setChecked={() => {
-                console.log(item.value);
                 onChange?.(item.value);
               }}
             />
@@ -30,7 +29,7 @@ const AppRadioButton: FC<Props | any> = props => {
           {error && (
             <Block px={10}>
               <Text error md>
-                * {error?.message}
+                * {error?.message ?? ' '}
               </Text>
             </Block>
           )}

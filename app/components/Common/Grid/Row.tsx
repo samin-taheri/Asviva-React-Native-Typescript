@@ -1,10 +1,11 @@
 import React, { FC, memo, ReactNode } from 'react';
 
 import { Block } from '@/components';
+import { IStyleShortcuts } from '@/utils';
 
-type Props = {
+interface Props extends IStyleShortcuts {
   children: ReactNode;
-};
+}
 
 const Row: FC<Props> = props => {
   const { children } = props;

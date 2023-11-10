@@ -1,12 +1,12 @@
-import {StyleProp, ViewProps} from 'react-native';
+import { StyleProp, ViewProps } from 'react-native';
 
-import {IStyles, ITextStyles} from './infrastructure/interfaces';
-import {UseThemeType} from './infrastructure/types';
+import { COLORS, FONTS, SIZES, themeColors, window } from '@/theme';
+import { fontPixel } from '@/utils';
+
+import { IStyles, ITextStyles } from './infrastructure/interfaces';
+import { UseThemeType } from './infrastructure/types';
 import rgba from './rgba';
-import {setupSizes} from './style/size';
-
-import {COLORS, FONTS, SIZES, themeColors, window} from '@/theme';
-import {fontPixel} from '@/utils';
+import { setupSizes } from './style/size';
 
 const getStyles = (t: 'light' | 'dark') => {
   const colors = themeColors[t || 'light'];
@@ -60,7 +60,7 @@ const getStyles = (t: 'light' | 'dark') => {
       bottom: {
         justifyContent: 'flex-end',
       },
-      wrap: {flexWrap: 'wrap'},
+      wrap: { flexWrap: 'wrap' },
       border: {
         borderWidth: 1,
         borderColor: 'gray',
@@ -105,7 +105,6 @@ const getStyles = (t: 'light' | 'dark') => {
 };
 
 const getTextStyles = (t: 'light' | 'dark') => {
-  const colors: typeof COLORS = themeColors[t || 'light'];
   const styles: ITextStyles = {
     fullWidth: {
       width: '100%',
@@ -161,25 +160,25 @@ const getTextStyles = (t: 'light' | 'dark') => {
       fontFamily: 'Poppins-Regular',
     },
     default: {
-      color: colors.defaultTextColor,
+      color: themeColors[t || 'light'].defaultTextColor,
     },
     primary: {
-      color: colors.primary,
+      color: themeColors[t || 'light'].primary,
     },
     black: {
-      color: colors.black,
+      color: themeColors[t || 'light'].black,
     },
     secondary: {
-      color: colors.secondary,
+      color: themeColors[t || 'light'].secondary,
     },
     success: {
-      color: colors.successText,
+      color: themeColors[t || 'light'].successText,
     },
     white: {
-      color: colors.white,
+      color: themeColors[t || 'light'].white,
     },
     error: {
-      color: colors.error,
+      color: themeColors[t || 'light'].error,
     },
     light: {
       fontFamily: FONTS.light,
@@ -197,7 +196,7 @@ const getTextStyles = (t: 'light' | 'dark') => {
   return styles;
 };
 
-const sizes = Object.freeze({...setupSizes});
+const sizes = Object.freeze({ ...setupSizes });
 
 const defaultTextStyles = {
   color: COLORS.defaultTextColor,
@@ -213,7 +212,7 @@ const StyleCorrespondings = {
 
 export const getStyleShortcuts = (props: UseThemeType, t?: 'light' | 'dark') => {
   let styles = {} as IStyles | StyleProp<ViewProps>;
-  const {shortcutStyles, predefinedStyles} = getStyles(t || 'light');
+  const { shortcutStyles, predefinedStyles } = getStyles(t || 'light');
 
   if (props.s) {
     props.s.split(' ').forEach(prop => {
@@ -224,9 +223,9 @@ export const getStyleShortcuts = (props: UseThemeType, t?: 'light' | 'dark') => 
       } else {
         const customPredefinedStyles = predefinedStyles?.[customProp] as object;
         if (customPredefinedStyles) {
-          styles = {...(styles as object), ...(sizes?.[customProp] as object), ...customPredefinedStyles};
+          styles = { ...(styles as object), ...(sizes?.[customProp] as object), ...customPredefinedStyles };
         } else {
-          styles = {...(styles as object), ...(sizes?.[customProp] as object)};
+          styles = { ...(styles as object), ...(sizes?.[customProp] as object) };
         }
       }
     });
@@ -247,14 +246,14 @@ export const getStyleShortcuts = (props: UseThemeType, t?: 'light' | 'dark') => 
     } else {
       const customPredefinedStyles = predefinedStyles?.[customProp] as object;
       if (customPredefinedStyles) {
-        styles = {...(styles as object), ...customPredefinedStyles, ...(sizes?.[customProp] as object)};
+        styles = { ...(styles as object), ...customPredefinedStyles, ...(sizes?.[customProp] as object) };
       } else {
-        styles = {...(styles as object), ...(sizes?.[customProp] as object)};
+        styles = { ...(styles as object), ...(sizes?.[customProp] as object) };
       }
     }
   });
 
-  return {...(styles as object)};
+  return { ...(styles as object) };
 };
 
 export const getTextStyleShortcuts = (props: UseThemeType, t?: 'light' | 'dark') => {
@@ -266,9 +265,9 @@ export const getTextStyleShortcuts = (props: UseThemeType, t?: 'light' | 'dark')
     const customProp = prop as never;
     const customPredefinedTextStyles = predefinedTextStyles?.[customProp] as object;
     if (customPredefinedTextStyles) {
-      styles = {...defaultTextStyles, ...styles, ...customPredefinedTextStyles, ...(sizes?.[customProp] as object)};
+      styles = { ...defaultTextStyles, ...styles, ...customPredefinedTextStyles, ...(sizes?.[customProp] as object) };
     } else {
-      styles = {...defaultTextStyles, ...styles, ...(sizes?.[customProp] as object)};
+      styles = { ...defaultTextStyles, ...styles, ...(sizes?.[customProp] as object) };
     }
   });
 
