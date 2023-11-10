@@ -67,6 +67,7 @@ const HomePage = () => {
     };
   }, [manager]);
 
+
   return (
     <React.Fragment>
       <StatusBar
