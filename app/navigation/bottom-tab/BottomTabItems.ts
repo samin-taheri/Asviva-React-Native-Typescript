@@ -16,6 +16,7 @@ export const Screens = [
     headerShown: false,
   },
   {
+    
     title: 'sports_center',
     name: Routes.SPORTS_CENTER_SCREEN,
     component: SportsCenter,
