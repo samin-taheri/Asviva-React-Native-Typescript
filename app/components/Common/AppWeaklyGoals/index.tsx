@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     description: {
         fontSize: 14,
         color: 'white',
-        fontWeight: '600'
+        fontWeight: '700',
     },
     button: {
         backgroundColor: COLORS.primary,
@@ -71,6 +71,7 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         alignItems: 'center',
         justifyContent: 'center',
+        alignContent: 'center'
     }
 })
 export default AppWeaklyGoals;

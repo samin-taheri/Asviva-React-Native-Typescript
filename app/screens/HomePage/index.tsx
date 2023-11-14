@@ -82,7 +82,7 @@ const HomePage = () => {
         <AppWeaklyGoals onPress={() => { navigation.navigate(Routes.QUESTIONNAIRE_SCREEN) }} />
         <AppWorkoutDetails onPress={() => navigation.navigate(Routes.WORKOUTDETAILS_SCREEN)} title="record_of_workouts" />
         <AppChart />
-        <View>
+        {/* <View>
           {connectedDevice ? (
             <>
               <PulseIndicator />
@@ -109,7 +109,7 @@ const HomePage = () => {
         />
         {connectedDevice &&
           <Text style={{ color: '#000' }}>{connectedDevice.id}</Text>
-        }
+        } */}
       </AppScreen>
     </React.Fragment>
   );
