@@ -13,8 +13,6 @@ import useBLE from '@/hooks/useBLE';
 import { BleManager, State } from 'react-native-ble-plx';
 import DeviceModal from '@/components/Common/AppDeviceModal';
 import PulseIndicator from '@/components/Common/AppPulseIndicator';
-import { COLORS } from '@/theme';
-import { settingsRedux } from '@/store';
 import { useAppDispatch, useAppSelector } from '@/hooks';
 
 const HomePage = () => {
@@ -30,7 +28,6 @@ const HomePage = () => {
     connectToDevice,
     connectedDevice,
     heartRate,
-    distance,
     disconnectFromDevice,
   } = useBLE();
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
@@ -82,11 +79,10 @@ const HomePage = () => {
         <AppWeaklyGoals onPress={() => { navigation.navigate(Routes.QUESTIONNAIRE_SCREEN) }} />
         <AppWorkoutDetails onPress={() => navigation.navigate(Routes.WORKOUTDETAILS_SCREEN)} title="record_of_workouts" />
         <AppChart />
-        {/* <View>
+        <View>
           {connectedDevice ? (
             <>
               <PulseIndicator />
-              <Text style={{ color: 'black' }}>Your Distance Is: {distance} m</Text>
               <Text style={{ color: 'black' }}>Your Heart Rate Is: {heartRate} bpm</Text>
             </>
           ) : (
@@ -107,9 +103,12 @@ const HomePage = () => {
           connectToPeripheral={connectToDevice}
           devices={allDevices}
         />
-        {connectedDevice &&
-          <Text style={{ color: '#000' }}>{connectedDevice.id}</Text>
-        } */}
+        {connectedDevice && (
+          <>
+            <Text style={{ color: '#000' }}>{connectedDevice.id}</Text>
+            <Text style={{ color: '#000' }}>{connectedDevice?.name}</Text>
+          </>
+        )}
       </AppScreen>
     </React.Fragment>
   );

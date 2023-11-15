@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
     },
     backButton: {
         position: 'absolute',
-        top: '10%',
+        top: '5%',
         left: '2%',
         zIndex: 1,
         padding: 16,
@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
         padding: 10,
         width: '93%',
         marginLeft: '3.5%',
-        marginTop: '31%',
+        marginTop: 130,
         borderRadius: 12,
         flexDirection: 'column',
     },

@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
         marginTop: 16,
         marginLeft: 8,
         marginRight: 8,
-        marginBottom: '20%'
+        marginBottom: 80
     },
     iconTopRightContainer: {
         position: 'absolute',
@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
         padding: 14,
         width: '93%',
         marginLeft: '3.5%',
-        marginTop: '10%',
+        marginTop: 35,
         borderRadius: 12,
         flexDirection: 'row',
         justifyContent: 'space-between',

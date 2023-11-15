@@ -194,7 +194,7 @@ const styles = StyleSheet.create({
     dateScrollView: {
         borderTopWidth: 1,
         borderColor: 'gray',
-        bottom: '55%',
+        bottom: '50%',
         marginBottom: 10,
     },
 });

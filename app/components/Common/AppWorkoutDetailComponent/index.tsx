@@ -110,7 +110,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: COLORS.backgroundColor,
-        marginBottom: 16
     },
     linearGradient: {
         width: '100%',
@@ -157,7 +156,7 @@ const styles = StyleSheet.create({
     },
     backButton: {
         position: 'absolute',
-        top: '4%',
+        top: '2%',
         left: '2%',
         zIndex: 1,
         padding: 16,

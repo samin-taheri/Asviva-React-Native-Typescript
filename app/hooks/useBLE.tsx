@@ -1,12 +1,11 @@
-/* eslint-disable no-bitwise */
+
 import { useState } from 'react';
-import { Alert, PermissionsAndroid, Platform } from 'react-native';
+import { PermissionsAndroid, Platform } from 'react-native';
 import {
     BleError,
     BleManager,
     Characteristic,
     Device,
-    ScanMode,
 } from 'react-native-ble-plx';
 import { PERMISSIONS, requestMultiple } from 'react-native-permissions';
 import DeviceInfo from 'react-native-device-info';
@@ -25,23 +24,17 @@ type VoidCallback = (result: boolean) => void;
 interface BluetoothLowEnergyApi {
     requestPermissions(cb: VoidCallback): Promise<void>;
     scanForPeripherals(): void;
-    requestBluetoothPermission(): void;
     connectToDevice: (deviceId: Device) => Promise<void>;
     disconnectFromDevice: () => void;
     connectedDevice: Device | null;
     allDevices: Device[];
     heartRate: number;
-    distance: number;
 }
-
-const distanceBuffer: [number, number, number] = [-1, -1, -1];
-let numOfSamples = 0;
 
 function useBLE(): BluetoothLowEnergyApi {
     const [allDevices, setAllDevices] = useState<Device[]>([]);
     const [connectedDevice, setConnectedDevice] = useState<Device | null>(null);
     const [heartRate, setHeartRate] = useState<number>(0);
-    const [distance, setDistance] = useState<number>(-1);
 
     const requestPermissions = async (cb: VoidCallback) => {
         if (Platform.OS === 'android') {
@@ -81,64 +74,21 @@ function useBLE(): BluetoothLowEnergyApi {
         }
     };
 
-    const requestBluetoothPermission = async () => {
-        if (Platform.OS === 'ios') {
-            return true
-        }
-        if (Platform.OS === 'android' && Platform.Version >= 23) {
-            const apiLevel = parseInt(Platform.Version.toString(), 10)
-
-            if (apiLevel < 34) {
-                const granted = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION)
-                return granted === PermissionsAndroid.RESULTS.GRANTED
-            }
-            if (PermissionsAndroid.PERMISSIONS.BLUETOOTH_SCAN && PermissionsAndroid.PERMISSIONS.BLUETOOTH_CONNECT) {
-                const result = await PermissionsAndroid.requestMultiple([
-                    PermissionsAndroid.PERMISSIONS.BLUETOOTH_SCAN,
-                    PermissionsAndroid.PERMISSIONS.BLUETOOTH_CONNECT,
-                    PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION
-                ])
-
-                return (
-                    result['android.permission.BLUETOOTH_CONNECT'] === PermissionsAndroid.RESULTS.GRANTED &&
-                    result['android.permission.BLUETOOTH_SCAN'] === PermissionsAndroid.RESULTS.GRANTED &&
-                    result['android.permission.ACCESS_FINE_LOCATION'] === PermissionsAndroid.RESULTS.GRANTED
-                )
-            }
-        }
-        return false
-    }
-
     const isDuplicteDevice = (devices: Device[], nextDevice: Device) =>
         devices.findIndex(device => nextDevice.id === device.id) > -1;
 
     const scanForPeripherals = () =>
-        bleManager.startDeviceScan(null, {
-            allowDuplicates: true,
-            scanMode: ScanMode.LowLatency,
-        }, (error, device) => {
-            const currentDistance = Math.pow(10, (-75 - device?.rssi!) / (10 * 3));
-            distanceBuffer[numOfSamples % 3] = currentDistance;
-            if (distanceBuffer.includes(-1)) {
-                setDistance(-1);
-            } else {
-                const sum = distanceBuffer.reduce((a, b) => a + b);
-                setDistance(Math.round(sum / distanceBuffer.length));
+        bleManager.startDeviceScan(null, null, (error, device) => {
+            if (error) {
+                console.log(error);
             }
-
-            numOfSamples++;
-            if (device) {
+            if (device && device.name?.includes('EW')) {
                 setAllDevices((prevState: Device[]) => {
                     if (!isDuplicteDevice(prevState, device)) {
                         return [...prevState, device];
                     }
                     return prevState;
                 });
-            }
-            if (error) {
-                console.log(error);
-                console.log('Bluetooth error');
-                return;
             }
         });
 
@@ -206,12 +156,10 @@ function useBLE(): BluetoothLowEnergyApi {
         scanForPeripherals,
         requestPermissions,
         connectToDevice,
-        requestBluetoothPermission,
         allDevices,
         connectedDevice,
         disconnectFromDevice,
         heartRate,
-        distance,
     };
 }
 

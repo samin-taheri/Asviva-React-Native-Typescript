@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
         marginTop: 16,
         marginLeft: 8,
         marginRight: 8,
-        marginBottom: '20%'
+        marginBottom: 80
     },
     container2: {
         flexDirection: 'row',
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
         padding: 14,
         width: '93%',
         marginLeft: '3.5%',
-        marginTop: '17%',
+        marginTop: 60,
         borderRadius: 12,
         flexDirection: 'row',
         justifyContent: 'space-between',

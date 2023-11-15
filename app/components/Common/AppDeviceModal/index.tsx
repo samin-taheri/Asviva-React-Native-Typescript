@@ -10,13 +10,14 @@ import {
     SafeAreaView,
     Image,
     ScrollView,
+    Text,
 } from 'react-native';
 import { Device } from 'react-native-ble-plx';
 import { useNavigation } from '@react-navigation/native';
 import { HomeStackNavigationPropsType } from '@/navigation';
 import Feather from 'react-native-vector-icons/Feather';
-import Text from '../Text';
 import { COLORS, padding } from '@/theme';
+
 
 type DeviceModalListItemProps = {
     item: ListRenderItemInfo<Device>;
@@ -43,7 +44,7 @@ const DeviceModalListItem: FC<DeviceModalListItemProps> = props => {
         <TouchableOpacity
             onPress={connectAndCloseModal}
             style={modalStyle.ctaButton}>
-            <Text style={modalStyle.ctaButtonText}>{item.item.id}</Text>
+            <Text style={modalStyle.ctaButtonText}>{item.item.name}</Text>
         </TouchableOpacity>
     );
 };
