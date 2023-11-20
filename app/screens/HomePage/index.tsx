@@ -72,13 +72,8 @@ const HomePage = () => {
       />
       <AppCustomHeader navigation={navigation} onLogo={true} />
       <AppScreen scroll customStyle={{ backgroundColor: theme2.colors.background }}>
-        <AppBackgroundCard title="find_your_coach" backgroundImage={require('../../assets/images/bg-3.jpg')} onPress={() => { navigation.navigate(Routes.SPORTS_CENTER_SCREEN) }}
-        />
-        {/* <AppSwitch value={theme === 'dark'} onChange={() => dispatch(settingsRedux.setTheme(theme === 'light' ? 'dark' : 'light'))} /> */}
-        <AppTotalWorkout />
-        <AppWeaklyGoals onPress={() => { navigation.navigate(Routes.QUESTIONNAIRE_SCREEN) }} />
-        <AppWorkoutDetails onPress={() => navigation.navigate(Routes.WORKOUTDETAILS_SCREEN)} title="record_of_workouts" />
-        <AppChart />
+        <Text style={{ color: 'black' }}>Your Heart Rate Is: {heartRate} bpm</Text>
+
         <View>
           {connectedDevice ? (
             <>
@@ -109,6 +104,14 @@ const HomePage = () => {
             <Text style={{ color: '#000' }}>{connectedDevice?.name}</Text>
           </>
         )}
+        <AppBackgroundCard title="find_your_coach" backgroundImage={require('../../assets/images/bg-3.jpg')} onPress={() => { navigation.navigate(Routes.SPORTS_CENTER_SCREEN) }}
+        />
+        {/* <AppSwitch value={theme === 'dark'} onChange={() => dispatch(settingsRedux.setTheme(theme === 'light' ? 'dark' : 'light'))} /> */}
+        <AppTotalWorkout />
+        <AppWeaklyGoals onPress={() => { navigation.navigate(Routes.QUESTIONNAIRE_SCREEN) }} />
+        <AppWorkoutDetails onPress={() => navigation.navigate(Routes.WORKOUTDETAILS_SCREEN)} title="record_of_workouts" />
+        <AppChart />
+
       </AppScreen>
     </React.Fragment>
   );
