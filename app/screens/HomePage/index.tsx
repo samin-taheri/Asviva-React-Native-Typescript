@@ -28,6 +28,8 @@ const HomePage = () => {
     connectToDevice,
     connectedDevice,
     heartRate,
+    distance,
+    calories,
     disconnectFromDevice,
   } = useBLE();
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
@@ -72,13 +74,13 @@ const HomePage = () => {
       />
       <AppCustomHeader navigation={navigation} onLogo={true} />
       <AppScreen scroll customStyle={{ backgroundColor: theme2.colors.background }}>
-        <Text style={{ color: 'black' }}>Your Heart Rate Is: {heartRate} bpm</Text>
-
-        <View>
+        {/* <View>
           {connectedDevice ? (
             <>
               <PulseIndicator />
               <Text style={{ color: 'black' }}>Your Heart Rate Is: {heartRate} bpm</Text>
+              <Text style={{ color: 'black' }}>Your Distance Is: {distance} m</Text>
+              <Text style={{ color: 'black' }}>Your Calories Is: {calories} kcal</Text>
             </>
           ) : (
             <Text style={{ color: 'black' }}>
@@ -88,7 +90,7 @@ const HomePage = () => {
         </View>
         <TouchableOpacity
           onPress={connectedDevice ? disconnectFromDevice : openModal}>
-          <Text style={{ color: 'black' }}>
+          <Text style={{ color: 'black', fontWeight: 'bold' }}>
             {connectedDevice ? 'Disconnect' : 'Connect'}
           </Text>
         </TouchableOpacity>
@@ -103,7 +105,7 @@ const HomePage = () => {
             <Text style={{ color: '#000' }}>{connectedDevice.id}</Text>
             <Text style={{ color: '#000' }}>{connectedDevice?.name}</Text>
           </>
-        )}
+        )} */}
         <AppBackgroundCard title="find_your_coach" backgroundImage={require('../../assets/images/bg-3.jpg')} onPress={() => { navigation.navigate(Routes.SPORTS_CENTER_SCREEN) }}
         />
         {/* <AppSwitch value={theme === 'dark'} onChange={() => dispatch(settingsRedux.setTheme(theme === 'light' ? 'dark' : 'light'))} /> */}

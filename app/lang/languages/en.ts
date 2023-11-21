@@ -62,7 +62,7 @@ const en = {
   day: 'day',
   connect_the_devices: 'Connect the Devices',
   cycling: 'Cycling',
-  apple_watch: 'Apple Watch',
+  apple_watch: 'Smart Watch',
   standard_heart_rate_device: 'Standard Heart Rate Device',
   brands: 'Brands',
   view_more: 'View more',

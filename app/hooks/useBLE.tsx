@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { PermissionsAndroid, Platform } from 'react-native';
 import {
     BleError,
@@ -11,6 +11,7 @@ import DeviceInfo from 'react-native-device-info';
 import { atob } from 'react-native-quick-base64';
 import { decode } from 'punycode';
 import { Buffer } from 'buffer';
+import { base64 } from '@/utils';
 
 //serviceData
 const SERVICE_UUID = '00001800-0000-1000-8000-00805f9b34fb';
@@ -18,8 +19,11 @@ const UUID = '00002a00-0000-1000-8000-00805f9b34fb';
 const HEART_RATE_UUID = '0000fee0-0000-1000-8000-00805f9b34fb';
 const HEART_RATE_UUID2 = '00002a2b-0000-1000-8000-00805f9b34fb';
 const DISTANCE_UUID = '00000006-0000-3512-2118-0009af100700';
-const CALORIES_UUID = '00000004-0000-3512-2118-0009af100700';
 const HEART_RATE_CHARACTERISTIC = '0000fee0-0000-1000-8000-00805f9b34fb';
+const sleepStartCharacteristicUUID = "00000002-0000-3512-2118-0009af100700";
+const sleepEndCharacteristicUUID = "00000006-0000-3512-2118-0009af100700";
+const HEART_RATE_DATA_UUID = '00000004-0000-3512-2118-0009af100700';
+const CALORIES_UUID = '00002a04-0000-1000-8000-00805f9b34fb';
 
 const bleManager = new BleManager();
 
@@ -33,13 +37,16 @@ interface BluetoothLowEnergyApi {
     connectedDevice: Device | null;
     allDevices: Device[];
     heartRate: number;
+    distance: number;
+    calories: number;
 }
 
 function useBLE(): BluetoothLowEnergyApi {
     const [allDevices, setAllDevices] = useState<Device[]>([]);
     const [connectedDevice, setConnectedDevice] = useState<Device | null>(null);
     const [heartRate, setHeartRate] = useState<number>(-1);
-    const [distanceCharacteristic, setDistanceCharacteristic] = useState<Characteristic | null>(null);
+    const [distance, setDistance] = useState<number>(0);
+    const [calories, setCalories] = useState<number>(0);
 
     // useEffect(() => {
     //     const connectToDevice = async () => {
@@ -103,7 +110,6 @@ function useBLE(): BluetoothLowEnergyApi {
     //     // Call the readCharacteristic function when the component mounts
     //     readCharacteristic();
     // }, [connectedDevice]);
-
 
     const requestPermissions = async (cb: VoidCallback) => {
         if (Platform.OS === 'android') {
@@ -174,41 +180,7 @@ function useBLE(): BluetoothLowEnergyApi {
                 console.log('Services and characteristics discovered');
                 const services = await deviceConnection.services();
                 console.log('Discovered services:', services.values);
-
                 for (const service of services) {
-                    // const distanceCharacteristic = await deviceConnection.characteristicsForService(
-                    //     service.uuid,
-                    // );
-                    // const distanceValueCharacteristic = distanceCharacteristic.find(
-                    //     characteristic => characteristic.uuid === DISTANCE_UUID
-                    // );
-
-                    // // Read the value of the distance characteristic
-                    // if (distanceValueCharacteristic) {
-                    //     const distanceValue = await deviceConnection.readCharacteristicForService(
-                    //         service.uuid,
-                    //         distanceValueCharacteristic.uuid
-                    //     );
-                    //     console.log('Distance Value:', distanceValue.value);
-                    //     // Now you can handle the distance value as needed
-                    // }
-
-                    // const caloriesCharacteristic = await deviceConnection.characteristicsForService(
-                    //     service.uuid,
-                    // );
-                    // const caloriesValueCharacteristic = caloriesCharacteristic.find(
-                    //     characteristic => characteristic.uuid === CALORIES_UUID
-                    // );
-
-                    // // Read the value of the calories characteristic
-                    // if (caloriesValueCharacteristic) {
-                    //     const caloriesValue = await deviceConnection.readCharacteristicForService(
-                    //         service.uuid,
-                    //         caloriesValueCharacteristic.uuid
-                    //     );
-                    //     console.log('Calories Value:', caloriesValue.value);
-                    //     // Now you can handle the calories value as needed
-                    // }
 
                     const heartRateCharacteristic = await deviceConnection.characteristicsForService(
                         service.uuid,  // Use the UUID of the service
@@ -223,30 +195,87 @@ function useBLE(): BluetoothLowEnergyApi {
                             service.uuid,
                             heartRateValueCharacteristic.uuid
                         );
-                        // console.log('Heart rate characteristic found:', heartRateValueCharacteristic);
                         console.log('Heart Rate Value:', heartRateValue.value);
 
-                        if (heartRateValue.value !== null) {
-                            // raw: e7070b14110d2e0100000c
-                            const rawData = heartRateValue.value;
-                            let innerHeartRate: number = -1;
+                        const caloriesCharacteristic = await deviceConnection.characteristicsForService(
+                            service.uuid,
+                        );
+                        const caloriesValueCharacteristic = caloriesCharacteristic.find(
+                            characteristic => characteristic.uuid === CALORIES_UUID
+                        );
+                        // Read the value of the calories characteristic
+                        if (caloriesValueCharacteristic) {
+                            const caloriesValue = await deviceConnection.readCharacteristicForService(
+                                service.uuid,
+                                caloriesValueCharacteristic.uuid
+                            );
+                            console.log('calories Value:', caloriesValue.value);
 
-                            const firstBitValue: number = parseInt(rawData, 16) & 0x01;
 
-                            if (firstBitValue === 0) {
-                                innerHeartRate = parseInt(rawData.substring(2, 4), 16); // Assuming the heart rate is at a specific position in the data
-                            } else {
-                                innerHeartRate =
-                                    parseInt(rawData.substring(2, 4), 16) << 8 +
-                                    parseInt(rawData.substring(4, 6), 16);
+
+
+                            const distanceCharacteristic = await deviceConnection.characteristicsForService(
+                                service.uuid,
+                            );
+                            const distanceValueCharacteristic = distanceCharacteristic.find(
+                                characteristic => characteristic.uuid === DISTANCE_UUID
+                            );
+                            // Read the value of the calories characteristic
+                            if (distanceValueCharacteristic) {
+                                const distanceValue = await deviceConnection.readCharacteristicForService(
+                                    service.uuid,
+                                    distanceValueCharacteristic.uuid
+                                );
+                                console.log('Distance Value:', distanceValue.value);
+
+
+                                if (distanceValue.value !== null) {
+                                    const readValueInBase64 = distanceValue.value;
+                                    const readValueInRawBytes = Buffer.from(readValueInBase64, 'base64');
+                                    const heightMostSignificantByte = readValueInRawBytes[1];
+                                    const heightLeastSignificantByte = readValueInRawBytes[0];
+                                    const heightInCentimeters = (heightMostSignificantByte << 8) | heightLeastSignificantByte;
+                                    console.log('Distance:', heightInCentimeters);
+                                    setDistance(heightInCentimeters);
+                                } else {
+                                    console.log('Heart rate value is null');
+                                }
                             }
 
-                            setHeartRate(innerHeartRate);
-                            console.log('The Decoded Heart Rate Value Is:', innerHeartRate);
-                        } else {
-                            console.log('Heart rate value is null');
+                            if (heartRateValue.value !== null) {
+                                // raw: e7070b14110d2e0100000c
+                                const rawData = base64.decode(heartRateValue.value);
+                                let innerHeartRate: number = -1;
+
+                                const firstBitValue: number = Number(rawData) & 0x01;
+
+                                if (firstBitValue === 0) {
+                                    innerHeartRate = Number(rawData[1].charCodeAt(0));
+                                } else {
+                                    innerHeartRate =
+                                        Number(rawData[1].charCodeAt(0) << 8) +
+                                        Number(rawData[2].charCodeAt(2));
+                                }
+
+                                setHeartRate(innerHeartRate);
+                                console.log('The Decoded Heart Rate Value Is:', innerHeartRate);
+                            } else {
+                                console.log('Heart rate value is null');
+                            }
+                            if (caloriesValue.value !== null) {
+                                const readValueInBase64 = caloriesValue.value;
+                                const readValueInRawBytes = Buffer.from(readValueInBase64, 'base64');
+                                const heightMostSignificantByte = readValueInRawBytes[1];
+                                const heightLeastSignificantByte = readValueInRawBytes[0];
+                                const heightInCentimeters2 = (heightMostSignificantByte << 8) | heightLeastSignificantByte;
+                                console.log('Calories:', heightInCentimeters2);
+                                setCalories(heightInCentimeters2);
+                            } else {
+                                console.log('Calories value is null');
+                            }
+                            setConnectedDevice(deviceConnection);
+                            // Now you can set the heart rate value in your state or display it as needed
                         }
-                        // Now you can set the heart rate value in your state or display it as needed
                     }
                 }
                 // for (const service of services) {
@@ -354,6 +383,8 @@ function useBLE(): BluetoothLowEnergyApi {
         connectedDevice,
         disconnectFromDevice,
         heartRate,
+        distance,
+        calories,
     };
 }
 

@@ -61,7 +61,7 @@ const de = {
   day: 'tag',
   connect_the_devices: 'Verbinden Sie die Geräte',
   cycling: 'Radfahren',
-  apple_watch: 'Apple Watch',
+  apple_watch: 'Smart Watch',
   standard_heart_rate_device: 'Standard Herzfrequenzgerät',
   brands: 'Marken',
   view_more: 'Mehr sehen',

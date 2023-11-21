@@ -86,7 +86,7 @@ const AppConnectDevices: React.FC<ConnectDevicesProps> = ({ brandsNavigate }) =>
                 type: 'success',
                 position: 'left',
                 title: 'Connection Successfull',
-                message: `Device ID: ${connectedDevice.id}`,
+                message: `Connected Device: ${connectedDevice.name}`,
                 action: [
                     {
                         text: 'Ok',
@@ -103,16 +103,16 @@ const AppConnectDevices: React.FC<ConnectDevicesProps> = ({ brandsNavigate }) =>
             <ScrollView showsVerticalScrollIndicator={false} style={styles.contentContainer}>
                 <AppLable title="Devices" />
                 <AppDeviceCard
-                    title={connectedDevice ? `Disconnect:${connectedDevice.id}` : "Cycling"}
+                    title="Cycling"
                     cardColor={COLORS.cardBackground}
                     imageSource={require('../../../assets/images/exercise.png')}
-                    onPress={onPress}
+                    onPress={onPress2}
                 />
                 <AppDeviceCard
-                    title="apple_watch"
+                    title={connectedDevice ? `Disconnect: ${connectedDevice.name}` : "Smart Watch"}
                     cardColor={COLORS.cardBackground}
                     imageSource={require('../../../assets/images/connect-4.png')}
-                    onPress={onPress2}
+                    onPress={onPress}
                 />
                 <AppDeviceCard
                     title="standard_heart_rate_device"
