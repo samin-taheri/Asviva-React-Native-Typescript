@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, StyleSheet, ScrollView, Image } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, StyleSheet, ScrollView, Image, Text } from 'react-native';
 import AppCustomHeader from '../AppCustomHeader';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import AppColoredCards2 from '../AppColoredCards2';
@@ -7,10 +7,54 @@ import { COLORS } from '@/theme';
 import AppBarChart from '../AppBarChart';
 import { useNavigation } from '@react-navigation/native';
 import { HomeStackNavigationPropsType, Routes } from '@/navigation';
-import Text from '../Text';
+import { BleManager, State } from 'react-native-ble-plx';
+import useBLE from '@/hooks/useBLE';
 
 const AppWorkoutDetailsComponent: React.FC = ({ }) => {
     const navigation = useNavigation<HomeStackNavigationPropsType>();
+
+    const {
+        requestPermissions,
+        scanForPeripherals,
+        allDevices,
+        connectToDevice,
+        connectedDevice,
+        disconnectFromDevice,
+        distance,
+    } = useBLE();
+    const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
+
+    const scanForDevices = () => {
+        requestPermissions(isGranted => {
+            if (isGranted) {
+                scanForPeripherals();
+            }
+        });
+    };
+
+    const hideModal = () => {
+        setIsModalVisible(false);
+        navigation.navigate(Routes.WORKOUTDETAILS_SCREEN);
+    };
+
+    const openModal = async () => {
+        scanForDevices();
+        setIsModalVisible(true);
+    };
+    const manager = new BleManager()
+
+    useEffect(() => {
+        const subscription = manager.onStateChange((state: State) => {
+            if (state === 'PoweredOn') {
+                scanForPeripherals();
+                subscription.remove();
+            }
+        }, true);
+
+        return () => {
+            subscription.remove();
+        };
+    }, [manager]);
 
     return (
         <View style={styles.container}>
@@ -30,7 +74,7 @@ const AppWorkoutDetailsComponent: React.FC = ({ }) => {
                         >
                             {(fill) => (
                                 <View style={styles.progressBarTextContainer}>
-                                    <Text style={styles.progressBarText}>0 km</Text>
+                                    <Text style={styles.progressBarText}>0 m</Text>
                                 </View>
                             )}
                         </AnimatedCircularProgress>
@@ -62,7 +106,7 @@ const AppWorkoutDetailsComponent: React.FC = ({ }) => {
                         <Image source={require('../../../assets/images/milage.png')} style={styles.logoContainer} />
                         <View style={{ flexDirection: 'row', flex: 1, justifyContent: 'space-between' }}>
                             <Text style={styles.title}>Cycling Milage</Text>
-                            <Text style={styles.description}>0 km</Text>
+                            <Text style={styles.description}>0 m</Text>
                         </View>
                     </View>
                     <AppBarChart />
@@ -95,12 +139,14 @@ const styles = StyleSheet.create({
         paddingTop: '80%',
         paddingLeft: '50%',
         transform: [{ translateX: -30 }, { translateY: -30 }],
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     progressBarText: {
-        fontSize: 24,
+        fontSize: 21,
         fontWeight: '600',
         color: 'black',
-        paddingTop: '50%'
+        top: 7
     },
     description: {
         fontSize: 16,

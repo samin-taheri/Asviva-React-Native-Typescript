@@ -50,6 +50,7 @@ const AppConnectDevices: React.FC<ConnectDevicesProps> = ({ brandsNavigate }) =>
 
     const hideModal = () => {
         setIsModalVisible(false);
+        // navigation.navigate(Routes.WORKOUTDETAILS_SCREEN);
     };
 
     const openModal = async () => {
@@ -95,7 +96,7 @@ const AppConnectDevices: React.FC<ConnectDevicesProps> = ({ brandsNavigate }) =>
                 ],
             });
         }
-    }, []);
+    }, [connectedDevice]);
 
     return (
         <View style={styles.container}>

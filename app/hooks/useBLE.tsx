@@ -153,7 +153,7 @@ function useBLE(): BluetoothLowEnergyApi {
         devices.findIndex(device => nextDevice.id === device.id) > -1;
 
     const scanForPeripherals = () =>
-        bleManager.startDeviceScan(null, null, (error, device) => {
+        bleManager.startDeviceScan(null, { allowDuplicates: true }, (error, device) => {
             if (error) {
                 console.log(error);
             }
@@ -262,6 +262,7 @@ function useBLE(): BluetoothLowEnergyApi {
                             } else {
                                 console.log('Heart rate value is null');
                             }
+
                             if (caloriesValue.value !== null) {
                                 const readValueInBase64 = caloriesValue.value;
                                 const readValueInRawBytes = Buffer.from(readValueInBase64, 'base64');

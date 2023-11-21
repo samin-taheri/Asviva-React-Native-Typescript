@@ -71,13 +71,23 @@ const AppTotalWorkout: React.FC = () => {
                     cardColor={COLORS.cardBackgroundCOlor}
                     imageSource={require('../../../assets/images/times.png')}
                 />
-                <AppColoredCards2
-                    title="exercise_times"
-                    color={COLORS.primary}
-                    description="0"
-                    cardColor={COLORS.cardBackgroundCOlor}
-                    imageSource={require('../../../assets/images/bike.png')}
-                />
+                {connectedDevice ? (
+                    <AppColoredCards2
+                        title="exercise_times"
+                        color={COLORS.primary}
+                        description="3"
+                        cardColor={COLORS.cardBackgroundCOlor}
+                        imageSource={require('../../../assets/images/bike.png')}
+                    />
+                ) : (
+                    <AppColoredCards2
+                        title="exercise_times"
+                        color={COLORS.primary}
+                        description="0"
+                        cardColor={COLORS.cardBackgroundCOlor}
+                        imageSource={require('../../../assets/images/bike.png')}
+                    />
+                )}
                 {connectedDevice ? (
                     <AppColoredCards2
                         title="total_calories"
