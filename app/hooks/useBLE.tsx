@@ -22,7 +22,7 @@ const DISTANCE_UUID = '00000006-0000-3512-2118-0009af100700';
 const HEART_RATE_CHARACTERISTIC = '0000fee0-0000-1000-8000-00805f9b34fb';
 const sleepStartCharacteristicUUID = "00000002-0000-3512-2118-0009af100700";
 const sleepEndCharacteristicUUID = "00000006-0000-3512-2118-0009af100700";
-const HEART_RATE_DATA_UUID = '00000004-0000-3512-2118-0009af100700';
+const HEART_RATE_DATA_UUID = '00000002-0000-3512-2118-0009af100700';
 const CALORIES_UUID = '00002a04-0000-1000-8000-00805f9b34fb';
 
 const bleManager = new BleManager();
@@ -195,6 +195,7 @@ function useBLE(): BluetoothLowEnergyApi {
                             service.uuid,
                             heartRateValueCharacteristic.uuid
                         );
+
                         console.log('Heart Rate Value:', heartRateValue.value);
 
                         const caloriesCharacteristic = await deviceConnection.characteristicsForService(
