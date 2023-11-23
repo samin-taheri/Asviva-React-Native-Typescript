@@ -111,7 +111,7 @@ const AppTotalWorkout: React.FC = () => {
                     <AppColoredCards2
                         title="distance"
                         color={COLORS.primary}
-                        description={`${distance} meter`}
+                        description={`${distance} m`}
                         cardColor={COLORS.cardBackgroundCOlor}
                         imageSource={require('../../../assets/images/map.png')}
                     />
@@ -119,7 +119,7 @@ const AppTotalWorkout: React.FC = () => {
                     <AppColoredCards2
                         title="distance"
                         color={COLORS.primary}
-                        description="0 meter"
+                        description="0 m"
                         cardColor={COLORS.cardBackgroundCOlor}
                         imageSource={require('../../../assets/images/map.png')}
                     />

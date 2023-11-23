@@ -28,8 +28,6 @@ const HomePage = () => {
     connectToDevice,
     connectedDevice,
     heartRate,
-    distance,
-    calories,
     disconnectFromDevice,
   } = useBLE();
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);

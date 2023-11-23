@@ -20,7 +20,6 @@ const AppWorkoutDetailsComponent: React.FC = ({ }) => {
         connectToDevice,
         connectedDevice,
         disconnectFromDevice,
-        distance,
     } = useBLE();
     const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
 
