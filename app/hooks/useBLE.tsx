@@ -14,7 +14,9 @@ import { base64 } from '@/utils';
 import { round } from 'lodash';
 
 //serviceData
-const SERVICE_UUID = '00001826-0000-1000-8000-00805f9b34fb';
+
+const CUSTOM_UUID = '00001530-0000-3512-2118-0009af100700';
+const SERVICE_UUID = '0000180f-0000-1000-8000-00805f9b34fb';
 const SERVICE_UUID2 = '0000fff0-0000-1000-8000-00805f9b34fb';
 const UUID = '00002a00-0000-1000-8000-00805f9b34fb';
 // Service UUID 1: "00001800-0000-1000-8000-00805f9b34fb";
@@ -26,8 +28,8 @@ const UUID = '00002a00-0000-1000-8000-00805f9b34fb';
 // Characteristic_UUID_2': 00002a29-0000-1000-8000-00805f9b34fb;
 // Characteristic_UUID_2': 00002a23-0000-1000-8000-00805f9b34fb;
 
-const HEART_RATE_UUID = '00002a53-0000-1000-8000-00805f9b34fb';
-const ENERGY_UUID = '00002a39-0000-1000-8000-00805f9b34fb';
+const HEART_RATE_UUID = '00002a00-0000-1000-8000-00805f9b34fb';
+const ENERGY_UUID = '00002a39-00001000-8000-00805f9b34fb';
 const HEART_RATE_UUID2 = '00002a2b-0000-1000-8000-00805f9b34fb';
 const HEART_RATE_UUID3 = '00002a00-0000-1000-8000-00805f9b34fb';
 const HEART_RATE_UUID4 = '00002a01-0000-1000-8000-00805f9b34fb';
@@ -39,6 +41,12 @@ const sleepEndCharacteristicUUID = "00000006-0000-3512-2118-0009af100700";
 const HEART_RATE_DATA_UUID = '00000002-0000-3512-2118-0009af100700';
 const CALORIES_UUID = '00002a04-0000-1000-8000-00805f9b34fb';
 
+
+const FITNESS_MACHINE_SERVICE_UUID = '00001826-0000-1000-8000-00805f9b34fb';
+const CYCLING_POWER_UUID = '00001818-0000-1000-8000-00805f9b34fb';
+const INDOOR_BIKE_DATA_UUID = '00002ad2-0000-1000-8000-00805f9b34fb';
+const FITNESS_MACHINE_CONTROL_POINT_UUID = '00002ad9-0000-1000-8000-00805f9b34fb';
+const FITNESS_MACHINE_FEATURE_UUID = '00002acc-0000-1000-8000-00805f9b34fb';
 const bleManager = new BleManager();
 
 type VoidCallback = (result: boolean) => void;
@@ -155,7 +163,6 @@ function useBLE(): BluetoothLowEnergyApi {
                     PermissionsAndroid.RESULTS.GRANTED &&
                     result['android.permission.ACCESS_FINE_LOCATION'] ===
                     PermissionsAndroid.RESULTS.GRANTED;
-
                 cb(isGranted);
             }
         } else {
@@ -171,7 +178,7 @@ function useBLE(): BluetoothLowEnergyApi {
             if (error) {
                 console.log(error);
             }
-            if (device && device.name?.includes('Mi')) {
+            if (device) {
                 setAllDevices((prevState: Device[]) => {
                     if (!isDuplicteDevice(prevState, device)) {
                         return [...prevState, device];
@@ -186,201 +193,202 @@ function useBLE(): BluetoothLowEnergyApi {
 
     const connectToDevice = async (device: Device) => {
         try {
-            if (device.name?.includes('Mi')) {
-                const deviceConnection = await bleManager.connectToDevice(device.id);
-                // setConnectedDevice(deviceConnection);
-                console.log("Connected...Discovering services and characteristics");
-                await deviceConnection.discoverAllServicesAndCharacteristics(device.id);
-                console.log('Services and characteristics discovered');
-                const services = await deviceConnection.services();
-                console.log('Discovered services:', services.values);
+            const deviceConnection = await bleManager.connectToDevice(device.id);
+            // setConnectedDevice(deviceConnection);
+            console.log("Connected...Discovering services and characteristics");
+            await deviceConnection.discoverAllServicesAndCharacteristics(device.id);
 
-                for (const service of services) {
-                    // const characteristics = await service.characteristics();
-                    // console.log(`Characteristics for service ${service.id}:`, characteristics);
+            console.log('Services and characteristics discovered');
+            const services = await deviceConnection.services();
+            console.log('Discovered services:', services.values);
+
+            for (const service of services) {
+                // const characteristics = await service.characteristics();
+                // console.log(`Characteristics for service ${service.id}:`, characteristics);
+                if (service.uuid === SERVICE_UUID) {
                     console.log('Service UUID:', service.uuid);
-                    const heartRateCharacteristic = await deviceConnection.characteristicsForService(
-                        service.uuid,
-                    );
-                    console.log(`heart rate characteristics for service ${service.id}:`, heartRateCharacteristic)
-                    const characteristics = await service.characteristics();
-                    console.log(`Characteristics for service ${service.id}:`, characteristics);
-
-                    for (const characteristic of heartRateCharacteristic) {
-                        console.log(`Characteristic UUID: ${characteristic.uuid}`);
-                    }
-                    console.log('Read Characteristic:', heartRateCharacteristic);
-                    // Find the heart rate characteristic based on its UUID
-                    const heartRateValueCharacteristic = heartRateCharacteristic.find(
-                        characteristic => characteristic.uuid === HEART_RATE_UUID
-                    );
-                    console.log('Heart Rate Value2:', heartRateValueCharacteristic?.uuid);
-
-                    if (heartRateValueCharacteristic) {
-
-                        try {
-                            const heartRateValue = await deviceConnection.readCharacteristicForService(
-                                service.uuid,
-                                heartRateValueCharacteristic.uuid
-                            );
-                            console.log('Heart Rate Value:', heartRateValue.value);
-
-                            if (heartRateValue.value !== null) {
-                                const readValueInBase64 = heartRateValue.value;
-
-                                const readValueInRawBytes = Buffer.from(readValueInBase64, 'base64');
-
-                                const heightMostSignificantByte = readValueInRawBytes[1];
-                                const heightLeastSignificantByte = readValueInRawBytes[0];
-
-                                const heightInCentimeters = (heightMostSignificantByte << 8) | heightLeastSignificantByte;
-                                setHeartRate(heightInCentimeters)
-                            }
-
-
-                        } catch (error) {
-                            console.error('Error reading characteristic:', error);
-                        }
-
-
-
-                        //         const caloriesCharacteristic = await deviceConnection.characteristicsForService(
-                        //             service.uuid,
-                        //         );
-                        //         const caloriesValueCharacteristic = caloriesCharacteristic.find(
-                        //             characteristic => characteristic.uuid === HEART_RATE_UUID5
-                        //         );
-                        //         // Read the value of the calories characteristic
-                        //         if (caloriesValueCharacteristic) {
-                        //             const caloriesValue = await deviceConnection.readCharacteristicForService(
-                        //                 service.uuid,
-                        //                 caloriesValueCharacteristic.uuid
-                        //             );
-                        //             console.log('calories Value:', caloriesValue.value);
-
-                        //             const distanceCharacteristic = await deviceConnection.characteristicsForService(
-                        //                 service.uuid,
-                        //             );
-                        //             const distanceValueCharacteristic = distanceCharacteristic.find(
-                        //                 characteristic => characteristic.uuid === HEART_RATE_UUID3
-                        //             );
-                        //             // Read the value of the calories characteristic
-                        //             if (distanceValueCharacteristic) {
-                        //                 const distanceValue = await deviceConnection.readCharacteristicForService(
-                        //                     service.uuid,
-                        //                     distanceValueCharacteristic.uuid
-                        //                 );
-                        //                 console.log('Distance Value:', distanceValue.value);
-
-                        //                 if (distanceValue.value !== null) {
-                        //                     const readValueInBase64 = distanceValue.value;
-
-                        //                     const readValueInRawBytes = Buffer.from(readValueInBase64, 'base64');
-
-                        //                     const heightMostSignificantByte = readValueInRawBytes[1];
-                        //                     const heightLeastSignificantByte = readValueInRawBytes[0];
-
-                        //                     const heightInCentimeters = (heightMostSignificantByte << 8) | heightLeastSignificantByte;
-                        //                     setDistance(heightInCentimeters)
-
-                        //                     //     // Extract the characteristic value from the distanceValue object
-                        //                     //     const characteristicValue = distanceValue.value;
-
-                        //                     //     // Convert the base64-encoded binary data to a buffer
-                        //                     //     const buffer = Buffer.from(characteristicValue, 'base64');
-
-                        //                     //     // Assuming the characteristic uses a simple uint16 for distance in centimeters
-                        //                     //     const distanceInCentimeters = buffer.readUInt16LE(0);
-
-                        //                     //     // Convert distance from centimeters to meters
-                        //                     //     const distanceInMeters = round(distanceInCentimeters / 100);
-
-                        //                     //     // Set the distance state (or perform any desired action with the distance)
-                        //                     //     setDistance(distanceInMeters);
-
-                        //                     //     // Log the distance in meters
-                        //                     //     console.log('Distance:', distanceInMeters, 'm');
-                        //                 } else {
-                        //                     // Log a message if the distance value is null
-                        //                     console.log('Distance value is null');
-                        //                 }
-
-                        //                 if (caloriesValue.value !== null) {
-                        //                     // const readValueInBase64 = heartRateValue.value;
-                        //                     // const readValueInRawBytes = Buffer.from(readValueInBase64, 'base64');
-                        //                     // const heightMostSignificantByte = readValueInRawBytes[1];
-                        //                     // const heightLeastSignificantByte = readValueInRawBytes[0];
-                        //                     // const heightInCentimeters = (heightMostSignificantByte << 8) | heightLeastSignificantByte;
-                        //                     // console.log('heart Rate Value:', heightInCentimeters);
-
-                        //                     const characteristicValue = caloriesValue.value;
-
-                        //                     const buffer = Buffer.from(characteristicValue, 'base64');
-
-                        //                     // Assuming the characteristic uses a simple uint16 for MET value
-                        //                     const metValue = buffer.readUInt16LE(0);
-
-                        //                     // Duration of exercise in hours (for example, 0.5 hours or 30 minutes)
-                        //                     const durationInHours = 0.1;
-
-                        //                     // Weight of the person in kilograms
-                        //                     const weightInKg = 70; // Replace with the actual weight
-
-                        //                     // Calculate calories burned using the MET value, duration, and weight
-                        //                     const caloriesBurned = metValue * durationInHours * weightInKg;
-
-                        //                     console.log('Calories Burned:', caloriesBurned, 'cal');
-                        //                     setCalories(caloriesBurned);
-                        //                 } else {
-                        //                     console.log('Heart rate value is null');
-                        //                 }
-
-
-
-                        //                 if (heartRateValue.value !== null) {
-                        //                     // raw: e7070b14110d2e0100000c
-                        //                     const rawData = base64.decode(heartRateValue.value);
-                        //                     let innerHeartRate: number = -1;
-
-                        //                     const firstBitValue: number = Number(rawData) & 0x01;
-
-                        //                     if (firstBitValue === 0) {
-                        //                         innerHeartRate = Number(rawData[1].charCodeAt(0));
-                        //                     } else {
-                        //                         innerHeartRate =
-                        //                             Number(rawData[1].charCodeAt(0) << 8) +
-                        //                             Number(rawData[2].charCodeAt(2));
-                        //                     }
-
-                        //                     setHeartRate(innerHeartRate);
-                        //                     console.log('The Decoded Heart Rate Value Is:', innerHeartRate);
-                        //                 } else {
-                        //                     console.log('Heart rate value is null');
-                        //                 }
-                        //             }
-
-
-
-                        //             // if (caloriesValue.value !== null) {
-                        //             //     const readValueInBase64 = caloriesValue.value;
-                        //             //     const readValueInRawBytes = Buffer.from(readValueInBase64, 'base64');
-                        //             //     const heightMostSignificantByte = readValueInRawBytes[1];
-                        //             //     const heightLeastSignificantByte = readValueInRawBytes[0];
-                        //             //     const heightInCentimeters2 = (heightMostSignificantByte << 8) | heightLeastSignificantByte;
-                        //             //     console.log('Calories:', heightInCentimeters2);
-                        //             //     setCalories(heightInCentimeters2);
-                        //             // } else {
-                        //             //     console.log('Calories value is null');
-                        //             // }
-                        //             // Now you can set the heart rate value in your state or display it as needed
-                        //         }
-                        setConnectedDevice(deviceConnection);
-
-                    }
                 }
-                startStreamingData(deviceConnection);
-                bleManager.stopDeviceScan();
+                const heartRateCharacteristic = await deviceConnection.characteristicsForService(
+                    service.uuid,
+                );
+                console.log(`heart rate characteristics for service ${service.id}:`, heartRateCharacteristic)
+                const characteristics = await service.characteristics();
+                console.log(`Characteristics for service ${service.id}:`, characteristics);
+
+                for (const characteristic of heartRateCharacteristic) {
+                    console.log(`Characteristic UUID: ${characteristic.uuid}`);
+                }
+                console.log('Read Characteristic:', heartRateCharacteristic);
+                // Find the heart rate characteristic based on its UUID
+                const heartRateValueCharacteristic = heartRateCharacteristic.find(
+                    characteristic => characteristic.uuid === characteristic.uuid
+                );
+                console.log('Heart Rate Value2:', heartRateValueCharacteristic?.uuid);
+
+                if (heartRateValueCharacteristic) {
+                    try {
+                        const heartRateValue = await deviceConnection.readCharacteristicForService(
+                            service.uuid,
+                            heartRateValueCharacteristic.uuid
+                        );
+                        console.log('Heart Rate Value:', heartRateValue.value);
+                        console.log("Is Characteristics Readable:", heartRateValue.isReadable);
+
+
+                    } catch (error) {
+                        console.error('Error reading characteristic:', error);
+                    }
+
+                    // deviceConnection.monitorCharacteristicForService(
+                    //     service.uuid,
+                    //     heartRateValueCharacteristic.uuid,
+                    //     (error, newValue) => {
+                    //         if (error) {
+                    //             console.error('Error monitoring characteristic:', error);
+                    //             return;
+                    //         }
+
+                    //         console.log('Characteristic value changed:', newValue);
+                    //         // Handle the updated value as needed
+                    //     }
+                    // );
+
+                    //         const caloriesCharacteristic = await deviceConnection.characteristicsForService(
+                    //             service.uuid,
+                    //         );
+                    //         const caloriesValueCharacteristic = caloriesCharacteristic.find(
+                    //             characteristic => characteristic.uuid === HEART_RATE_UUID5
+                    //         );
+                    //         // Read the value of the calories characteristic
+                    //         if (caloriesValueCharacteristic) {
+                    //             const caloriesValue = await deviceConnection.readCharacteristicForService(
+                    //                 service.uuid,
+                    //                 caloriesValueCharacteristic.uuid
+                    //             );
+                    //             console.log('calories Value:', caloriesValue.value);
+
+                    //             const distanceCharacteristic = await deviceConnection.characteristicsForService(
+                    //                 service.uuid,
+                    //             );
+                    //             const distanceValueCharacteristic = distanceCharacteristic.find(
+                    //                 characteristic => characteristic.uuid === HEART_RATE_UUID3
+                    //             );
+                    //             // Read the value of the calories characteristic
+                    //             if (distanceValueCharacteristic) {
+                    //                 const distanceValue = await deviceConnection.readCharacteristicForService(
+                    //                     service.uuid,
+                    //                     distanceValueCharacteristic.uuid
+                    //                 );
+                    //                 console.log('Distance Value:', distanceValue.value);
+
+                    //                 if (distanceValue.value !== null) {
+                    //                     const readValueInBase64 = distanceValue.value;
+
+                    //                     const readValueInRawBytes = Buffer.from(readValueInBase64, 'base64');
+
+                    //                     const heightMostSignificantByte = readValueInRawBytes[1];
+                    //                     const heightLeastSignificantByte = readValueInRawBytes[0];
+
+                    //                     const heightInCentimeters = (heightMostSignificantByte << 8) | heightLeastSignificantByte;
+                    //                     setDistance(heightInCentimeters)
+
+                    //                     //     // Extract the characteristic value from the distanceValue object
+                    //                     //     const characteristicValue = distanceValue.value;
+
+                    //                     //     // Convert the base64-encoded binary data to a buffer
+                    //                     //     const buffer = Buffer.from(characteristicValue, 'base64');
+
+                    //                     //     // Assuming the characteristic uses a simple uint16 for distance in centimeters
+                    //                     //     const distanceInCentimeters = buffer.readUInt16LE(0);
+
+                    //                     //     // Convert distance from centimeters to meters
+                    //                     //     const distanceInMeters = round(distanceInCentimeters / 100);
+
+                    //                     //     // Set the distance state (or perform any desired action with the distance)
+                    //                     //     setDistance(distanceInMeters);
+
+                    //                     //     // Log the distance in meters
+                    //                     //     console.log('Distance:', distanceInMeters, 'm');
+                    //                 } else {
+                    //                     // Log a message if the distance value is null
+                    //                     console.log('Distance value is null');
+                    //                 }
+
+                    //                 if (caloriesValue.value !== null) {
+                    //                     // const readValueInBase64 = heartRateValue.value;
+                    //                     // const readValueInRawBytes = Buffer.from(readValueInBase64, 'base64');
+                    //                     // const heightMostSignificantByte = readValueInRawBytes[1];
+                    //                     // const heightLeastSignificantByte = readValueInRawBytes[0];
+                    //                     // const heightInCentimeters = (heightMostSignificantByte << 8) | heightLeastSignificantByte;
+                    //                     // console.log('heart Rate Value:', heightInCentimeters);
+
+                    //                     const characteristicValue = caloriesValue.value;
+
+                    //                     const buffer = Buffer.from(characteristicValue, 'base64');
+
+                    //                     // Assuming the characteristic uses a simple uint16 for MET value
+                    //                     const metValue = buffer.readUInt16LE(0);
+
+                    //                     // Duration of exercise in hours (for example, 0.5 hours or 30 minutes)
+                    //                     const durationInHours = 0.1;
+
+                    //                     // Weight of the person in kilograms
+                    //                     const weightInKg = 70; // Replace with the actual weight
+
+                    //                     // Calculate calories burned using the MET value, duration, and weight
+                    //                     const caloriesBurned = metValue * durationInHours * weightInKg;
+
+                    //                     console.log('Calories Burned:', caloriesBurned, 'cal');
+                    //                     setCalories(caloriesBurned);
+                    //                 } else {
+                    //                     console.log('Heart rate value is null');
+                    //                 }
+
+
+
+                    //                 if (heartRateValue.value !== null) {
+                    //                     // raw: e7070b14110d2e0100000c
+                    //                     const rawData = base64.decode(heartRateValue.value);
+                    //                     let innerHeartRate: number = -1;
+
+                    //                     const firstBitValue: number = Number(rawData) & 0x01;
+
+                    //                     if (firstBitValue === 0) {
+                    //                         innerHeartRate = Number(rawData[1].charCodeAt(0));
+                    //                     } else {
+                    //                         innerHeartRate =
+                    //                             Number(rawData[1].charCodeAt(0) << 8) +
+                    //                             Number(rawData[2].charCodeAt(2));
+                    //                     }
+
+                    //                     setHeartRate(innerHeartRate);
+                    //                     console.log('The Decoded Heart Rate Value Is:', innerHeartRate);
+                    //                 } else {
+                    //                     console.log('Heart rate value is null');
+                    //                 }
+                    //             }
+
+
+
+                    //             // if (caloriesValue.value !== null) {
+                    //             //     const readValueInBase64 = caloriesValue.value;
+                    //             //     const readValueInRawBytes = Buffer.from(readValueInBase64, 'base64');
+                    //             //     const heightMostSignificantByte = readValueInRawBytes[1];
+                    //             //     const heightLeastSignificantByte = readValueInRawBytes[0];
+                    //             //     const heightInCentimeters2 = (heightMostSignificantByte << 8) | heightLeastSignificantByte;
+                    //             //     console.log('Calories:', heightInCentimeters2);
+                    //             //     setCalories(heightInCentimeters2);
+                    //             // } else {
+                    //             //     console.log('Calories value is null');
+                    //             // }
+                    //             // Now you can set the heart rate value in your state or display it as needed
+                    //         }
+                    setConnectedDevice(deviceConnection);
+                }
             }
+            console.log('that is all ');
+            bleManager.stopDeviceScan();
+
         } catch (e) {
             console.log('FAILED TO CONNECT', e);
         }

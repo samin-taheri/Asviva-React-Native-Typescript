@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { useEffect, useRef, useState } from 'react';
+import { Animated, Easing, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import AppLable from '../AppLable';
 import AppColoredCards2 from '../AppColoredCards2';
 import { COLORS } from '@/theme';
@@ -10,6 +10,18 @@ import DeviceModal from '../AppDeviceModal';
 
 
 const AppTotalWorkout: React.FC = () => {
+    const zoomAnim = useRef(new Animated.Value(0)).current;
+
+    useEffect(() => {
+        Animated.loop(
+            Animated.timing(zoomAnim, {
+                toValue: 1,
+                duration: 3000,
+                easing: Easing.linear,
+                useNativeDriver: true,
+            })
+        ).start();
+    }, [zoomAnim]);
 
     const {
         requestPermissions,
@@ -75,7 +87,7 @@ const AppTotalWorkout: React.FC = () => {
                     <AppColoredCards2
                         title="exercise_times"
                         color={COLORS.primary}
-                        description="3"
+                        description="0"
                         cardColor={COLORS.cardBackgroundCOlor}
                         imageSource={require('../../../assets/images/bike.png')}
                     />
@@ -150,9 +162,9 @@ const AppTotalWorkout: React.FC = () => {
                 )}
             </View>
             <View style={{ padding: 8 }}>
-                <TouchableOpacity
+                <TouchableOpacity style={styles.buttonContainer}
                     onPress={connectedDevice ? disconnectFromDevice : openModal}>
-                    <Text style={{ color: 'black', fontWeight: 'bold', fontSize: 15 }}>
+                    <Text style={styles.button}>
                         {connectedDevice ? 'Disconnect' : 'Connect'}
                     </Text>
                 </TouchableOpacity>
@@ -164,6 +176,10 @@ const AppTotalWorkout: React.FC = () => {
                 />
                 {connectedDevice && (
                     <>
+                        <Animated.View style={[styles.logoContainer, { transform: [{ scale: zoomAnim.interpolate({ inputRange: [0, 0.5, 1], outputRange: [1, 1.2, 1] }) }] }]}>
+                            <Animated.View style={[styles.outerCircle, { transform: [{ scale: zoomAnim.interpolate({ inputRange: [0, 0.5, 1], outputRange: [1, 1.2, 1] }) }] }]}></Animated.View>
+                        </Animated.View>
+                        <Text style={{ color: COLORS.primary, fontSize: 18, paddingTop: 10, fontWeight: 'bold' }}>Connected</Text>
                         <Text style={{ color: '#000', fontSize: 15, paddingTop: 10 }}>{connectedDevice.id}</Text>
                         <Text style={{ color: '#000', fontSize: 15 }}>{connectedDevice?.name}</Text>
                     </>
@@ -179,6 +195,36 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
         padding: 8
+    },
+    buttonContainer: {
+        backgroundColor: COLORS.primary,
+        width: 100,
+        height: 35,
+        borderRadius: 8,
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'row',
+    },
+    button: {
+        color: 'white',
+        fontWeight: 'bold',
+        paddingTop: 1,
+    },
+    outerCircle: {
+        position: 'absolute',
+        width: 15,
+        height: 15,
+        borderRadius: 50,
+        backgroundColor: COLORS.primary,
+    },
+    logoContainer: {
+        width: '65%',
+        height: '100%',
+        resizeMode: 'contain',
+        position: 'absolute',
+        justifyContent: 'center',
+        alignItems: 'center',
+        top: 5
     },
 });
 

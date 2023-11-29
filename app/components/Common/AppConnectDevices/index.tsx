@@ -104,16 +104,16 @@ const AppConnectDevices: React.FC<ConnectDevicesProps> = ({ brandsNavigate }) =>
             <ScrollView showsVerticalScrollIndicator={false} style={styles.contentContainer}>
                 <AppLable title="Devices" />
                 <AppDeviceCard
-                    title="Cycling"
+                    title={connectedDevice ? `Disconnect: ${connectedDevice.name}` : "Cycling"}
                     cardColor={COLORS.cardBackground}
                     imageSource={require('../../../assets/images/exercise.png')}
-                    onPress={onPress2}
+                    onPress={onPress}
                 />
                 <AppDeviceCard
-                    title={connectedDevice ? `Disconnect: ${connectedDevice.name}` : "Smart Watch"}
+                    title="Smart Watch"
                     cardColor={COLORS.cardBackground}
                     imageSource={require('../../../assets/images/connect-4.png')}
-                    onPress={onPress}
+                    onPress={onPress2}
                 />
                 <AppDeviceCard
                     title="standard_heart_rate_device"
