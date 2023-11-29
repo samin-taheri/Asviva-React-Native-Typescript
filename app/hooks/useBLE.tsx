@@ -234,6 +234,18 @@ function useBLE(): BluetoothLowEnergyApi {
                         console.log('Heart Rate Value:', heartRateValue.value);
                         console.log("Is Characteristics Readable:", heartRateValue.isReadable);
 
+                        // if (heartRateValue.value !== null) {
+                        //     const readValueInBase64 = heartRateValue.value;
+
+                        //     const readValueInRawBytes = Buffer.from(readValueInBase64, 'base64');
+
+                        //     const heightMostSignificantByte = readValueInRawBytes[1];
+                        //     const heightLeastSignificantByte = readValueInRawBytes[0];
+
+                        //     const heightInCentimeters = (heightMostSignificantByte << 8) | heightLeastSignificantByte;
+                        //     setHeartRate(heightInCentimeters)
+                        // }
+
 
                     } catch (error) {
                         console.error('Error reading characteristic:', error);
