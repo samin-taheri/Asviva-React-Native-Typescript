@@ -4,7 +4,7 @@
 
 # Asviva React Native Typescript
 
-A BLE integrated Fitness Application made by React-Native that tracks fitness health data. It connects to workout machines via Bluetooth and monitors the changes made by the user's workout, such as distance, calories burned, heart rate, etc. It also has a variety of workout programs from which users can choose to workout accordingly, as well as lots of other properties.
+A BLE integrated Fitness Application made by React-Native that tracks fitness health data. It connects to workout machines via Bluetooth and monitors the changes made by the user's workout using Fitness Machine Service protocol(FTMS), such as distance, calories burned, heart rate, etc. It also has a variety of workout programs from which users can choose to workout accordingly, as well as lots of other properties.
 
 
 ## Requirements
